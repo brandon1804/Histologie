@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="homepage.php"><img src="./css/img/histologie.png" alt="logo" style="width: 200px"></a>
-    
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="homepage.php"><img src="./css/img/histologie.png" alt="logo" style="width: 100px"></a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,3 +23,4 @@
                 <?php } ?>
         </ul>
     </div>
+</nav>
