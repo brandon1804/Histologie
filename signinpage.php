@@ -22,7 +22,7 @@ and open the template in the editor.
             body, html {
                 height: 100%;
                 margin: 0;
-                 background-image: url("loginBackgroundImage.png");
+                background-image: url("loginBackgroundImage.png");
 
                 /* Full height */
                 height: 100%; 
@@ -31,13 +31,60 @@ and open the template in the editor.
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
+                
+                font-family: europa,sans-serif;
+                font-weight: 400;
+                font-style: normal;
             }
-
-
+            .card{
+                width: 400px;
+                height: 390px;
+                justify-content: center;
+                margin-top: 100px;
+                margin-bottom: 100px;
+                
+            }
+            .container{
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+            }
+            .card-img-top{
+                height: 100%;
+                width: 50%
+            }
+            .card-title{
+                margin-top: 20px;
+                margin-left: 20px;
+                text-align: left;
+            }
+            .form-control{
+                margin-bottom: 20px;
+            }
+            .btn{
+                margin-bottom: 20px;
+            }
         </style>
     </head>
     <body>
-        
+        <div class="container">
+            <form method="post" action="doLogin.php">
+                <div class="card">
+                    <img class="card-img-top" src="/css/img/histologie.png">
+                    <h4 class="card-title">Sign into your account</h4>
+                    <div class="card-body text-center">
+                        <h6 class="card-email text-left">Enter your email</h6>
+                        <input type="text" class="form-control" name="email" placeholder="Email Address" required>
+                        <h6 class="card-password text-left">Enter your password</h6>
+                        <input type="text" class="form-control" name="password" placeholder="Password" required>
+                        <a class="card-text text-right" href="passwordReset.php">Forget your password?</a>
+                    </div>
+                    
+                    <input type="submit" value="Done" class="btn btn-primary"/></br>
+                </div>
+            </form>
+        </div>
+
         <?php
         // put your code here
         ?>
