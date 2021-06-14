@@ -42,7 +42,7 @@ and open the template in the editor.
                 justify-content: center;
                 margin-top: 100px;
                 margin-bottom: 100px;
-                
+                border-radius: 20px;
             }
             .container{
                 display: flex;
@@ -51,10 +51,12 @@ and open the template in the editor.
             }
             .card-img-top{
                 height: 100%;
-                width: 50%
+                width: 30%;
+                margin-left: 20px;
+                margin-top: 10px;
             }
             .card-title{
-                margin-top: 20px;
+                margin-top: 10px;
                 margin-left: 20px;
                 text-align: left;
             }
@@ -62,25 +64,33 @@ and open the template in the editor.
                 margin-bottom: 20px;
             }
             .btn{
+                background-color: #E11E7A;
                 margin-bottom: 20px;
+                margin-left: 20px;
+                margin-right: 20px;
+                border-radius: 10px;
+            }
+            .btn:hover{
+                background-color: #E11E7A;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <form method="post" action="doLogin.php">
+                <div id="msg">
                 <div class="card">
-                    <img class="card-img-top" src="/css/img/histologie.png">
+                    <img class="card-img-top" src="css/img/histologie.png">
                     <h4 class="card-title">Sign into your account</h4>
                     <div class="card-body text-center">
                         <h6 class="card-email text-left">Enter your email</h6>
-                        <input type="text" class="form-control" name="email" placeholder="Email Address" required>
+                        <input type="text" class="form-control" name="email" id="#idEmail" placeholder="Email Address" required autofocus>
                         <h6 class="card-password text-left">Enter your password</h6>
-                        <input type="text" class="form-control" name="password" placeholder="Password" required>
+                        <input type="text" class="form-control" name="password" id="#idPassword" placeholder="Password" required>
                         <a class="card-text text-right" href="passwordReset.php">Forget your password?</a>
                     </div>
                     
-                    <input type="submit" value="Done" class="btn btn-primary"/></br>
+                    <input type="submit" value="Login" class="btn btn-primary" id="#loginBtn"/></br>
                 </div>
             </form>
         </div>
@@ -90,3 +100,4 @@ and open the template in the editor.
         ?>
     </body>
 </html>
+
