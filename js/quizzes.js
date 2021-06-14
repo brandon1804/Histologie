@@ -20,7 +20,7 @@ function updateQuizzes() {
                         + "<div class='card-body'>"
                         + "<h5 class='card-title'>" + response[i].title + "</h5>"
                         + "<h6 class='card-subtitle mb-2 text-muted'>" + response[i].summary + "<br>" + response[i].questions + " Questions  " + response[i].score + " Marks</h6>"
-                        + "<a href='#' class='btn btn-success stretched-link'>Take Quiz</a>"
+                        + "<a href='quizPage.php?id=" + response[i].quiz_id + "' class='btn btn-primary stretched-link'>Take Quiz</a>"
                         + "</div></div></div>";
             }
             $("#quizzesRow").html(message);

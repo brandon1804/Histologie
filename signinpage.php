@@ -15,9 +15,10 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css"> 
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <title></title>
+        <script src="js/signin.js" type="text/javascript"></script>
         <style>
             body, html {
                 height: 100%;
@@ -31,7 +32,7 @@ and open the template in the editor.
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
-                
+
                 font-family: europa,sans-serif;
                 font-weight: 400;
                 font-style: normal;
@@ -77,27 +78,25 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container">
-            <form method="post" action="doLogin.php">
-                <div id="msg">
+
+            <form>
                 <div class="card">
                     <img class="card-img-top" src="css/img/histologie.png">
                     <h4 class="card-title">Sign into your account</h4>
                     <div class="card-body text-center">
                         <h6 class="card-email text-left">Enter your email</h6>
-                        <input type="text" class="form-control" name="email" id="#idEmail" placeholder="Email Address" required autofocus>
+                        <input type="text" class="form-control" name="email" id="idEmail" placeholder="Email Address" required autofocus>
                         <h6 class="card-password text-left">Enter your password</h6>
-                        <input type="text" class="form-control" name="password" id="#idPassword" placeholder="Password" required>
+                        <input type="text" class="form-control" name="password" id="idPassword" placeholder="Password" required>
                         <a class="card-text text-right" href="passwordReset.php">Forget your password?</a>
                     </div>
-                    
-                    <input type="submit" value="Login" class="btn btn-primary" id="#loginBtn"/></br>
+
+                    <input type="submit" value="Login" class="btn btn-primary" id="loginBtn"/></br>
                 </div>
             </form>
         </div>
 
-        <?php
-        // put your code here
-        ?>
+
     </body>
 </html>
 
