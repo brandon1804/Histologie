@@ -23,7 +23,6 @@ session_start();
                 font-style: normal;
                 padding-top: 70px;
             }
-
             .card-text{
                 font-family: europa,sans-serif;
                 font-weight: 700;
