@@ -6,6 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <Title>Login</Title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="icon.png">
@@ -18,9 +19,21 @@ and open the template in the editor.
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <title></title>
         <style>
-            body{
-                background-image: url('loginBackgroundImage.png')
+            body, html {
+                height: 100%;
+                margin: 0;
+                 background-image: url("loginBackgroundImage.png");
+
+                /* Full height */
+                height: 100%; 
+
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
             }
+
+
         </style>
     </head>
     <body>
