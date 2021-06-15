@@ -1,5 +1,17 @@
 <?php
 session_start();
+
+include("dbFunctions.php");
+
+$quizCategories = array();
+$query = "SELECT * FROM quiz_category";
+$result = mysqli_query($link, $query);
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $quizCategories[] = $row;
+}
+
+mysqli_close($link);
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +50,11 @@ session_start();
                 border-top-right-radius: 20px;
             }
             #quizzesRow{
+                padding-top: 10px;
                 padding-bottom: 10px;
+            }
+            #idQuizCategoryChooser{
+                align-items: flex-end;
             }
         </style>
     </head>
@@ -46,8 +62,18 @@ session_start();
         <?php
         include("navbar.php");
         ?>
-        <div class="container">
-            <h1>Quizzes</h1>
+        <div class="container"> 
+            <div class="row justify-content-between"> 
+                <h1>Quizzes</h1>
+                <select id="idQuizCategoryChooser">
+                    <option value="">Select Quiz Category</option>
+                    <?php
+                    for ($i = 0; $i < count($quizCategories); $i++) {
+                        ?>
+                        <option value="<?php echo $quizCategories[$i]['quizcategory_id']; ?>"><?php echo $quizCategories[$i]['category_name']; ?></option>                 
+                    <?php } ?>        
+                </select>
+            </div>
             <div id="quizzesRow" class="row d-flex flex-row flex-nowrap overflow-auto">
 
             </div><br><br>

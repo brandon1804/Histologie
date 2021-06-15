@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <Title>Login</Title>
+        <Title>Register</Title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="icon.png">
@@ -114,7 +114,7 @@ and open the template in the editor.
                     </div>
 
                     <input type="submit" value="Sign up" class="btn btn-primary" id="signupBtn"/></br>
-                    <a href="signinpage.php" class="card-link">Already have an account?</a>
+                    <a href="signinpage.php" id="AA" class="card-link">Already have an account?</a>
                 </div>
             </form>
         </div>

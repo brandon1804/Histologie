@@ -3,15 +3,16 @@
 include "dbFunctions.php";
 
 
-    $id = $_GET['id'];
-    $query = "SELECT QQ.question FROM quiz Q INNER JOIN quiz_question QQ ON Q.quiz_id = QQ.quiz_id WHERE Q.quiz_id = $id";
-    $result = mysqli_query($link, $query);
+$id = $_GET['id'];
+$questionsQuery = "SELECT QQ.question, QO.question_option FROM quiz_question QQ INNER JOIN question_option QO ON QQ.question_id = QO.question_id WHERE QQ.quiz_id = $id";
+$result = mysqli_query($link, $questionsQuery);
 
-    $row = mysqli_fetch_assoc($result);
-    if(!empty($row)) {
-        $quizContent[] = $row;
-    }
-    mysqli_close($link);
 
-    echo json_encode($quizContent);
+while ($row = mysqli_fetch_assoc($result)) {
+    $quizContent[] = $row["question"];
+    $questionOptions[] = $row["question_option"];
+}
+mysqli_close($link);
+
+echo json_encode($quizContent);
 ?>

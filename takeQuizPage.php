@@ -20,35 +20,31 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <script src="js/quiz.js" type="text/javascript"></script>
+        <script src="js/takeQuiz.js" type="text/javascript"></script>
         <style type="text/css">
             body{
                 font-family: europa,sans-serif;
                 font-weight: 400;
                 font-style: normal;
                 padding-top: 100px;
-                background-color: #E11A7A;
             }
-            .card-text{
-                font-family: europa,sans-serif;
-                font-weight: 700;
-                font-style: normal;
-            }
-            .card{
-                border-radius: 20px;
-            }
-            .card img{
-                border-top-left-radius: 20px;
-                border-top-right-radius: 20px;
-            }
+
         </style>
     </head>
     <body>
         <?php
         include("navbar.php");
         ?>
-        <div class="col d-flex justify-content-center" id = "quizDetails">
-
+        <div class="row justify-content-between"> 
+            <h1>Quizzes</h1>
+            <select id="idQuizCategoryChooser">
+                <option value="">Select Quiz Category</option>
+                <?php
+                for ($i = 0; $i < count($quizCategories); $i++) {
+                    ?>
+                    <option value="<?php echo $quizCategories[$i]['quizcategory_id']; ?>"><?php echo $quizCategories[$i]['category_name']; ?></option>                 
+                <?php } ?>        
+            </select>
         </div>
     </body>
 </html>
