@@ -10,6 +10,8 @@ $(document).ready(function () {
             data: {email: email, password: password},
             success: function (response) {
                 $(".card-body").html(response);
+                $(".card-img-top").hide();
+                $("#loginBtn").hide();
             }
         });
     });

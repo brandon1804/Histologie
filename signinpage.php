@@ -52,7 +52,7 @@ and open the template in the editor.
             }
             .card-img-top{
                 height: 100%;
-                width: 30%;
+                width: 40%;
                 margin-left: 20px;
                 margin-top: 10px;
             }
@@ -61,11 +61,12 @@ and open the template in the editor.
                 margin-left: 20px;
                 text-align: left;
             }
-            .form-control{
+            #idEmail{
                 margin-bottom: 20px;
             }
             .btn{
                 background-color: #E11E7A;
+                border-color: #E11E7A;
                 margin-bottom: 20px;
                 margin-left: 20px;
                 margin-right: 20px;
@@ -73,22 +74,22 @@ and open the template in the editor.
             }
             .btn:hover{
                 background-color: #E11E7A;
+                border-color: #E11E7A;
             }
         </style>
     </head>
     <body>
         <div class="container">
-
             <form>
                 <div class="card">
                     <img class="card-img-top" src="css/img/histologie.png">
                     <h4 class="card-title">Sign into your account</h4>
-                    <div class="card-body text-center">
+                    <div class="card-body text-right">
                         <h6 class="card-email text-left">Enter your email</h6>
                         <input type="text" class="form-control" name="email" id="idEmail" placeholder="Email Address" required autofocus>
                         <h6 class="card-password text-left">Enter your password</h6>
-                        <input type="text" class="form-control" name="password" id="idPassword" placeholder="Password" required>
-                        <a class="card-text text-right" href="passwordReset.php">Forget your password?</a>
+                        <input type="text" class="form-control" name="password" id="idPassword" placeholder="Password" required> 
+                        <a href="passwordReset.php" class="card-link">Forgot your password?</a>
                     </div>
 
                     <input type="submit" value="Login" class="btn btn-primary" id="loginBtn"/></br>
