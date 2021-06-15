@@ -13,6 +13,9 @@
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+        <link rel="stylesheet" href="css/gallery-grid.css">
+        <script src="css/gallery-grid.css"></script>
         <style type="text/css">
             body{
                 font-family: europa,sans-serif;
@@ -26,5 +29,66 @@
         session_start();
         include("navbar.php");
         ?>
+        <div class="container gallery-container">
+
+            <div class="tz-gallery">
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <a class="lightbox" href="./css/img/capillary.jpg">
+                            <img src="./css/img/capillary.jpg" alt="capillary">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <a class="lightbox" href="./css/img/cardiacmuscle.jpg">
+                            <img src="./css/img/cardiacmuscle.jpg" alt="cardiacmuscle">
+                        </a>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <a class="lightbox" href="./css/img/collagenfibers.jpg">
+                            <img src="./css/img/collagenfibers.jpg" alt="collagenfibers">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <a class="lightbox" href="./css/img/gallbladder.jpg">
+                            <img src="./css/img/gallbladder.jpg" alt="gallbladder">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <a class="lightbox" href="./css/img/hepatocytes.jpg">
+                            <img src="./css/img/hepatocytes.jpg" alt="hepatocytes">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <a class="lightbox" href="./css/img/interlobularduct.jpg">
+                            <img src="./css/img/interlobularduct.jpg" alt="interlobularduct">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <a class="lightbox" href="./css/img/kupffercell.jpg">
+                            <img src="./css/img/kupffercell.jpg" alt="kupffercell">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <a class="lightbox" href="./css/img/neuromuscularjunction.jpg">
+                            <img src="./css/img/neuromuscularjunction.jpg" alt="neuromuscularjunction">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <a class="lightbox" href="./css/img/peripheralnerve.jpg">
+                            <img src="./css/img/peripheralnerve.jpg" alt="peripheralnerve">
+                        </a>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+        <script>
+            baguetteBox.run('.tz-gallery');
+        </script>
     </body>
 </html>

@@ -16,65 +16,99 @@ and open the template in the editor.
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="js/additional-methods.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <style type="text/css">
+            form .error {
+                color: #ff0000;
+            }
             body{
                 font-family: europa,sans-serif;
                 font-weight: 400;
                 font-style: normal;
-                background-color: #E11A7A;
+                background-color: white;
             }
-            .card{
-                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                height: 400px;
-                width: 530px;
-                border-radius: 20px;
-                margin-top: 150px;
-                margin-bottom: 20px;
-            }
-            .card-title{
-                font-size: 25px;
-                font-style: normal;
-                margin-top: 10px;
-            }
-            .card-text{
-                margin-top: 10px;
-            }
-            .btn-primary{
-                margin-left: 20px;
-                margin-right: 20px;
-                background-color: #008000;
-            }
-            .container{
-                display: flex;
-                justify-content: center;
-                flex-direction: row;
+            .btn{
+                background-color: #149738;
             }
             .btn:hover{
-                background-color: #008000;
+                background-color: #149738;
+                border-color: #E11E7A;
+            }
+            .container{
+                margin-top: 80px;
+            }
+            .title{
+                text-align: center;
+            }
+            .label{
+                color: black;
             }
         </style>
+        <script>
+            $(document).ready(function(){
+                
+                $("#defaultForm").validate({
+                    rules: {
+                        name: {
+                            required: true,
+                            pattern: /^[a-zA-Z]* $/
+                        },
+                        email: {
+                            required: true,
+                            pattern: /^(\w+[\-\.])*\w+@(\w+\.)+[A-Za-z]+$/
+                        },
+                        password: {
+                            required: true,
+                            pattern: /^[A-Za-z\d]{6,8}$/
+                        }
+                    }, 
+                    messages: {
+                        name: {
+                            required: "Please enter new name",
+                            pattern: "Name must contain only alphabet"
+                        },
+                        email: {
+                            required: "Please enter new email",
+                            pattern: "Please enter a valid email"
+                        },
+                        password: {
+                            required: "Please enter new password",
+                            pattern: "Password must be 6 to 8 character long"
+                        }
+                    },
+                    
+                    submitHandler: function(){
+                        return true;
+                    }
+                });
+            });
+        </script>
     </head>
     <body>
         <?php
         session_start();
         include("navbar.php");
         ?>
-        <div class="container ">
-            <form method="post" action="doProfile.php">
-                <div class="card">
-                    <h4 class="card-title text-center">Edit profile</h4>
-                    <div class="card-body text-center">
-                        <h6 class="card-text text-left">Name</h6>
-                        <input type="text" class="form-control" name="name" placeholder="Update new name" required>
-                        <h6 class="card-text text-left">Email</h6>
-                        <input type="text" class="form-control" name="email" placeholder="Update new email" required>
-                        <h6 class="card-text text-left">Password</h6>
-                        <input type="text" class="form-control" name="password" placeholder="Update new password" required>
-                    </div>
-                    
-                    <input type="submit" value="Done" class="btn btn-primary"/></br>
+         <div class="container ">
+            <h3 class="title">Edit Profile</h3></br></br>
+            
+            <form id="defaultForm">
+                <div class="form-group">
+                    <label class="label">Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Update new name" required />
                 </div>
+                <div class="form-group">
+                    <label class="label">Email</label>
+                    <input type="text" class="form-control" name="email" placeholder="Update new email" required />
+                </div>
+                <div class="form-group">
+                    <label class="label">Password</label>
+                    <input type="text" class="form-control" name="password" placeholder="Update new password" required />
+                </div>
+                </br></br>
+                <input type="submit" value="Done" class="btn btn-primary btn-block"/>
             </form>
         </div>
     </body>
