@@ -13,12 +13,11 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/all.css">
         <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="js/additional-methods.min.js" type="text/javascript"></script>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="js/validator.min.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
-        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="js/additional-methods.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <style type="text/css">
             form .error {
@@ -44,7 +43,7 @@ and open the template in the editor.
                 text-align: center;
             }
             .label{
-                color: white;
+                color: black;
             }
         </style>
         <script>
@@ -68,7 +67,7 @@ and open the template in the editor.
                     messages: {
                         name: {
                             required: "Please enter new name",
-                            pattern: "Name must contaian only alphabet"
+                            pattern: "Name must contain only alphabet"
                         },
                         email: {
                             required: "Please enter new email",
