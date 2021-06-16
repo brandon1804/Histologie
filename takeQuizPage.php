@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: http://localhost/Histologie/signinpage.php");
+    exit();
+}//end of user validation
 ?>
 <!DOCTYPE html>
 <!--
@@ -35,16 +39,6 @@ and open the template in the editor.
         <?php
         include("navbar.php");
         ?>
-        <div class="row justify-content-between"> 
-            <h1>Quizzes</h1>
-            <select id="idQuizCategoryChooser">
-                <option value="">Select Quiz Category</option>
-                <?php
-                for ($i = 0; $i < count($quizCategories); $i++) {
-                    ?>
-                    <option value="<?php echo $quizCategories[$i]['quizcategory_id']; ?>"><?php echo $quizCategories[$i]['category_name']; ?></option>                 
-                <?php } ?>        
-            </select>
-        </div>
+
     </body>
 </html>

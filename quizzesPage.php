@@ -3,13 +3,20 @@ session_start();
 
 include("dbFunctions.php");
 
-$quizCategories = array();
-$query = "SELECT * FROM quiz_category";
-$result = mysqli_query($link, $query);
+if (!isset($_SESSION['user_id'])) {
+    header("Location: http://localhost/Histologie/signinpage.php");
+    exit();
+}//end of user validation
+else {
+    $quizCategories = array();
+    $query = "SELECT * FROM quiz_category";
+    $result = mysqli_query($link, $query);
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $quizCategories[] = $row;
-}
+    while ($row = mysqli_fetch_assoc($result)) {
+        $quizCategories[] = $row;
+    }
+}//end of else 
+
 
 mysqli_close($link);
 ?>
@@ -64,15 +71,21 @@ mysqli_close($link);
         ?>
         <div class="container"> 
             <div class="row justify-content-between"> 
-                <h1>Quizzes</h1>
-                <select id="idQuizCategoryChooser">
-                    <option value="">Select Quiz Category</option>
-                    <?php
-                    for ($i = 0; $i < count($quizCategories); $i++) {
-                        ?>
-                        <option value="<?php echo $quizCategories[$i]['quizcategory_id']; ?>"><?php echo $quizCategories[$i]['category_name']; ?></option>                 
-                    <?php } ?>        
-                </select>
+                <div class="col-6">
+                    <h1>Quizzes</h1>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <select id="idQuizCategoryChooser">
+                        <option value="">Select Quiz Category</option>
+                        <?php
+                        for ($i = 0; $i < count($quizCategories); $i++) {
+                            ?>
+                            <option value="<?php echo $quizCategories[$i]['quizcategory_id']; ?>"><?php echo $quizCategories[$i]['category_name']; ?></option>                 
+                        <?php } ?>        
+                    </select>
+                </div>
+
+
             </div>
             <div id="quizzesRow" class="row d-flex flex-row flex-nowrap overflow-auto">
 

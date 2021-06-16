@@ -9,10 +9,13 @@ $result = mysqli_query($link, $questionsQuery);
 
 
 while ($row = mysqli_fetch_assoc($result)) {
-    $quizContent[] = $row["question"];
+    $quizQuestion[] = $row["question"];
     $questionOptions[] = $row["question_option"];
 }
 mysqli_close($link);
 
-echo json_encode($quizContent);
+$output["questions"] = $quizQuestion[0];
+$output["questionOptions"] = $questionOptions;
+
+echo json_encode($output);
 ?>

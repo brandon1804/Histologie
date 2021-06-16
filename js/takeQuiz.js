@@ -13,7 +13,7 @@ function updateTakeQuizPage() {
 
     $.ajax({
         type: "GET",
-        url: "getQuizContent.php",
+        url: "http://localhost/Histologie/QuizPHPFiles/getQuizContent.php",
         data: "id=" + id,
         cache: false,
         dataType: "JSON",

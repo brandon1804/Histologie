@@ -118,8 +118,6 @@ and open the template in the editor.
                 </div>
             </form>
         </div>
-
-
     </body>
 </html>
 

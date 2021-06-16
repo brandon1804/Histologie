@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: http://localhost/Histologie/signinpage.php");
+    exit();
+}//end of user validation
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
