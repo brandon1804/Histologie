@@ -60,9 +60,6 @@ mysqli_close($link);
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
-            #idQuizCategoryChooser{
-                align-items: flex-end;
-            }
         </style>
     </head>
     <body>
@@ -84,8 +81,6 @@ mysqli_close($link);
                         <?php } ?>        
                     </select>
                 </div>
-
-
             </div>
             <div id="quizzesRow" class="row d-flex flex-row flex-nowrap overflow-auto">
 

@@ -12,7 +12,7 @@
                     <a class="nav-link" href="signinpage.php" ><b>Login</b></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="signup.php"><b>Sign up</b></a>
+                    <a class="nav-link" href="createAccount.php"><b>Sign up</b></a>
                 </li>
             <?php } else { ?>
                 <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="homepage.php"><b>Home</b></a></li>

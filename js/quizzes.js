@@ -14,7 +14,7 @@ function updateQuizzes() {
         success: function (response) {
             var message = "";
             for (i = 0; i < response.length; i++) {
-                message += "<div class='col-sm-6 col-lg-4'>"
+                message += "<div class='col-sm-12 col-md-6 col-lg-6 col-xl-4'>"
                         + "<div class='card shadow' style='width: 20rem;' id=" + response[i].quiz_id + ">"
                         + "<img class='card-img-top' src='css/img/quizImg/" + response[i].name + "' alt='quizImage'>"
                         + "<div class='card-body'>"
