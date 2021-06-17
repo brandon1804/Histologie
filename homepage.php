@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,66 +28,76 @@
         session_start();
         include("navbar.php");
         ?>
-        <div class="container gallery-container">
-
+        <div class="grid-container">
             <div class="tz-gallery">
-
                 <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <a class="lightbox" href="./css/img/capillary.jpg">
-                            <img src="./css/img/capillary.jpg" alt="capillary">
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/capillary.jpg">
+                            <img src="./css/img/homepageImg/capillary.jpg" alt="capillary">
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a class="lightbox" href="./css/img/cardiacmuscle.jpg">
-                            <img src="./css/img/cardiacmuscle.jpg" alt="cardiacmuscle">
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/cardiacmuscle.jpg">
+                            <img src="./css/img/homepageImg/cardiacmuscle.jpg" alt="cardiacmuscle">
                         </a>
                     </div>
-                    <div class="col-sm-12 col-md-4">
-                        <a class="lightbox" href="./css/img/collagenfibers.jpg">
-                            <img src="./css/img/collagenfibers.jpg" alt="collagenfibers">
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/collagenfibers.jpg">
+                            <img src="./css/img/homepageImg/collagenfibers.jpg" alt="collagenfibers">
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a class="lightbox" href="./css/img/gallbladder.jpg">
-                            <img src="./css/img/gallbladder.jpg" alt="gallbladder">
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/gallbladder.jpg">
+                            <img src="./css/img/homepageImg/gallbladder.jpg" alt="gallbladder">
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a class="lightbox" href="./css/img/hepatocytes.jpg">
-                            <img src="./css/img/hepatocytes.jpg" alt="hepatocytes">
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/hepatocytes.jpg">
+                            <img src="./css/img/homepageImg/hepatocytes.jpg" alt="hepatocytes">
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a class="lightbox" href="./css/img/interlobularduct.jpg">
-                            <img src="./css/img/interlobularduct.jpg" alt="interlobularduct">
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/interlobularduct.jpg">
+                            <img src="./css/img/homepageImg/interlobularduct.jpg" alt="interlobularduct">
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a class="lightbox" href="./css/img/kupffercell.jpg">
-                            <img src="./css/img/kupffercell.jpg" alt="kupffercell">
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/kupffercell.jpg">
+                            <img src="./css/img/homepageImg/kupffercell.jpg" alt="kupffercell">
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a class="lightbox" href="./css/img/neuromuscularjunction.jpg">
-                            <img src="./css/img/neuromuscularjunction.jpg" alt="neuromuscularjunction">
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/neuromuscularjunction.jpg">
+                            <img src="./css/img/homepageImg/neuromuscularjunction.jpg" alt="neuromuscularjunction">
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4">
-                        <a class="lightbox" href="./css/img/peripheralnerve.jpg">
-                            <img src="./css/img/peripheralnerve.jpg" alt="peripheralnerve">
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/peripheralnerve.jpg">
+                            <img src="./css/img/homepageImg/peripheralnerve.jpg" alt="peripheralnerve">
                         </a>
                     </div>
-                    
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/kupffercell.jpg">
+                            <img src="./css/img/homepageImg/kupffercell.jpg" alt="kupffercell">
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/neuromuscularjunction.jpg">
+                            <img src="./css/img/homepageImg/neuromuscularjunction.jpg" alt="neuromuscularjunction">
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <a class="lightbox" href="./css/img/homepageImg/neuromuscularjunction.jpg">
+                            <img src="./css/img/homepageImg/neuromuscularjunction.jpg" alt="neuromuscularjunction">
+                        </a>
+                    </div>
                 </div>
 
             </div>
 
-        </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-        <script>
-            baguetteBox.run('.tz-gallery');
-        </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+            <script>
+                baguetteBox.run('.tz-gallery');
+            </script>
     </body>
 </html>

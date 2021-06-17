@@ -8,13 +8,13 @@ $(document).ready(function () {
 function updateQuizzes() {
     $.ajax({
         type: "GET",
-        url: "getQuizzes.php",
+        url: "http://localhost/Histologie/QuizPHPFiles/getQuizzes.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
             var message = "";
             for (i = 0; i < response.length; i++) {
-                message += "<div class='col-sm-6 col-lg-4'>"
+                message += "<div class='col-sm-12 col-md-6 col-lg-6 col-xl-4'>"
                         + "<div class='card shadow' style='width: 20rem;' id=" + response[i].quiz_id + ">"
                         + "<img class='card-img-top' src='css/img/quizImg/" + response[i].name + "' alt='quizImage'>"
                         + "<div class='card-body'>"
@@ -34,7 +34,7 @@ function updateQuizzes() {
 function updateQuizHistoryTable() {
     $.ajax({
         type: "GET",
-        url: "getQuizHistory.php",
+        url: "http://localhost/Histologie/QuizPHPFiles/getQuizHistory.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
@@ -60,12 +60,12 @@ function reload_quizzes() {
     $("#idQuizCategoryChooser").change(function () {
         var categoryID = $("#idQuizCategoryChooser").val();
 
-        if (categoryID == 0) {
+        if (categoryID === 0) {
             updateQuizzes();
         } else {
             $.ajax({
                 type: "GET",
-                url: "getQuizByCategory.php",
+                url: "http://localhost/Histologie/QuizPHPFiles/getQuizByCategory.php",
                 data: "id=" + categoryID,
                 cache: false,
                 dataType: "JSON",
