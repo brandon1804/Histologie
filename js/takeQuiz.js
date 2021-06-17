@@ -1,27 +1,51 @@
 $(document).ready(function () {
 
-    var timesUp = false;
-    updateTakeQuizPage();
-    setQuizTimer();
+    updateQuizPage();
+    updateQuizQuestion();
+    var currValue = 1;
+    updateProgress(currValue);
 
+    $("#nextBtn").click(function () {
+        currValue += 1;
+        updateProgress(currValue);
+    });
 
 
 }); //end of document ready
 
 
-function updateTakeQuizPage() {
+function updateQuizQuestion() {
     var url = window.location.href;
     var stuff = url.split('=');
     var quiz_id = stuff[stuff.length - 1];
 
+
+
+
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizQuestionById.php",
-        data: "quiz_id=" + quiz_id + "&question_id=" + quiz_id,
+        url: "http://localhost/Histologie/QuizPHPFiles/getQuizQuestions.php",
+        data: "quiz_id=" + quiz_id,
         cache: false,
         dataType: "JSON",
         success: function (response) {
-            var message = "";
+
+            console.log(shuffleQuestions(response));
+        },
+        error: function (obj, textStatus, errorThrown) {
+            console.log("Error " + textStatus + ": " + errorThrown);
+        }
+    });
+
+
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/Histologie/QuizPHPFiles/getQuizQuestionById.php",
+        data: "quiz_id=" + quiz_id + "&question_id=" + 1,
+        cache: false,
+        dataType: "JSON",
+        success: function (response) {
 
             console.log(response);
         },
@@ -29,10 +53,10 @@ function updateTakeQuizPage() {
             console.log("Error " + textStatus + ": " + errorThrown);
         }
     });
-}//end of updateTakeQuizPage
+}//end of updateQuizQuestion
 
 
-function setQuizTimer() {
+function updateQuizPage() {
 
     var url = window.location.href;
     var stuff = url.split('=');
@@ -46,7 +70,7 @@ function setQuizTimer() {
         dataType: "JSON",
         success: function (response) {
 
-
+            $('#quizTitle').html(response["title"]);
             var quizTime = response["duration"];
             var interval = setInterval(function () {
 
@@ -81,6 +105,48 @@ function setQuizTimer() {
 
 
 
-}//end of setQuizTimer
+}//end of updateQuizPage
+
+function updateProgress(currValue) {
+    var url = window.location.href;
+    var stuff = url.split('=');
+    var quiz_id = stuff[stuff.length - 1];
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/Histologie/QuizPHPFiles/getQuizDetails.php",
+        data: "id=" + quiz_id,
+        cache: false,
+        dataType: "JSON",
+        success: function (response) {
+
+            var questions = response["questions"];
+            var percentage = currValue / questions * 100;
+            $(".progress-bar").css("width", percentage + "%");
+            $(".progress-bar").attr("aria-valuenow", percentage);
+
+            if (percentage === 100) {
+                $("#nextBtn").text("End Quiz");
+            }
+
+        },
+        error: function (obj, textStatus, errorThrown) {
+            console.log("Error " + textStatus + ": " + errorThrown);
+        }
+    });
+
+}//end of updateProgress
+
+function shuffleQuestions(array) {
+    for (var i = array.length - 1; i > 0; i--) {
 
 
+        var j = Math.floor(Math.random() * (i + 1));
+
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    return array;
+}//end of shuffleQuestions

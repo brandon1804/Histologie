@@ -60,7 +60,7 @@ function reload_quizzes() {
     $("#idQuizCategoryChooser").change(function () {
         var categoryID = $("#idQuizCategoryChooser").val();
 
-        if (categoryID == 0) {
+        if (categoryID === 0) {
             updateQuizzes();
         } else {
             $.ajax({

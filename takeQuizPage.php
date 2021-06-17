@@ -38,6 +38,7 @@ and open the template in the editor.
             .row, .spinner-border{
                 color: #E11A7A;
             }
+      
 
 
         </style>
@@ -49,14 +50,17 @@ and open the template in the editor.
         <div class="container"> 
             <div class="row justify-content-between"> 
                 <div class="col-6">
-                    <h1>Quiz</h1>
+                    <h1 id="quizTitle"></h1>
                 </div>
                 <div class="col-6 d-flex justify-content-end">
                     <h1 id="quizTimer"></h1>
                 </div>
             </div>
+            <div class="progress" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 0%; background-color: #E11A7A;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
             <div id="questionContent">
-
+                <br><button type="button" id = "nextBtn" class="btn btn-primary">Next Question</button>
             </div>
             <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="quiz_end_modal">
                 <div class="modal-dialog modal-dialog-centered" role="document">
