@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html lang="en">
     <head>
         <title>Histologie</title>
@@ -15,6 +20,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
         <link rel="stylesheet" href="css/gallery-grid.css">
         <script src="css/gallery-grid.css"></script>
+        <script src="js/randomImages.js" type="text/javascript"></script>
         <style type="text/css">
             body{
                 font-family: europa,sans-serif;
@@ -31,73 +37,15 @@
         <div class="grid-container">
             <div class="tz-gallery">
                 <div class="row">
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/capillary.jpg">
-                            <img src="./css/img/homepageImg/capillary.jpg" alt="capillary">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/cardiacmuscle.jpg">
-                            <img src="./css/img/homepageImg/cardiacmuscle.jpg" alt="cardiacmuscle">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/collagenfibers.jpg">
-                            <img src="./css/img/homepageImg/collagenfibers.jpg" alt="collagenfibers">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/gallbladder.jpg">
-                            <img src="./css/img/homepageImg/gallbladder.jpg" alt="gallbladder">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/hepatocytes.jpg">
-                            <img src="./css/img/homepageImg/hepatocytes.jpg" alt="hepatocytes">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/interlobularduct.jpg">
-                            <img src="./css/img/homepageImg/interlobularduct.jpg" alt="interlobularduct">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/kupffercell.jpg">
-                            <img src="./css/img/homepageImg/kupffercell.jpg" alt="kupffercell">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/neuromuscularjunction.jpg">
-                            <img src="./css/img/homepageImg/neuromuscularjunction.jpg" alt="neuromuscularjunction">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/peripheralnerve.jpg">
-                            <img src="./css/img/homepageImg/peripheralnerve.jpg" alt="peripheralnerve">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/kupffercell.jpg">
-                            <img src="./css/img/homepageImg/kupffercell.jpg" alt="kupffercell">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/neuromuscularjunction.jpg">
-                            <img src="./css/img/homepageImg/neuromuscularjunction.jpg" alt="neuromuscularjunction">
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a class="lightbox" href="./css/img/homepageImg/neuromuscularjunction.jpg">
-                            <img src="./css/img/homepageImg/neuromuscularjunction.jpg" alt="neuromuscularjunction">
-                        </a>
+                    <div id='images'>
+                        
                     </div>
                 </div>
-
             </div>
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-            <script>
-                baguetteBox.run('.tz-gallery');
-            </script>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+        <script>
+            baguetteBox.run('.tz-gallery');
+        </script>
     </body>
 </html>
