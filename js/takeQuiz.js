@@ -1,25 +1,27 @@
 $(document).ready(function () {
 
     updateQuizPage();
-    updateQuizQuestion();
     var currValue = 1;
+    var currQuestionIndex = 0;
+
+    updateQuizQuestion(currQuestionIndex);
     updateProgress(currValue);
 
     $("#nextBtn").click(function () {
         currValue += 1;
+        currQuestionIndex += 1;
         updateProgress(currValue);
+        updateQuizQuestion(currQuestionIndex);
     });
 
 
 }); //end of document ready
 
 
-function updateQuizQuestion() {
+function updateQuizQuestion(currQuestionIndex) {
     var url = window.location.href;
     var stuff = url.split('=');
     var quiz_id = stuff[stuff.length - 1];
-
-
 
 
     $.ajax({
@@ -29,9 +31,63 @@ function updateQuizQuestion() {
         cache: false,
         dataType: "JSON",
         success: function (response) {
+            var shuffledQuestionsArr = shuffleQuestions(response);
+            console.log(currQuestionIndex);
+            if (currQuestionIndex < shuffledQuestionsArr.length) {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/Histologie/QuizPHPFiles/getQuizQuestionById.php",
+                    data: "quiz_id=" + quiz_id + "&question_id=" + shuffledQuestionsArr[currQuestionIndex],
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        var output = "";
+                        $('#questionTitle').text(response["question"]);
+                        if (response["images"].length !== 0) {
+                            var imgArr = response["images"];
+                            for (i = 0; i < imgArr.length; i++) {
+                                output += "<img class='img-fluid' src='css/img/quizImg/" + imgArr[i] + "' alt='quizImage'><br><br>";
+                            }//end of images for loop
+                        }//end of image validation 
 
-            console.log(shuffleQuestions(response));
-        },
+                        if (response["question_type"] === "MCQ") {
+                            if (response["question_options"].length !== 0) {
+                                var optionsArr = response["question_options"];
+                                for (i = 0; i < optionsArr.length; i++) {
+
+                                    output += "<div class='form-check'>"
+                                            + "<input class='form-check-input' type='radio' name='questionOption' id='" + i + "'value= '" + optionsArr[i] + "'>"
+                                            + "<label class='form-check-label' for=" + i + ">"
+                                            + optionsArr[i]
+                                            + "</label> </div>";
+                                }//end of options for loop
+                            }//end of options validation 
+
+                        }//end of question type validation
+                        else if (response["question_type"] === "FIB") {
+                           
+
+                        }//end of question type validation
+
+
+
+
+
+                        $('#questionContent').html(output);
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });//end of getQuizQuestionById
+            }//end of index validation
+            else {
+                $('#quiz_end_modal').modal('show');
+                setTimeout(function () {
+                    window.location.replace("http://localhost/Histologie/quizzesPage.php");
+                }, 3000);
+            }
+
+        }, //end of getQuizQuestions
         error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);
         }
@@ -39,21 +95,8 @@ function updateQuizQuestion() {
 
 
 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizQuestionById.php",
-        data: "quiz_id=" + quiz_id + "&question_id=" + 1,
-        cache: false,
-        dataType: "JSON",
-        success: function (response) {
-
-            console.log(response);
-        },
-        error: function (obj, textStatus, errorThrown) {
-            console.log("Error " + textStatus + ": " + errorThrown);
-        }
-    });
 }//end of updateQuizQuestion
+
 
 
 function updateQuizPage() {
@@ -89,7 +132,7 @@ function updateQuizPage() {
 
                 if ((seconds <= 0) && (minutes <= 0)) {
                     clearInterval(interval);
-                    $('#quiz_end_modal').modal('show');
+                    $('#times_up_modal').modal('show');
                     setTimeout(function () {
                         window.location.replace("http://localhost/Histologie/quizzesPage.php");
                     }, 3000)

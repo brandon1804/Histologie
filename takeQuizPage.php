@@ -38,7 +38,9 @@ and open the template in the editor.
             .row, .spinner-border{
                 color: #E11A7A;
             }
-      
+            #questionTitle{
+                color: black;
+            }
 
 
         </style>
@@ -59,24 +61,43 @@ and open the template in the editor.
             <div class="progress" style="height: 8px;">
                 <div class="progress-bar" role="progressbar" style="width: 0%; background-color: #E11A7A;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
+            <br><h2 id="questionTitle"></h2>
             <div id="questionContent">
-                <br><button type="button" id = "nextBtn" class="btn btn-primary">Next Question</button>
+
+
             </div>
-            <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="quiz_end_modal">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Times Up!</h5>
-                        </div>
-                        <div class="modal-body text-center">
-                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div><br><br>
-                            <p>You will be redirected to the results page shortly.</p>
-                        </div>
+            <br><button type="button" id = "nextBtn" class="btn btn-primary">Next Question</button>
+        </div>
+        <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="times_up_modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Times Up!</h5>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div><br><br>
+                        <p>You will be redirected to the results page shortly.</p>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="quiz_end_modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Congratulations!</h5>
+                    </div>
+                    <div class="modal-body text-center"> 
+                        <div class="modal-body text-center">
+                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div><br><br>
+                            <p>That's the end of your quiz, you will be redirected to the results page shortly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </body>
 </html>
