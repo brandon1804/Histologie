@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -42,7 +41,7 @@
                             <img src="./css/img/homepageImg/cardiacmuscle.jpg" alt="cardiacmuscle">
                         </a>
                     </div>
-                    <div class="col-sm-12 col-lg-3">
+                    <div class="col-md-6 col-lg-3">
                         <a class="lightbox" href="./css/img/homepageImg/collagenfibers.jpg">
                             <img src="./css/img/homepageImg/collagenfibers.jpg" alt="collagenfibers">
                         </a>
