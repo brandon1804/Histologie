@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <Title>Login</Title>
+        <Title>Reset Password</Title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="icon.png">
@@ -18,7 +18,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/jquery-ui.min.css"> 
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <script src="js/signin.js" type="text/javascript"></script>
+        <script src="js/newPassword.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type ="text/javascript"></script>
         <script src="additional-methods.min.js" type="text/javascript"></script>
         <script>
@@ -26,20 +26,12 @@ and open the template in the editor.
                 
                 $("#defaultForm").validate({
                     rules: {
-                        email: {
-                            required: true,
-                            pattern: /^(\w+[\-\.])*\w+@(\w+\.)+[A-Za-z]+$/
-                        },
                         password: {
                             required: true,
                             pattern: /^[A-Za-z\d]{6,8}$/
                         }
                     }, 
                     messages: {
-                        email: {
-                            required: "Please enter new email",
-                            pattern: "Please enter a valid email"
-                        },
                         password: {
                             required: "Please enter new password",
                             pattern: "Password must be 6 to 8 character long"
@@ -53,9 +45,6 @@ and open the template in the editor.
             });
         </script>
         <style>
-            form .error{
-                color: #ff0000;
-            }
             body, html {
                 height: 100%;
                 margin: 0;
@@ -75,7 +64,7 @@ and open the template in the editor.
             }
             .card{
                 width: 400px;
-                height: 390px;
+                height: 375px;
                 justify-content: center;
                 margin-top: 100px;
                 margin-bottom: 100px;
@@ -87,7 +76,6 @@ and open the template in the editor.
                 flex-direction: row;
             }
             .card-img-top{
-                height: 100%;
                 width: 40%;
                 margin-left: 20px;
                 margin-top: 10px;
@@ -97,13 +85,13 @@ and open the template in the editor.
                 margin-left: 20px;
                 text-align: left;
             }
-            #idEmail{
-                margin-bottom: 20px;
+            .form-control{
+                margin-bottom: 10px;
             }
             .btn{
                 background-color: #E11E7A;
                 border-color: #E11E7A;
-                margin-bottom: 20px;
+                margin-bottom: 30px;
                 margin-left: 20px;
                 margin-right: 20px;
                 border-radius: 10px;
@@ -112,6 +100,12 @@ and open the template in the editor.
                 background-color: #E11E7A;
                 border-color: #E11E7A;
             }
+            .card-link{
+                align-self: center;
+                margin-bottom: 15px;
+                color: grey;
+                font-size: 15px;
+            }
         </style>
     </head>
     <body>
@@ -119,16 +113,15 @@ and open the template in the editor.
             <form id="defaultForm">
                 <div class="card">
                     <img class="card-img-top" src="css/img/histologie.png">
-                    <h4 class="card-title">Sign into your account</h4>
+                    <h4 class="card-title">Reset your password</h4>
                     <div class="card-body text-right">
-                        <h6 class="card-email text-left">Enter your email</h6>
-                        <input type="text" class="form-control" name="email" id="idEmail" placeholder="Email Address" required autofocus>
-                        <h6 class="card-password text-left">Enter your password</h6>
-                        <input type="text" class="form-control" name="password" id="idPassword" placeholder="Password" required> 
-                        <a href="passwordReset.php" class="card-link">Forgot your password?</a>
+                        <h6 class="card-new-password text-left">Enter new password</h6>
+                        <input type="text" class="form-control" name="newPassword" id="idNewPassword" placeholder="New Password" required autofocus>
+                        <h6 class="card-confirm-password text-left">Confirm password</h6>
+                        <input type="text" class="form-control" name="confirmPassword" id="idConfirmPassword" placeholder="Confirm Password" required>
                     </div>
 
-                    <input type="submit" value="Login" class="btn btn-primary" id="loginBtn"/></br>
+                    <input type="submit" value="Reset Password" class="btn btn-primary" id="pwResetBtn"/>
                 </div>
             </form>
         </div>
@@ -136,4 +129,3 @@ and open the template in the editor.
 
     </body>
 </html>
-

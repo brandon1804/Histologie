@@ -19,6 +19,55 @@ and open the template in the editor.
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="js/signup.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.min.js" type ="text/javascript"></script>
+        <script src="additional-methods.min.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function(){
+                
+                $("#defaultForm").validate({
+                    rules: {
+                        name: {
+                            required: true,
+                            pattern: /^[a-zA-Z]* $/
+                        },
+                        email: {
+                            required: true,
+                            pattern: /^(\w+[\-\.])*\w+@(\w+\.)+[A-Za-z]+$/
+                        },
+                        password: {
+                            required: true,
+                            pattern: /^[A-Za-z\d]{6,8}$/
+                        },
+                         
+                        id:{
+                            required: true;
+                        }
+                    }, 
+                    messages: {
+                        name: {
+                            required: "Please enter new name",
+                            pattern: "Name must contain only alphabet"
+                        },
+                        email: {
+                            required: "Please enter new email",
+                            pattern: "Please enter a valid email"
+                        },
+                        password: {
+                            required: "Please enter new password",
+                            pattern: "Password must be 6 to 8 character long"
+                        }
+                        id:{
+                            required: true;
+                            pattern: "Student ID must be 8 digits long"
+                        }
+                    },
+                    
+                    submitHandler: function(){
+                        return true;
+                    }
+                });
+            });
+        </script>
         <style>
             body, html {
                 height: 100%;
@@ -94,7 +143,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container">
-            <form>
+            <form id="defaultForm">
                 <div class="card">
                     <img class="card-img-top" src="css/img/histologie.png">
                     <h4 class="card-title">Create an account</h4>

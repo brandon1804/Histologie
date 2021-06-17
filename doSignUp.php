@@ -22,7 +22,7 @@ $result = mysqli_query($link, $query) or die(mysqli_error($link));
 if ($result) {
     $response = "<div class='alert alert-success text-left' role='alert'>"
             ."You have signed up successfully"
-            ."<a href='index.php'> Continue</a></div>";
+            ."<a href='learnPage.php'> Continue</a></div>";
     
 } else {
     $response = "<div class='alert alert-danger text-left' role='alert'>"
