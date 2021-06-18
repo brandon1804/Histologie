@@ -46,9 +46,7 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <?php
-        include("navbar.php");
-        ?>
+
         <div class="container"> 
             <div class="row justify-content-between"> 
                 <div class="col-6">
@@ -58,15 +56,18 @@ and open the template in the editor.
                     <h1 id="quizTimer"></h1>
                 </div>
             </div>
-            <div class="progress" style="height: 8px;">
+            <div class="progress mb-2" style="height: 8px;">
                 <div class="progress-bar" role="progressbar" style="width: 0%; background-color: #E11A7A;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <br><h2 id="questionTitle"></h2>
-            <div id="questionContent">
+            <h2 id="questionTitle"></h2>
+            <div id="questionContent" class="mt-4">
 
 
             </div>
-            <br><button type="button" id = "nextBtn" class="btn btn-primary">Next Question</button>
+            <br><div class="d-flex flex-row-reverse">
+               <button type="button" id = "nextBtn" class="btn btn-primary">Next Question</button>
+            </div>
+            
         </div>
         <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="times_up_modal">
             <div class="modal-dialog modal-dialog-centered" role="document">

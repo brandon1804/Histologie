@@ -71,8 +71,8 @@ mysqli_close($link);
                 <div class="col-6">
                     <h1>Quizzes</h1>
                 </div>
-                <div class="col-6 d-flex justify-content-end">
-                    <select id="idQuizCategoryChooser">
+                <div class="col-6 d-flex justify-content-end align-items-center">
+                    <select class="form-control w-50" id="idQuizCategoryChooser">
                         <option value="">Select Quiz Category</option>
                         <?php
                         for ($i = 0; $i < count($quizCategories); $i++) {
