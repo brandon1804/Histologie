@@ -65,9 +65,9 @@ and open the template in the editor.
 
             </div>
             <br><div class="d-flex flex-row-reverse">
-               <button type="button" id = "nextBtn" class="btn btn-primary">Next Question</button>
+                <button type="button" id = "nextBtn" class="btn btn-primary">Next Question</button>
             </div>
-            
+
         </div>
         <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="times_up_modal">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -100,5 +100,24 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="modal fade" id="empty_answer_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Question Unanswered</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please answer the question!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
