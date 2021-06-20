@@ -67,7 +67,7 @@ quizLogic(function (response) {
                     }
                 }//end of length 1
 
-                else if (imgArr.length >= 2) {
+                else if (imgArr.length === 2 && optionsArr[0] === "0") {
                     var answersArr = [];
                     for (var i = 0; i < optionsArr.length; i++) {
                         answersArr.push($("#" + i).val());
@@ -80,6 +80,20 @@ quizLogic(function (response) {
                     }
 
                 }//end of length 2
+
+                else if (imgArr.length >= 2 && optionsArr[0] !== "0") {
+                    var answersArr = [];
+                    for (var i = 0; i < optionsArr.length; i++) {
+                        answersArr.push($("#" + i + " option:selected").val());
+                    }//end of options for loop
+
+                    if (answersArr.length === optionsArr.length && !answersArr.includes("")) {
+                        isAnswered = true;
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                        savedAnswers.push(answerObj);
+                    }
+
+                }//end of length 2 && FIB
             }//end of image validation 
 
             if (response["question_type"] === "MCQ") {
@@ -129,19 +143,13 @@ quizLogic(function (response) {
                         for (var ua = 0; ua < savedAnswers.length; ua++) {
                             var userQI = savedAnswers[ua]['question_id'];
                             var userA = savedAnswers[ua]['user_answer'];
-                            //console.log(userA);
-                            if (question_id === userQI) {
-                                //console.log(answer);
 
+                            if (question_id === userQI) {
                                 if (answer === userA) {
                                     marks += 1;
+                                } else if (arrayValidator(answer, userA) === true) {
+                                    marks += 1;
                                 }
-                                /*
-                                 else if (arrayValidator(answer, userA) === true) {
-                                 marks += 1;
-                                 } 
-                                 */
-
 
                             }//end of question validation
 
@@ -151,15 +159,12 @@ quizLogic(function (response) {
                     insertStudentQuizRecord(quiz_id, marks);
                 });//end of markAnswers
 
-                console.log(savedAnswers);
-                console.log(marks);
-
                 $('#quiz_end_modal').modal('show');
-                /*
-                 setTimeout(function () {
-                 window.location.replace("http://localhost/Histologie/quizzesPage.php");
-                 }, 2000);
-                 */
+                setTimeout(function () {
+                    window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
+                }, 2000);
+
+
             }//end of end quiz validation
 
         }); //end of validateAnswer
@@ -186,6 +191,7 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
             success: function (response) {
                 var output = "";
                 $('#questionTitle').text(response["question"]);
+
                 if (response["images"].length !== 0) {
                     var imgArr = response["images"];
                     var optionsArr = response["question_options"];
@@ -210,7 +216,7 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
 
                     }//end of length 1
 
-                    else if (imgArr.length === 2) {
+                    else if (imgArr.length === 2 && optionsArr[0] === "0") {
                         output += "<div class='row'>";
                         for (var i = 0; i < imgArr.length; i++) {
                             output += "<div class='col-lg-6'>"
@@ -220,22 +226,63 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                         }//end of images for loop
 
                         output += "</div>";
-                    }//end of length 2
+                    }//end of length 2 & text field FIB
+
+                    else if (imgArr.length === 2 && optionsArr[0] !== "0") {
+
+                        output += "<div class='row'>";
+                        for (var i = 0; i < imgArr.length; i++) {
+                            output += "<div class='col-lg-6'>"
+                                    + "<img class='img-fluid w-100 mb-3' src='css/img/quizImg/quiz" + quiz_id + "/" + imgArr[i] + "' alt='quizImage'>";
+
+                            var arr = optionsArr[i].split(",");
+                            output += "<div class='form-group'>"
+                                    + "<select class='form-control' id= '" + i + "'>"
+                                    + "<option value=''>Select Answer</option>";
+
+                            for (var o = 0; o < arr.length; o++) {
+                                output += " <option value='" + arr[o].replace("'", "&apos;") + "'>" + arr[o] + "</option>";
+                            }//end of dropdown for loop
+                            output += "</select></div></div>";
+
+                        }//end of images for loop
+
+                        output += "</div>";
+                    }//end of length 2 & text field FIB
+
                     else if (imgArr.length > 2) {
                         output += "<div class='row'>";
                         for (var i = 0; i < 2; i++) {
                             output += "<div class='col-lg-6'>"
-                                    + "<img class='img-fluid w-100 mb-3' src='css/img/quizImg/quiz" + quiz_id + "/" + imgArr[i] + "' alt='quizImage'>"
-                                    + "<input type='text' class='form-control mb-3' id='" + optionsArr[i] + "'placeholder ='Fill in the blank'>"
-                                    + "</div>";
+                                    + "<img class='img-fluid w-100 mb-3' src='css/img/quizImg/quiz" + quiz_id + "/" + imgArr[i] + "' alt='quizImage'>";
+
+                            var arr = optionsArr[i].split(",");
+                            output += "<div class='form-group'>"
+                                    + "<select class='form-control' id= '" + i + "'>"
+                                    + "<option value=''>Select Answer</option>";
+
+                            for (var o = 0; o < arr.length; o++) {
+
+                                output += " <option value='" + arr[o].replace("'", "&apos;") + "'>" + arr[o] + "</option>";
+                            }//end of dropdown for loop
+                            output += "</select></div></div>";
                         }//end of images for loop
 
                         output += "</div><div class='row'>";
                         for (var q = 2; q < 4; q++) {
                             output += "<div class='col-lg-6'>"
-                                    + "<img class='img-fluid w-100 mb-3' src='css/img/quizImg/quiz" + quiz_id + "/" + imgArr[q] + "' alt='quizImage'>"
-                                    + "<input type='text' class='form-control mb-3' id='" + optionsArr[q] + "'placeholder ='Fill in the blank'>"
-                                    + "</div>";
+                                    + "<img class='img-fluid w-100 mb-3' src='css/img/quizImg/quiz" + quiz_id + "/" + imgArr[q] + "' alt='quizImage'>";
+
+                            var arr = optionsArr[q].split(",");
+                            output += "<div class='form-group'>"
+                                    + "<select class='form-control' id= '" + q + "'>"
+                                    + "<option value=''>Select Answer</option>";
+
+                            for (var p = 0; p < arr.length; p++) {
+                                output += " <option value='" + arr[p].replace("'", "&apos;") + "'>" + arr[p] + "</option>";
+                            }//end of dropdown for loop
+                            output += "</select></div></div>";
+
                         }//end of images for loop
 
                         output += "</div>";
@@ -374,13 +421,12 @@ function arrayValidator(answerArr, userArr) {
 
 function insertStudentQuizRecord(quiz_id, marks) {
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost/Histologie/QuizPHPFiles/insertStudentQuizRecord.php",
         data: "quiz_id=" + quiz_id + "&marks=" + marks,
         cache: false,
         dataType: "JSON",
-        success: function (response) {
-
+        success: function (data) {
             console.log("Record Inserted");
         },
         error: function (obj, textStatus, errorThrown) {
@@ -388,7 +434,7 @@ function insertStudentQuizRecord(quiz_id, marks) {
         }
     });
 
-}//end of arrayValidator
+}//end of insertStudentQuizRecord
 
 
 
