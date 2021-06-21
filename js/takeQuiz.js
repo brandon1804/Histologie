@@ -67,6 +67,16 @@ quizLogic(function (response) {
                     }
                 }//end of length 1
 
+                else if (imgArr.length === 1 && optionsArr[0] === "0") {
+                    var answer = ($("#" + i).val());
+                    if (answer !== "") {
+                        isAnswered = true;
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answer};
+                        savedAnswers.push(answerObj);
+                    }
+                }//end of length 1 & 1 text field FIB
+
+
                 else if (imgArr.length === 2 && optionsArr[0] === "0") {
                     var answersArr = [];
                     for (var i = 0; i < optionsArr.length; i++) {
@@ -149,6 +159,7 @@ quizLogic(function (response) {
                                     marks += 1;
                                 } else if (arrayValidator(answer, userA) === true) {
                                     marks += 1;
+                                    alert(userQI);
                                 }
 
                             }//end of question validation
@@ -156,13 +167,18 @@ quizLogic(function (response) {
                         }//end of user answer for loop
 
                     }//end of response for loop
-                    insertStudentQuizRecord(quiz_id, marks);
+                    //insertStudentQuizRecord(quiz_id, marks);
+                    console.log(savedAnswers);
+                    console.log(response);
+                    console.log(marks);
                 });//end of markAnswers
 
                 $('#quiz_end_modal').modal('show');
-                setTimeout(function () {
-                    window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
-                }, 2000);
+                /*
+                 setTimeout(function () {
+                 window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
+                 }, 2000);
+                 */
 
 
             }//end of end quiz validation
@@ -197,9 +213,9 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                     var optionsArr = response["question_options"];
                     if (imgArr.length === 1 && imgArr[0] !== "None") {
                         output += "<img class='img-fluid mb-3' src='css/img/quizImg/quiz" + quiz_id + "/" + imgArr[0] + "' alt='quizImage'>";
-                    }//end of length 1
-
-                    if (imgArr[0] === "None") {
+                    }//end of length 1 MCQ
+                    console.log(imgArr);
+                    if (imgArr[0] === "None" && response["question_type"] === "FIB") {
 
                         for (var t = 0; t < optionsArr.length; t++) {
 
@@ -214,7 +230,19 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                             output += "</select></div>";
                         }//end of options for loop
 
-                    }//end of length 1
+                    }//end of length 1 without image FIB
+
+                    else if (imgArr.length === 1 && optionsArr[0] === "0") {
+                        output += "<input type='text' class='form-control mb-3' id='" + optionsArr[0] + "'placeholder ='Fill in the blank'>";
+                    }//end of length 1 & 1 text field FIB
+
+                    else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 2) {
+                        for (var i = 0; i < optionsArr.length; i++) {
+                            output += "<input type='text' class='form-control mb-3' id='" + optionsArr[i] + "'placeholder ='Fill in the blank'>";
+                        }//end of images for loop
+
+
+                    }//end of length 1 & 2 text field FIB
 
                     else if (imgArr.length === 2 && optionsArr[0] === "0") {
                         output += "<div class='row'>";
@@ -226,7 +254,7 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                         }//end of images for loop
 
                         output += "</div>";
-                    }//end of length 2 & text field FIB
+                    }//end of length 2 & 2 text field FIB
 
                     else if (imgArr.length === 2 && optionsArr[0] !== "0") {
 
@@ -248,9 +276,46 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                         }//end of images for loop
 
                         output += "</div>";
-                    }//end of length 2 & text field FIB
+                    }//end of length 2 & dropwdown FIB
 
-                    else if (imgArr.length > 2) {
+                    else if (imgArr.length === 3 && optionsArr[0] !== "0") {
+                        output += "<div class='row'>";
+                        for (var i = 0; i < 2; i++) {
+                            output += "<div class='col-lg-6'>"
+                                    + "<img class='img-fluid w-100 mb-3' src='css/img/quizImg/quiz" + quiz_id + "/" + imgArr[i] + "' alt='quizImage'>";
+
+                            var arr = optionsArr[i].split(",");
+                            output += "<div class='form-group'>"
+                                    + "<select class='form-control' id= '" + i + "'>"
+                                    + "<option value=''>Select Answer</option>";
+
+                            for (var o = 0; o < arr.length; o++) {
+                                output += " <option value='" + arr[o].replace("'", "&apos;") + "'>" + arr[o] + "</option>";
+                            }//end of dropdown for loop
+                            output += "</select></div></div>";
+                        }//end of images for loop
+
+                        output += "</div><div class='row'>";
+                        for (var q = 2; q < 3; q++) {
+                            output += "<div class='col-lg-6'>"
+                                    + "<img class='img-fluid w-100 mb-3' src='css/img/quizImg/quiz" + quiz_id + "/" + imgArr[q] + "' alt='quizImage'>";
+
+                            var arr = optionsArr[q].split(",");
+                            output += "<div class='form-group'>"
+                                    + "<select class='form-control' id= '" + q + "'>"
+                                    + "<option value=''>Select Answer</option>";
+
+                            for (var p = 0; p < arr.length; p++) {
+                                output += " <option value='" + arr[p].replace("'", "&apos;") + "'>" + arr[p] + "</option>";
+                            }//end of dropdown for loop
+                            output += "</select></div></div>";
+
+                        }//end of images for loop
+
+                        output += "</div>";
+                    }//end of length 3 and dropdown FIB
+
+                    else if (imgArr.length === 4 && optionsArr[0] !== "0") {
                         output += "<div class='row'>";
                         for (var i = 0; i < 2; i++) {
                             output += "<div class='col-lg-6'>"
@@ -286,13 +351,15 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                         }//end of images for loop
 
                         output += "</div>";
-                    }//end of length validation
+                    }//end of length 4 and dropdown FIB
 
                 }//end of image validation 
 
                 if (response["question_type"] === "MCQ") {
                     if (response["question_options"].length !== 0) {
-                        var optionsArr = response["question_options"];
+
+                        var optionsArr = response["question_options"].split(",");
+                        console.log(optionsArr);
                         for (i = 0; i < optionsArr.length; i++) {
 
                             output += "<div class='form-check'>"
@@ -303,7 +370,7 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                         }//end of options for loop
                     }//end of options validation 
 
-                }//end of question type validation
+                }//end of MCQ
 
 
                 $('#questionContent').html(output);

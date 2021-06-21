@@ -1,4 +1,5 @@
 <?php
+
 include "dbFunctions.php";
 
 $quiz_id = $_GET['quiz_id'];
@@ -20,9 +21,17 @@ while ($row = mysqli_fetch_assoc($questionResult)) {
 
 $output["images"] = $imgArr;
 
-while ($row = mysqli_fetch_assoc($optionsResult)) {
-    $optionsArr[] = $row["question_option"];
+if ($output["question_type"] === "MCQ") {
+    while ($row = mysqli_fetch_assoc($optionsResult)) {
+        $optionsArr = $row["question_option"];
+    }
+} 
+else if ($output["question_type"] === "FIB" || $output["question_type"] === "M&M") {
+    while ($row = mysqli_fetch_assoc($optionsResult)) {
+        $optionsArr[] = $row["question_option"];
+    }
 }
+
 
 $output["question_options"] = $optionsArr;
 
@@ -31,5 +40,4 @@ mysqli_close($link);
 
 
 echo json_encode($output);
-
 ?>

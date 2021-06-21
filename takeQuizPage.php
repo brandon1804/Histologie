@@ -59,7 +59,7 @@ and open the template in the editor.
             <div class="progress mb-2" style="height: 8px;">
                 <div class="progress-bar" role="progressbar" style="width: 0%; background-color: #E11A7A;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <h2 id="questionTitle"></h2>
+            <h3 id="questionTitle"></h3>
             <div id="questionContent" class="mt-4">
 
 
