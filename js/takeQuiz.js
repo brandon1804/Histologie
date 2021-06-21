@@ -54,7 +54,8 @@ quizLogic(function (response) {
             if (response["images"].length !== 0) {
                 var imgArr = response["images"];
                 var optionsArr = response["question_options"];
-                if (imgArr[0] === "None") {
+
+                if (imgArr[0] === "None" && response["question_type"] === "FIB") {
                     var answersArr = [];
                     for (var i = 0; i < optionsArr.length; i++) {
                         answersArr.push($("#" + i + " option:selected").val());
@@ -65,16 +66,31 @@ quizLogic(function (response) {
                         var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
                         savedAnswers.push(answerObj);
                     }
-                }//end of length 1
+                }//end of no image & dropdown option more than 1
 
-                else if (imgArr.length === 1 && optionsArr[0] === "0") {
-                    var answer = ($("#" + i).val());
-                    if (answer !== "") {
+
+                else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 1) {
+                    var answer = ($("#0").val());
+                    if (answer !== undefined) {
                         isAnswered = true;
                         var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answer};
                         savedAnswers.push(answerObj);
                     }
-                }//end of length 1 & 1 text field FIB
+                }//end of length 1 & 1 FIB text field 
+
+                else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 2) {
+                    var answersArr = [];
+                    for (var i = 0; i < optionsArr.length; i++) {
+                        answersArr.push($("#" + i).val());
+                    }//end of options for loop
+
+                    if (answersArr.length === optionsArr.length && !answersArr.includes("")) {
+                        isAnswered = true;
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                        savedAnswers.push(answerObj);
+                    }
+
+                }//end of length 2  && 2 FIB text field
 
 
                 else if (imgArr.length === 2 && optionsArr[0] === "0") {
@@ -89,7 +105,7 @@ quizLogic(function (response) {
                         savedAnswers.push(answerObj);
                     }
 
-                }//end of length 2
+                }//end of length 2  && FIB text field
 
                 else if (imgArr.length >= 2 && optionsArr[0] !== "0") {
                     var answersArr = [];
@@ -103,12 +119,12 @@ quizLogic(function (response) {
                         savedAnswers.push(answerObj);
                     }
 
-                }//end of length 2 && FIB
+                }//end of length more than 2 && FIB dropdown
             }//end of image validation 
 
             if (response["question_type"] === "MCQ") {
-
                 var answer = $("input[name='questionOption']:checked").val();
+
                 if (answer !== undefined) {
                     isAnswered = true;
                     var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answer};
@@ -150,6 +166,8 @@ quizLogic(function (response) {
                             answer = answer.split(",");
                         }
 
+
+
                         for (var ua = 0; ua < savedAnswers.length; ua++) {
                             var userQI = savedAnswers[ua]['question_id'];
                             var userA = savedAnswers[ua]['user_answer'];
@@ -157,6 +175,7 @@ quizLogic(function (response) {
                             if (question_id === userQI) {
                                 if (answer === userA) {
                                     marks += 1;
+                                    alert(userQI);
                                 } else if (arrayValidator(answer, userA) === true) {
                                     marks += 1;
                                     alert(userQI);
@@ -214,9 +233,8 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                     if (imgArr.length === 1 && imgArr[0] !== "None") {
                         output += "<img class='img-fluid mb-3' src='css/img/quizImg/quiz" + quiz_id + "/" + imgArr[0] + "' alt='quizImage'>";
                     }//end of length 1 MCQ
-                    console.log(imgArr);
-                    if (imgArr[0] === "None" && response["question_type"] === "FIB") {
 
+                    if (imgArr[0] === "None" && response["question_type"] === "FIB") {
                         for (var t = 0; t < optionsArr.length; t++) {
 
                             var arr = optionsArr[t].split(",");
@@ -232,15 +250,14 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
 
                     }//end of length 1 without image FIB
 
-                    else if (imgArr.length === 1 && optionsArr[0] === "0") {
-                        output += "<input type='text' class='form-control mb-3' id='" + optionsArr[0] + "'placeholder ='Fill in the blank'>";
+                    else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 1) {
+                        output += "<input type='text' class='form-control mb-3 w-25' id='0' placeholder ='Fill in the blank'>";
                     }//end of length 1 & 1 text field FIB
 
                     else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 2) {
                         for (var i = 0; i < optionsArr.length; i++) {
-                            output += "<input type='text' class='form-control mb-3' id='" + optionsArr[i] + "'placeholder ='Fill in the blank'>";
+                            output += "<input type='text' class='form-control mb-3 w-50' id='" + optionsArr[i] + "'placeholder ='Fill in the blank'>";
                         }//end of images for loop
-
 
                     }//end of length 1 & 2 text field FIB
 
@@ -357,13 +374,10 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
 
                 if (response["question_type"] === "MCQ") {
                     if (response["question_options"].length !== 0) {
-
                         var optionsArr = response["question_options"].split(",");
-                        console.log(optionsArr);
                         for (i = 0; i < optionsArr.length; i++) {
-
                             output += "<div class='form-check'>"
-                                    + "<input class='form-check-input' type='radio' name='questionOption' id='" + i + "'value= '" + optionsArr[i] + "'>"
+                                    + "<input class='form-check-input' type='radio' name='questionOption' id='" + i + "'value= '" + optionsArr[i].replace("'", "&apos;") + "'>"
                                     + "<label class='form-check-label' for=" + i + ">"
                                     + optionsArr[i]
                                     + "</label> </div>";
