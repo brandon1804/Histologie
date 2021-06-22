@@ -77,7 +77,7 @@ and open the template in the editor.
         <div class="container"> 
             <div class="d-flex justify-content-center">
                 <div id="resultContent">
-                    <h1 id="quizTitle">Quiz Results</h1>
+                    <h1 id="quizTitle"></h1>
                     <div class="row mb-5">
                         <div class="col-sm-12 col-xl-6 border-right">
                             <div class="d-flex justify-content-center">

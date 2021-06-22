@@ -23,7 +23,7 @@ function updateQuizResultPage() {
             var quizScore = response['score'];
             var percentage = (userScore / quizScore) * 100;
 
-            $("#quizTitle").prepend(response['title']);
+            $("#quizTitle").text(response['title'] + " Quiz Results");
             $("#score").html(userScore + "/" + quizScore);
             
             

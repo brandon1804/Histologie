@@ -70,8 +70,8 @@ quizLogic(function (response) {
 
 
                 else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 1) {
-                    var answer = ($("#0").val());
-                    if (answer !== undefined) {
+                    if ($("#0").val() !== "") {
+                        var answer = ($("#0").val());
                         isAnswered = true;
                         var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answer};
                         savedAnswers.push(answerObj);
@@ -131,7 +131,21 @@ quizLogic(function (response) {
                     savedAnswers.push(answerObj);
                 }
 
-            }//end of question type validation
+            }//end of MCQ validation
+
+            if (response["question_type"] === "M&M") {
+                var answersArr = [];
+
+                for (var i = 0; i < 4; i++) {
+                    answersArr.push($("#" + i + " option:selected").val());
+                }//end of options for loop
+                if (answersArr.length === 4 && !answersArr.includes("")) {
+                    isAnswered = true;
+                    var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                    savedAnswers.push(answerObj);
+                }
+
+            }//end of mix and match
 
             if (isAnswered === true) {
                 currValue += 1;
@@ -174,11 +188,9 @@ quizLogic(function (response) {
 
                             if (question_id === userQI) {
                                 if (answer === userA) {
-                                    marks += 1;
-                                    alert(userQI);
+                                    marks += 1;                  
                                 } else if (arrayValidator(answer, userA) === true) {
                                     marks += 1;
-                                    alert(userQI);
                                 }
 
                             }//end of question validation
@@ -186,18 +198,16 @@ quizLogic(function (response) {
                         }//end of user answer for loop
 
                     }//end of response for loop
-                    //insertStudentQuizRecord(quiz_id, marks);
-                    console.log(savedAnswers);
-                    console.log(response);
-                    console.log(marks);
+                    insertStudentQuizRecord(quiz_id, marks);
+
                 });//end of markAnswers
 
                 $('#quiz_end_modal').modal('show');
-                /*
-                 setTimeout(function () {
-                 window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
-                 }, 2000);
-                 */
+
+                setTimeout(function () {
+                    window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
+                }, 2000);
+
 
 
             }//end of end quiz validation
@@ -385,6 +395,21 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                     }//end of options validation 
 
                 }//end of MCQ
+
+                if (response["question_type"] === "M&M") {
+                    var arr = optionsArr[0].split(",");
+                    for (var t = 0; t < 4; t++) {
+                        output += "<div class='form-group'>"
+                                + "<label for='" + t + "'>" + arr[t] + "</label>"
+                                + "<select class='form-control w-25' id= '" + t + "'>"
+                                + "<option value=''>Select Colour</option>";
+                        for (var i = 4; i < arr.length; i++) {
+                            output += " <option value='" + arr[i] + "'>" + arr[i] + "</option>";
+                        }//end of dropdown for loop
+                        output += "</select></div>";
+                    }//end of options for loop
+
+                }//end of mix and match
 
 
                 $('#questionContent').html(output);
