@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+include("dbFunctions.php");
+
+//if (!isset($_SESSION['user_id'])) {
+//    header("Location: http://localhost/Histologie/signinpage.php");
+//    exit();
+//}//end of user validation
+//else {
+    $lessonCategories = array();
+    $query = "SELECT * FROM lesson_category";
+    $result = mysqli_query($link, $query);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $lessonCategories[] = $row;
+    }
+//}//end of else 
+
+mysqli_close($link);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,6 +33,7 @@
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="js/learn.js" type="text/javascript"></script>
         <style type="text/css">
             body{
                 font-family: europa,sans-serif;
@@ -25,32 +47,37 @@
                 font-weight: 700;
                 font-style: normal;
             }
-            .card{
-                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                border-radius: 20px;
-                width: 20rem;
-                height: 20rem;
-                margin-right: 60px;
-            }
             .card img{
                 width: 20rem;
                 height: 10rem;
                 border-top-left-radius: 20px;
                 border-top-right-radius: 20px;
             }
-            input[type=text]{
-                float: right;
-                padding: 6px;
-                margin-top: 8px;
-                margin-right: 16px;
-                font-size: 17px;
-                border: 1px solid #ccc;
+            .card{
+                border-radius: 20px;
+                width: 20rem;
+                height: 22rem;
+            }
+            #lessonsRow{
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            h6{
+                margin-right: 10px;
+                margin-left: 10px;
+                font-size: 16px;
+            }
+            h5{
+                margin-left: 10px;
+                margin-top: 5px;
+            }
+            btn{
+                margin-top: 10px;
             }
         </style>
     </head>
     <body>
         <?php
-        session_start();
         include("navbar.php");
         ?>
         <div class="container">
@@ -61,47 +88,19 @@
                 <div class="col-6 d-flex justify-content-end align-items-center">
                     <select class="form-control w-50" id="idLessonCategory">
                         <option value="">Select Lesson Category</option>
-                        <option value="tissue and cells">Tissues and cells</option>
-                        <option value="recognising diseases">Recognising diseases</option>
-                        <option value="tumours">Tumours</option>
+                        <?php
+                        for ($i = 0; $i < count($lessonCategories); $i++) {
+                            ?>
+                            <option value="<?php echo $lessonCategories[$i]['lesson_category_id']; ?>"><?php echo $lessonCategories[$i]['name']; ?></option>                 
+                        <?php } ?> 
                     </select>
                 </div>
             </div>
-            <div class="mt-5">
-                <h4>Lessons:</h4>
-                <div class="row">
-                    <div class="column">
-                        <div class="card">
-                            <img class="card-img-top" src="img/lung.JPG" />
-                            <div class="card-body">
-                                <h5 class="card-text">Tissue and cell</h5>
-                                <h6>A cell consists of three parts: the cell membrane, the nucleus, between the two, the cytoplasm. </h6>
-                                <a href="quizResultPage.php" class="btn btn-primary">Start lesson</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <img class="card-img-top" src="img/lung.JPG" />
-                            <div class="card-body">
-                                <h5 class="card-text">Recognising Diseases</h5>
-                                <h6>In this lesson, you will try to identify tissues and try to identify the abnormality. </h6>
-                                <a href="quizResultPage.php" class="btn btn-primary">Start lesson</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="card">
-                            <img class="card-img-top" src="img/lung.JPG" />
-                            <div class="card-body">
-                                <h5 class="card-text">Tumours</h5>
-                                <h6>Tumours are groups of abnormal cells that forms lumps or growth. Tumours grow and behave differently. </h6>
-                                <a href="quizResultPage.php" class="btn btn-primary">Start lesson</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h4>Lessons:</h4>
+            <div id="lessonsRow" class="row d-flex flex-row flex-nowrap">
+
+            </div><br><br>
+ 
         </div>
     </body>
 </html>
