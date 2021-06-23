@@ -33,7 +33,7 @@ and open the template in the editor.
                 font-family: europa,sans-serif;
                 font-weight: 400;
                 font-style: normal;
-                padding-top: 100px; 
+                padding-top: 20px; 
             }
             .row, .spinner-border{
                 color: #E11A7A;
@@ -47,7 +47,7 @@ and open the template in the editor.
     </head>
     <body>
 
-        <div class="container"> 
+        <div class="container-fluid"> 
             <div class="row justify-content-between"> 
                 <div class="col-6">
                     <h1 id="quizTitle"></h1>

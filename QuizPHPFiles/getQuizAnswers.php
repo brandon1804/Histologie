@@ -4,7 +4,7 @@ include "dbFunctions.php";
 
 
 $id = $_GET['quiz_id'];
-$query = "SELECT question_id, answer FROM quiz_answer WHERE quiz_id = $id";
+$query = "SELECT QA.question_id, QA.answer, QQ.question_score FROM quiz_answer QA INNER JOIN quiz_question QQ ON QA.question_id = QQ.question_id WHERE QA.quiz_id = $id";
 $result = mysqli_query($link, $query);
 
 

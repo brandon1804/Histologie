@@ -49,7 +49,7 @@ quizLogic(function (response) {
         }
         validateAnswer(function (response) {
 
-
+            var questionType = response["question_type"];
             var isAnswered = false;
             if (response["images"].length !== 0) {
                 var imgArr = response["images"];
@@ -134,11 +134,13 @@ quizLogic(function (response) {
             }//end of MCQ validation
 
             if (response["question_type"] === "M&M") {
-                var answersArr = [];
-
-                for (var i = 0; i < 4; i++) {
-                    answersArr.push($("#" + i + " option:selected").val());
+                var aArr = [];
+                
+                for (var i = 0; i < 2; i++) {
+                    aArr.push($("#" + i).val());
                 }//end of options for loop
+                var answersArr =  aArr[0].concat(aArr[1]);
+                console.log(answersArr);
                 if (answersArr.length === 4 && !answersArr.includes("")) {
                     isAnswered = true;
                     var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
@@ -175,6 +177,8 @@ quizLogic(function (response) {
                     for (var i = 0; i < response.length; i++) {
                         var question_id = response[i]['question_id'];
                         var answer = response[i]['answer'];
+                        var marksAllocated = parseInt(response[i]['question_score']);
+
 
                         if (answer.includes(",")) {
                             answer = answer.split(",");
@@ -188,26 +192,46 @@ quizLogic(function (response) {
 
                             if (question_id === userQI) {
                                 if (answer === userA) {
-                                    marks += 1;                  
-                                } else if (arrayValidator(answer, userA) === true) {
-                                    marks += 1;
-                                }
+                                    marks += marksAllocated;
+                                }//end of mcq/single text field validation 
+                                else if (arrayValidator(answer, userA) === true) {
+                                    marks += marksAllocated;
+                                }//full marks for arrays
+
+                                else if (arrayValidator(answer, userA) === false && questionType !== "M&M") {
+                                    for (var a = 0; a < answer.length; a++) {
+                                        if (answer[a] === userA[a]) {
+                                            marks += 1;
+                                        }
+                                    }//end of answer for loop
+                                }//end of per option 
+
+                                else if (arrayValidator(answer, userA) === false && questionType === "M&M") {
+                                    for (var a = 0; a < answer.length; a++) {
+                                        if (answer[a] === userA[a]) {
+                                            marks += 0.5;
+                                        }
+                                    }//end of answer for loop
+                                }//end of per option 
 
                             }//end of question validation
 
                         }//end of user answer for loop
 
                     }//end of response for loop
+                    console.log(response);
+                    console.log(savedAnswers);
+                    console.log(marks);
                     insertStudentQuizRecord(quiz_id, marks);
 
                 });//end of markAnswers
 
                 $('#quiz_end_modal').modal('show');
-
-                setTimeout(function () {
-                    window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
-                }, 2000);
-
+                
+                 setTimeout(function () {
+                 window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
+                 }, 2000);
+                 
 
 
             }//end of end quiz validation
@@ -396,20 +420,44 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
 
                 }//end of MCQ
 
+                /*
+                 if (response["question_type"] === "M&M") {
+                 var arr = optionsArr[0].split(",");
+                 for (var t = 0; t < 2; t++) {
+                 output += "<div class='form-group'>"
+                 + "<label for='" + t + "'>" + arr[t] + "</label>"
+                 + "<select class='form-control w-25 mb-2' id= '" + t + "'>"
+                 + "<option value=''>Select Cellular Component</option>";
+                 for (var i = 2; i < 4; i++) {
+                 output += " <option value='" + arr[i] + "'>" + arr[i] + "</option>";
+                 }//end of dropdown for loop
+                 output += "</select><select class='form-control w-25' id= '" + (t + 2) + "'>"
+                 + "<option value=''>Select Colour of stain</option>";
+                 for (var is = 4; is < arr.length; is++) {
+                 output += " <option value='" + arr[is] + "'>" + arr[is] + "</option>";
+                 }//end of dropdown for loop
+                 output += "</select></div>";
+                 }//end of options for loop
+                 
+                 }//end of mix and match
+                 */
+
                 if (response["question_type"] === "M&M") {
                     var arr = optionsArr[0].split(",");
-                    for (var t = 0; t < 4; t++) {
+                    for (var t = 0; t < 2; t++) {
                         output += "<div class='form-group'>"
-                                + "<label for='" + t + "'>" + arr[t] + "</label>"
-                                + "<select class='form-control w-25' id= '" + t + "'>"
-                                + "<option value=''>Select Colour</option>";
-                        for (var i = 4; i < arr.length; i++) {
+                                + "<label for='" + t + "'>" + arr[t] + "--Cellular Component--Colour of stain" + "</label>"
+                                + "<select multiple class='form-control w-25 mb-2' id= '" + t + "'>"
+                                + "<option value=''>Select Cellular Component & Colour of stain</option>";
+                        for (var i = 2; i < arr.length; i++) {
                             output += " <option value='" + arr[i] + "'>" + arr[i] + "</option>";
                         }//end of dropdown for loop
+
                         output += "</select></div>";
                     }//end of options for loop
 
                 }//end of mix and match
+
 
 
                 $('#questionContent').html(output);
