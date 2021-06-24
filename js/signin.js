@@ -12,6 +12,7 @@ $(document).ready(function () {
                 $(".card-body").html(response);
                 $(".card-img-top").hide();
                 $("#loginBtn").hide();
+                $("#signinSuccessModal").modal('show');
             }
         });
     });

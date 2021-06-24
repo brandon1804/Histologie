@@ -18,32 +18,9 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/jquery-ui.min.css"> 
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <script src="js/passwordReset.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type ="text/javascript"></script>
         <script src="additional-methods.min.js" type="text/javascript"></script>
-        <script>
-            $(document).ready(function(){
-                
-                $("#defaultForm").validate({
-                    rules: {
-                        email: {
-                            required: true,
-                            pattern: /^(\w+[\-\.])*\w+@(\w+\.)+[A-Za-z]+$/
-                        }
-                    }, 
-                    messages: {
-                        email: {
-                            required: "Please enter new email",
-                            pattern: "Please enter a valid email"
-                        }
-                    },
-                    
-                    submitHandler: function(){
-                        return true;
-                    }
-                });
-            });
-        </script>
+        <script src="js/resetPassword.js" type="text/javascript"></script>
         <style>
             body, html {
                 height: 100%;

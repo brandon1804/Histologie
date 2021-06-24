@@ -1,13 +1,13 @@
 $(document).ready(function () {
     $("#msg").hide();
     $("#pwResetBtn").click(function (e){
-        e.preventDefault();
         var email = $('#idEmail').val();
         $.ajax({
-            url: 'doResetPassword.php',
+            url: 'http://localhost/Histologie/gmail/testmail.php',
             type: 'POST',
             data: {email: email},
             success: function (response) {
+                console.log(response);
                 $(".card-body").html(response);
                 $(".card-img-top").hide();
                 $("#pwResetBtn").hide();
@@ -15,3 +15,25 @@ $(document).ready(function () {
         });
     });
 });
+
+/*
+  $("#defaultForm").validate({
+                    rules: {
+                        email: {
+                            required: true,
+                            pattern: /^(\w+[\-\.])*\w+@(\w+\.)+[A-Za-z]+$/
+                        }
+                    },
+                    messages: {
+                        email: {
+                            required: "Please enter new email",
+                            pattern: "Please enter a valid email"
+                        }
+                    },
+
+                    submitHandler: function () {
+                        return true;
+                    }
+                });
+            });
+ */
