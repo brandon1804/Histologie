@@ -42,11 +42,6 @@ mysqli_close($link);
                 padding-top: 70px;
                 margin-top: 20px;
             }
-            .card-text{
-                font-family: europa,sans-serif;
-                font-weight: 700;
-                font-style: normal;
-            }
             .card img{
                 width: 20rem;
                 height: 10rem;
@@ -62,17 +57,30 @@ mysqli_close($link);
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
-            h6{
+            card-body{
                 margin-right: 10px;
                 margin-left: 10px;
-                font-size: 16px;
+                font-size: 13px;
+                margin-bottom: 10px;
             }
-            h5{
+            card-subtitle{
+                margin-right: 10px;
                 margin-left: 10px;
-                margin-top: 5px;
+                font-size: 13px;
+                margin-bottom: 10px;
             }
-            btn{
-                margin-top: 10px;
+            .card2{
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                border-radius: 20px;
+                width: 69rem;
+                height: 18rem;
+                margin-right: 60px;
+            }
+            .img-fluid{
+                width: 25rem;
+                height: 18rem;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px; 
             }
         </style>
     </head>
@@ -96,8 +104,24 @@ mysqli_close($link);
                     </select>
                 </div>
             </div>
+            </br>
+            <h4>Recommended for you:</h4>
+            <div class="card2">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="img/Small Intestine.PNG" class="img-fluid" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Small Intestine</h5>
+                            <p class="card-text text-muted">Small intestine helps with digestion and allows nutrients to take place. Click here to find more about the different structures of the small intestine!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </br>
             <h4>Lessons:</h4>
-            <div id="lessonsRow" class="row d-flex flex-row flex-nowrap">
+            <div id="lessonsRow" class="row d-flex flex-row flex-nowrap overflow-auto">
 
             </div><br><br>
  
