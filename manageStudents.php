@@ -79,8 +79,8 @@ and open the template in the editor.
             <div id="content">
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
-                    <h1 class="mb-2">Students</h1>
-                    <div class="row">
+                    <h1>Students</h1>
+                    <div class="row mt-4">
                         <div class="col-xl-4 col-sm-6 col-12 mb-3">
                             <div class="card shadow" style="border-radius: 10px; border-color: white;">
                                 <div class="card-content">
@@ -91,7 +91,7 @@ and open the template in the editor.
                                                 <span>Students</span>
                                             </div>
                                             <div class="align-self-center">
-                                                <i class='bx bx-md bxs-user text-primary'></i>
+                                                <i class='bx bx-md bx-user text-primary'></i>
                                             </div>
                                         </div>
                                     </div>
@@ -133,9 +133,9 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
-                    <h1 class="mt-5 mb-2">Manage Students</h1>
-             
-                        <table id="defaultTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                    <h1 class="mt-5 mb-4">Manage Students</h1>
+                    <div class="table-responsive-xl">
+                        <table id="defaultTable" class="table table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -147,7 +147,7 @@ and open the template in the editor.
                             </thead>
                             <tbody></tbody>
                         </table> 
-                 
+                    </div>
                     <div class="modal" tabindex="-1" role="dialog"  id="edit_modal">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">

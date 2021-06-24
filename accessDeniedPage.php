@@ -113,7 +113,7 @@
                         <p class="text-center">Please login as an administrator to view this page.</p>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-danger btn-block" href="signinpage.php" role="button">Login</a>
+                        <a class="btn btn-danger btn-block" href="doLogout.php" role="button">Login</a>
                     </div>
                 </div>
             </div>

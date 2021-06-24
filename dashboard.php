@@ -80,7 +80,7 @@ and open the template in the editor.
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
                     <h1 id="greeting">Welcome back, <?php echo $_SESSION['name'] ?>.</h1>
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-xl-4 col-sm-6 col-12 mb-3">
                             <div class="card shadow" style="border-radius: 10px; border-color: white;">
                                 <div class="card-content">
@@ -129,6 +129,66 @@ and open the template in the editor.
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-xl-6 col-sm-12 col-12 mb-3">
+                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                                <div class="row p-2">
+                                    <div class="col-sm-9 d-flex flex-column justify-content-center">
+                                        <h3 class="card-title">Manage Images</h3>
+                                        <p>Insert, remove and update Histologie's images.</p>
+                                        <a href="#" class="stretched-link"></a>
+                                    </div>
+                                    <div class="col-sm-3 d-flex align-items-center justify-content-center">
+                                        <i class='bx bx-image text-primary' style="font-size: 88px;"></i>
+                                    </div>                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-12 col-12 mb-3">
+                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                                <div class="row p-2">
+                                    <div class="col-sm-9 d-flex flex-column justify-content-center">
+                                        <h3 class="card-title">Manage Lessons</h3>
+                                        <p>Add, edit or delete Histologie's lessons.</p>
+                                        <a href="#" class="stretched-link"></a>
+                                    </div>
+                                    <div class="col-sm-3 d-flex align-items-center justify-content-center">
+                                        <i class='bx bx-book-open' style="font-size: 88px; color: #00D207"></i>
+                                    </div>                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-sm-12 col-12 mb-3">
+                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                                <div class="row p-2">
+                                    <div class="col-sm-9 d-flex flex-column justify-content-center">
+                                        <h3 class="card-title">Manage Quizzes</h3>
+                                        <p>Create, edit and remove Histologie's quizzes.</p>
+                                        <a href="#" class="stretched-link"></a>
+                                    </div>
+                                    <div class="col-sm-3 d-flex align-items-center justify-content-center">
+                                        <i class='bx bxs-edit' style="font-size: 88px; color: #FF5662"></i>
+                                    </div>                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-12 col-12 mb-3">
+                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                                <div class="row p-2">
+                                    <div class="col-sm-9 d-flex flex-column justify-content-center">
+                                        <h3 class="card-title">Manage Students</h3>
+                                        <p>Add, edit or delete students on Histologie.</p>
+                                        <a href="#" class="stretched-link"></a>
+                                    </div>
+                                    <div class="col-sm-3 d-flex align-items-center justify-content-center">
+                                        <i class='bx bx-user text-warning' style="font-size: 88px;"></i>
+                                    </div>                                  
                                 </div>
                             </div>
                         </div>
