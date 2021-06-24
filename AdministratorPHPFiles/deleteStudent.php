@@ -4,7 +4,7 @@ include("dbFunctions.php");
 if (isset($_GET['studentid'])) {
     $id = $_GET['studentid'];
 
-$query = "delete from user where student_id='$id'";
+$query = "DELETE FROM user WHERE student_id='$id'";
 //echo $insertQuery;
 $status = mysqli_query($link, $query) or die(mysqli_error($link));
 

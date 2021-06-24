@@ -7,7 +7,7 @@ if (isset($_POST)) {
     $email = $_POST['email'];
     $account_type = $_POST['account_type'];
 
-    $query = "UPDATE user set name='$name', set email='$email',  set $account_type='$account_type' WHERE student_id='$studentId'";
+    $query = "UPDATE user SET name='$name', email='$email', account_type='$account_type' WHERE student_id='$studentId'";
 
     $status = mysqli_query($link, $query) or die(mysqli_error($link));
 
