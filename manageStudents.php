@@ -44,7 +44,7 @@ and open the template in the editor.
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>Histologie</h3>
+                     <a href="dashboard.php"><img src="./css/img/histologie.png" alt="logo" style="width: 120px"></a>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -61,7 +61,7 @@ and open the template in the editor.
                         <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-book-open mr-2'></i>Lessons</a>
                     </li>
                     <li>
-                        <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bxs-edit mr-2' ></i>Quizzes</a>
+                        <a class="d-flex align-items-center" href="manageQuizzes.php"><i class='bx bx-sm bxs-edit mr-2' ></i>Quizzes</a>
                     </li>
                     <li>
                         <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
@@ -70,7 +70,8 @@ and open the template in the editor.
 
                 <ul class="list-unstyled CTAs">
                     <li>
-                        <a href="doLogout.php" class="signout d-flex align-items-center justify-content-center"><i class='bx bx-log-out bx-sm mr-1'></i>Sign Out</a>
+                         <a href="doLogout.php" class="signout d-flex align-items-center justify-content-center" style=" background: #E11A7A;
+                           color: #FFF;"><i class='bx bx-log-out bx-sm mr-1'></i>Sign Out</a>
                     </li>
                 </ul>
             </nav
@@ -79,7 +80,7 @@ and open the template in the editor.
             <div id="content">
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
-                    <h1>Students</h1>
+                    <h1>Student Statistics</h1>
                     <div class="row mt-4">
                         <div class="col-xl-4 col-sm-6 col-12 mb-3">
                             <div class="card shadow" style="border-radius: 10px; border-color: white;">
@@ -135,7 +136,7 @@ and open the template in the editor.
                     </div>
                     <h1 class="mt-5 mb-4">Manage Students</h1>
                     <div class="table-responsive-xl">
-                        <table id="defaultTable" class="table table-bordered" cellspacing="0" width="100%">
+                        <table id="defaultTable" class="table table-bordered shadow" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Name</th>

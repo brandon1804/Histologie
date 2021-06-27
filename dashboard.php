@@ -44,7 +44,7 @@ and open the template in the editor.
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>Histologie</h3>
+                    <a href="dashboard.php"><img src="./css/img/histologie.png" alt="logo" style="width: 120px"></a>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -61,7 +61,7 @@ and open the template in the editor.
                         <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-book-open mr-2'></i>Lessons</a>
                     </li>
                     <li>
-                        <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bxs-edit mr-2' ></i>Quizzes</a>
+                        <a class="d-flex align-items-center" href="manageQuizzes.php"><i class='bx bx-sm bxs-edit mr-2' ></i>Quizzes</a>
                     </li>
                     <li>
                         <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
@@ -70,7 +70,8 @@ and open the template in the editor.
 
                 <ul class="list-unstyled CTAs">
                     <li>
-                        <a href="doLogout.php" class="signout d-flex align-items-center justify-content-center"><i class='bx bx-log-out bx-sm mr-1'></i>Sign Out</a>
+                        <a href="doLogout.php" class="signout d-flex align-items-center justify-content-center" style=" background: #E11A7A;
+                           color: #FFF;"><i class='bx bx-log-out bx-sm mr-1'></i>Sign Out</a>
                     </li>
                 </ul>
             </nav
@@ -170,7 +171,7 @@ and open the template in the editor.
                                     <div class="col-sm-9 d-flex flex-column justify-content-center">
                                         <h3 class="card-title">Manage Quizzes</h3>
                                         <p>Create, edit and remove Histologie's quizzes.</p>
-                                        <a href="#" class="stretched-link"></a>
+                                        <a href="manageQuizzes.php" class="stretched-link"></a>
                                     </div>
                                     <div class="col-sm-3 d-flex align-items-center justify-content-center">
                                         <i class='bx bxs-edit' style="font-size: 88px; color: #FF5662"></i>
@@ -184,7 +185,7 @@ and open the template in the editor.
                                     <div class="col-sm-9 d-flex flex-column justify-content-center">
                                         <h3 class="card-title">Manage Students</h3>
                                         <p>Add, edit or delete students on Histologie.</p>
-                                        <a href="#" class="stretched-link"></a>
+                                        <a href="manageStudents.php" class="stretched-link"></a>
                                     </div>
                                     <div class="col-sm-3 d-flex align-items-center justify-content-center">
                                         <i class='bx bx-user text-warning' style="font-size: 88px;"></i>

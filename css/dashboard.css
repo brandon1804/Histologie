@@ -2,11 +2,9 @@ body{
     font-family: europa,sans-serif;
     font-weight: 400;
     font-style: normal;
+    background-color: #fcfcfc;
 }
 
-#addErrorMsgE {
-    color: #ff0000;
-}
 
 p {
     font-family: europa,sans-serif;
@@ -59,8 +57,8 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #E11A7A;
-    color: #FFF;
+    background: #FFF;
+    color: #a1a1a1;
     transition: all 0.3s;
 }
 
@@ -70,12 +68,13 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
-    background: #E11A7A;
+    padding: 10px;
+    background: #FFF;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
+    margin-top: 30px;
 }
 
 #sidebar ul li a {
@@ -86,13 +85,11 @@ a:focus {
 
 #sidebar ul li a:hover {
     color: #E11A7A;
-    background: #fff;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #E11A7A;
-    background: #FFF;
 }
 
 a[data-toggle="collapse"] {
@@ -124,12 +121,6 @@ ul.CTAs a {
     border-radius: 5px;
     margin-bottom: 5px;
 }
-
-a.signout {
-    background: #FFF;
-    color: #E11A7A;
-}
-
 
 
 /* ---------------------------------------------------
