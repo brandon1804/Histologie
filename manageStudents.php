@@ -44,7 +44,7 @@ and open the template in the editor.
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                     <a href="dashboard.php"><img src="./css/img/histologie.png" alt="logo" style="width: 120px"></a>
+                    <a href="dashboard.php"><img src="./css/img/histologie.png" alt="logo" style="width: 120px"></a>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -70,7 +70,7 @@ and open the template in the editor.
 
                 <ul class="list-unstyled CTAs">
                     <li>
-                         <a href="doLogout.php" class="signout d-flex align-items-center justify-content-center" style=" background: #E11A7A;
+                        <a href="doLogout.php" class="signout d-flex align-items-center justify-content-center" style=" background: #E11A7A;
                            color: #FFF;"><i class='bx bx-log-out bx-sm mr-1'></i>Sign Out</a>
                     </li>
                 </ul>
@@ -135,19 +135,21 @@ and open the template in the editor.
                         </div>
                     </div>
                     <h1 class="mt-5 mb-4">Manage Students</h1>
-                    <div class="table-responsive-xl">
-                        <table id="defaultTable" class="table table-bordered shadow" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Student ID</th>
-                                    <th>Email</th> 
-                                    <th>Account Type</th> 
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table> 
+                    <div class="card shadow" style="border-color: #fff; border-radius: 10px;">
+                        <div class="table-responsive">
+                            <table id="defaultTable" class="table table-borderless" cellspacing="0" width="100%">
+                                <thead style="background-color: #fafafa;">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Student ID</th>
+                                        <th>Email</th> 
+                                        <th>Account Type</th> 
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table> 
+                        </div>
                     </div>
                     <div class="modal" tabindex="-1" role="dialog"  id="edit_modal">
                         <div class="modal-dialog" role="document">

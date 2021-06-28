@@ -5,9 +5,7 @@ body{
     background-color: #fcfcfc;
 }
 
-#addErrorMsgE {
-    color: #ff0000;
-}
+
 
 p {
     font-family: europa,sans-serif;
@@ -128,6 +126,8 @@ ul.CTAs a {
 .card{
     border-radius: 20px;
 }
+
+
 
 /* ---------------------------------------------------
     CONTENT STYLE

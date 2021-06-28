@@ -11,14 +11,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
     if ($accountType !== "staff") {
         header("Location: http://localhost/Histologie/accessDeniedPage.php");
         exit();
-    } else {
-        $quizCategories = array();
-        $query = "SELECT * FROM quiz_category";
-        $result = mysqli_query($link, $query);
-
-        while ($row = mysqli_fetch_assoc($result)) {
-            $quizCategories[] = $row;
-        }
     }
 }//end of account type validation
 ?>
@@ -30,14 +22,15 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Quizzes</title>
+        <title>Manage Quiz</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="icon.png">
         <link rel="stylesheet" href="css/all.css">
         <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="css/manageQuizzes.css">
+        <link rel="stylesheet" href="css/manageQuizPage.css">
+        <link rel="stylesheet" href="css/progresscircle.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
@@ -46,7 +39,8 @@ and open the template in the editor.
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/additional-methods.min.js" type="text/javascript"></script>
-        <script src="js/manageQuizzes.js" type="text/javascript"></script>
+        <script src="js/progresscircle.js"></script>
+        <script src="js/manageQuizPage.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="wrapper">
@@ -89,85 +83,70 @@ and open the template in the editor.
             <div id="content">
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
-                    <div class="row justify-content-between"> 
+                    <div class="row justify-content-between mb-3"> 
                         <div class="col-6">
-                            <h1>Quizzes</h1>
+                            <h1 id="quizTitle"></h1>
                         </div>
                         <div class="col-6 d-flex justify-content-end align-items-center">
-                              <a class="btn d-flex align-items-center" href="addQuizPage.php" role="button" style="background-color: #00D207; color:#fff"><i class='bx bx-sm bx-plus'></i>Add Quiz</a>
+                            <a class="btn btn-primary d-flex align-items-center" href="previewPage.php" role="button"><i class='bx bx-sm bx-play'></i>Preview Quiz</a>
                         </div>
                     </div>
-                    <div class="row mt-4 mb-5">
+                    <div id="infoRow" class="row">
                         <div class="col-xl-4 col-sm-6 col-12 mb-3">
-                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="media d-flex">
-                                            <div class="media-body text-left">
-                                                <h3 id="quizzesAvailable" style="color: #FF5662"></h3>
-                                                <span>Quizzes Available</span>
-                                            </div>
-                                            <div class="align-self-center">
-                                                <i class='bx bx-md bxs-edit'  style="color: #FF5662"></i>
-                                            </div>
-                                        </div>
+                            <div class="card shadow" style="border-color: #fff; height: 320px;">
+                                <div class="card-body">
+                                    <h3 class="card-title">Completion Rate</h3>  
+                                    <div class="d-flex align-items-center justify-content-center mb-2">
+                                        <div class="circlechartSC" data-percentage="0"></div>
                                     </div>
+                                    <p id="scText" class="card-text"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 col-12 mb-3">
-                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="media d-flex">
-                                            <div class="media-body text-left">
-                                                <h3 id="quizzesCompleted" style="color: #00D207"></h3>
-                                                <span>Quizzes Completed</span>
-                                            </div>
-                                            <div class="align-self-center">
-                                                <i class='bx bx-md bxs-check-circle' style="color: #00D207"></i>
-                                            </div>
-                                        </div>
+                            <div class="card shadow" style="border-color: #fff; height: 320px;">
+                                <div class="card-body">
+                                    <h3 class="card-title">Average Score</h3>
+                                    <div class="d-flex align-items-center justify-content-center mb-2">
+                                        <div class="circlechartAS" data-percentage="0"></div>
                                     </div>
+                                    <p id="asText" class="card-text"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4 col-sm-6 col-12 mb-3">
-                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="media d-flex">
-                                            <div class="media-body text-left">
-                                                <h3 id="passPercentage" class="text-primary"></h3>
-                                                <span>Pass Rate</span>
-                                            </div>
-                                            <div class="align-self-center">
-                                                <i class='bx bx-md bx-book-open text-primary'></i>
-                                            </div>
-                                        </div>
+                            <div class="card shadow" style="border-color: #fff; height: 320px;">
+                                <div class="card-body"> 
+                                    <h3 class="card-title">Top Scorer</h3>
+                                    <div class="d-flex align-items-center justify-content-center mb-2">
+                                        <div class="circlechartTS" data-percentage="0"></div>
                                     </div>
+                                    <p id="tsText" class="card-text"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-between"> 
-                        <div class="col-6">
-                            <h1>Manage Quizzes</h1>
+                    <div class="card shadow" style="border-color: #fff;">
+                        <div class="card-body"> 
+                            <h2 class="card-title">Manage Questions</h2>
                         </div>
-                        <div class="col-6 d-flex justify-content-end align-items-center">
-                            <select class="form-control" id="idQuizCategoryChooser">
-                                <option value="">Select Quiz Category</option>
-                                <?php
-                                for ($i = 0; $i < count($quizCategories); $i++) {
-                                    ?>
-                                    <option value="<?php echo $quizCategories[$i]['quizcategory_id']; ?>"><?php echo $quizCategories[$i]['category_name']; ?></option>                 
-                                <?php } ?>        
-                            </select>
+                        <div class="table-responsive">
+                            <table id="questionsTable" class="table table-borderless" cellspacing="0" width="100%">
+                                <thead style="background-color: #fafafa;">
+                                    <tr>
+                                        <th>Question</th>
+                                        <th>Type</th>
+                                        <th>Score</th> 
+                                        <th>Answer</th> 
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table> 
                         </div>
                     </div>
-                    <div id="quizzesRow" class="row d-flex flex-row flex-nowrap overflow-auto">
 
-                    </div><br><br>
+
                 </div>
             </div>
     </body>
