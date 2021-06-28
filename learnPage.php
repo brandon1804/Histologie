@@ -82,6 +82,17 @@ mysqli_close($link);
                 border-top-left-radius: 20px;
                 border-bottom-left-radius: 20px; 
             }
+            .card-title2{
+                margin-left: 10px;
+                margin-top: 20px;
+            }
+            .card-subtitle2{
+                margin-left: 10px;
+            }
+            .card-body2{
+                align-content: center;
+                justify-content: center;
+            }
         </style>
     </head>
     <body>
@@ -107,23 +118,9 @@ mysqli_close($link);
             </br>
             <h4>Recommended for you:</h4>
             <div id="lessons" class="row"></div>
-<!--            <div class="card2">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="img/Small Intestine.PNG" class="img-fluid" />
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Small Intestine</h5>
-                            <p class="card-text text-muted">Small intestine helps with digestion and allows nutrients to take place. Click here to find more about the different structures of the small intestine!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
             </br>
             <h4>Lessons:</h4>
             <div id="lessonsRow" class="row d-flex flex-row flex-nowrap overflow-auto">
-
             </div><br><br>
  
         </div>
