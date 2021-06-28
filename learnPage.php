@@ -106,7 +106,8 @@ mysqli_close($link);
             </div>
             </br>
             <h4>Recommended for you:</h4>
-            <div class="card2">
+            <div id="lessons" class="row"></div>
+<!--            <div class="card2">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="img/Small Intestine.PNG" class="img-fluid" />
@@ -118,7 +119,7 @@ mysqli_close($link);
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             </br>
             <h4>Lessons:</h4>
             <div id="lessonsRow" class="row d-flex flex-row flex-nowrap overflow-auto">
