@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("dbFunctions.php");
 if (!isset($_SESSION['user_id'])) {
     header("Location: http://localhost/Histologie/signinpage.php");
     exit();
@@ -10,6 +11,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
     if ($accountType !== "staff") {
         header("Location: http://localhost/Histologie/accessDeniedPage.php");
         exit();
+    } else {
+        $quizCategories = array();
+        $query = "SELECT * FROM quiz_category";
+        $result = mysqli_query($link, $query);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $quizCategories[] = $row;
+        }
     }
 }//end of account type validation
 ?>
@@ -21,7 +30,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Manage Quizzes</title>
+        <title>Quizzes</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="icon.png">
@@ -80,11 +89,79 @@ and open the template in the editor.
             <div id="content">
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
-                    <h1>Quizzes</h1>
+                    <h1>Quiz Statistics</h1>
+                    <div class="row mt-4 mb-5">
+                        <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="media d-flex">
+                                            <div class="media-body text-left">
+                                                <h3 id="quizzesAvailable" style="color: #FF5662"></h3>
+                                                <span>Quizzes Available</span>
+                                            </div>
+                                            <div class="align-self-center">
+                                                <i class='bx bx-md bxs-edit'  style="color: #FF5662"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="media d-flex">
+                                            <div class="media-body text-left">
+                                                <h3 id="quizzesCompleted" style="color: #00D207"></h3>
+                                                <span>Quizzes Completed</span>
+                                            </div>
+                                            <div class="align-self-center">
+                                                <i class='bx bx-md bxs-check-circle' style="color: #00D207"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="media d-flex">
+                                            <div class="media-body text-left">
+                                                <h3 id="passPercentage" class="text-primary"></h3>
+                                                <span>Pass Rate</span>
+                                            </div>
+                                            <div class="align-self-center">
+                                                <i class='bx bx-md bx-book-open text-primary'></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between"> 
+                        <div class="col-6">
+                            <h1>Manage Quizzes</h1>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end align-items-center">
+                            <select class="form-control" id="idQuizCategoryChooser">
+                                <option value="">Select Quiz Category</option>
+                                <?php
+                                for ($i = 0; $i < count($quizCategories); $i++) {
+                                    ?>
+                                    <option value="<?php echo $quizCategories[$i]['quizcategory_id']; ?>"><?php echo $quizCategories[$i]['category_name']; ?></option>                 
+                                <?php } ?>        
+                            </select>
+                        </div>
+                    </div>
+                    <div id="quizzesRow" class="row d-flex flex-row flex-nowrap overflow-auto">
 
-
+                    </div><br><br>
                 </div>
             </div>
-
     </body>
 </html>

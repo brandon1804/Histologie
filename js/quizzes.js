@@ -91,4 +91,4 @@ function reload_quizzes() {
         }//end of else 
 
     });
-}//end of reload_table()
+}//end of reload_quizzes()
