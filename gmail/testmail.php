@@ -10,7 +10,7 @@ $query = "SELECT name FROM user WHERE email = '$email'";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 $msg = "You've requested to change your password, use the link below to get started."
         . ""
-        . "<a href='newPassword.php'>Click here</a>";
+        . "<a href='localhost/Histologie/newPassword.php'>Click here</a>";
 
 
 while ($row = mysqli_fetch_assoc($result)) {
