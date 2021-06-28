@@ -11,6 +11,17 @@ function updateLessons(){
         dataType: "JSON",
         success: function (response){
             var message = "";
+            var output = "";
+            var random = Math.floor(Math.random() * response.length);
+            console.log(random);
+            output += "<div class='col-sm-12 col-md-6 col-lg-6 col-xl-4'>"
+                   + "<div class='card2 shadow;' id=" + response[random].lesson_id + ">"
+                   + "<img class='img-fluid' src='css/img/lessonImage/" + response[random].filename + "' alt='lessonImage'>"
+                   + "<div class='card-body'>"
+                   + "<h5 class='card-title'>" + response[random].title + "</h5>"
+                   + "<p class='card-text text-muted'>" + response[random].summary + "</p>" 
+                   + "</div></div></div>";
+           
             for(i = 0; i< response.length; i++){
                 message += "<div class='col-sm-12 col-md-6 col-lg-6 col-xl-4'>"
                         + "<div class='card shadow' style='width: 20rem;' id=" + response[i].lesson_id + ">"
@@ -22,6 +33,7 @@ function updateLessons(){
                         + "</div></div></div>";
             }
             $("#lessonsRow").html(message);
+            $("#lessons").html(output);
         },
         error: function (obj, textStatus, erroThrown){
             console.log("Error " + textStatus + ": " + errorThrown);
