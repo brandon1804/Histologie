@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    updateQuizPage();
+
     quizLogic();
 
 }); //end of document ready
@@ -135,11 +135,11 @@ quizLogic(function (response) {
 
             if (response["question_type"] === "M&M") {
                 var aArr = [];
-                
+
                 for (var i = 0; i < 2; i++) {
                     aArr.push($("#" + i).val());
                 }//end of options for loop
-                var answersArr =  aArr[0].concat(aArr[1]);
+                var answersArr = aArr[0].concat(aArr[1]);
                 console.log(answersArr);
                 if (answersArr.length === 4 && !answersArr.includes("")) {
                     isAnswered = true;
@@ -227,11 +227,11 @@ quizLogic(function (response) {
                 });//end of markAnswers
 
                 $('#quiz_end_modal').modal('show');
-                
-                 setTimeout(function () {
-                 window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
-                 }, 2000);
-                 
+
+                setTimeout(function () {
+                    window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
+                }, 2000);
+
 
 
             }//end of end quiz validation
@@ -241,6 +241,114 @@ quizLogic(function (response) {
     }); //end of nextBtn
 
 
+//Update Quiz Page and Times Up validation
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/Histologie/QuizPHPFiles/getQuizDetails.php",
+        data: "id=" + quiz_id,
+        cache: false,
+        dataType: "JSON",
+        success: function (response) {
+
+            $('#quizTitle').html(response["title"]);
+            var quizTime = response["duration"];
+
+            if (quizTime !== "00:00") {
+                var interval = setInterval(function () {
+
+                    var quizTimer = quizTime.split(':');
+                    var minutes = parseInt(quizTimer[0], 10);
+                    var seconds = parseInt(quizTimer[1], 10);
+                    --seconds;
+                    minutes = (seconds < 0) ? --minutes : minutes;
+                    seconds = (seconds < 0) ? 59 : seconds;
+                    seconds = (seconds < 10) ? '0' + seconds : seconds;
+                    $('#quizTimer').html(minutes + ':' + seconds);
+                    if (minutes < 0)
+                        clearInterval(interval);
+
+                    if ((seconds <= 0) && (minutes <= 0)) {
+                        function markAnswers(callback) {
+                            $.ajax({
+                                url: "http://localhost/Histologie/QuizPHPFiles/getQuizAnswers.php",
+                                data: "quiz_id=" + quiz_id,
+                                type: 'GET',
+                                cache: false,
+                                dataType: "JSON",
+                                success: callback
+                            });
+                        }
+
+                        markAnswers(function (response) {
+                            for (var i = 0; i < response.length; i++) {
+                                var question_id = response[i]['question_id'];
+                                var answer = response[i]['answer'];
+                                var marksAllocated = parseInt(response[i]['question_score']);
+
+
+                                if (answer.includes(",")) {
+                                    answer = answer.split(",");
+                                }
+
+
+
+                                for (var ua = 0; ua < savedAnswers.length; ua++) {
+                                    var userQI = savedAnswers[ua]['question_id'];
+                                    var userA = savedAnswers[ua]['user_answer'];
+
+                                    if (question_id === userQI) {
+                                        if (answer === userA) {
+                                            marks += marksAllocated;
+                                        }//end of mcq/single text field validation 
+                                        else if (arrayValidator(answer, userA) === true) {
+                                            marks += marksAllocated;
+                                        }//full marks for arrays
+
+                                        else if (arrayValidator(answer, userA) === false && questionType !== "M&M") {
+                                            for (var a = 0; a < answer.length; a++) {
+                                                if (answer[a] === userA[a]) {
+                                                    marks += 1;
+                                                }
+                                            }//end of answer for loop
+                                        }//end of per option 
+
+                                        else if (arrayValidator(answer, userA) === false && questionType === "M&M") {
+                                            for (var a = 0; a < answer.length; a++) {
+                                                if (answer[a] === userA[a]) {
+                                                    marks += 0.5;
+                                                }
+                                            }//end of answer for loop
+                                        }//end of per option 
+
+                                    }//end of question validation
+
+                                }//end of user answer for loop
+
+                            }//end of response for loop
+                            console.log(response);
+                            console.log(savedAnswers);
+                            console.log(marks);
+                            insertStudentQuizRecord(quiz_id, marks);
+
+                        });//end of markAnswers
+                        
+                        clearInterval(interval);
+                        $('#times_up_modal').modal('show');
+                        setTimeout(function () {
+                            window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
+                        }, 2000)
+                    }//end of times up
+
+                    quizTime = minutes + ':' + seconds;
+                }, 1000);
+            }//end of timer validation
+        },
+        error: function (obj, textStatus, errorThrown) {
+            console.log("Error " + textStatus + ": " + errorThrown);
+        }
+    });
+
+    
 
 }); //end of quizLogic
 
@@ -420,27 +528,7 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
 
                 }//end of MCQ
 
-                /*
-                 if (response["question_type"] === "M&M") {
-                 var arr = optionsArr[0].split(",");
-                 for (var t = 0; t < 2; t++) {
-                 output += "<div class='form-group'>"
-                 + "<label for='" + t + "'>" + arr[t] + "</label>"
-                 + "<select class='form-control w-25 mb-2' id= '" + t + "'>"
-                 + "<option value=''>Select Cellular Component</option>";
-                 for (var i = 2; i < 4; i++) {
-                 output += " <option value='" + arr[i] + "'>" + arr[i] + "</option>";
-                 }//end of dropdown for loop
-                 output += "</select><select class='form-control w-25' id= '" + (t + 2) + "'>"
-                 + "<option value=''>Select Colour of stain</option>";
-                 for (var is = 4; is < arr.length; is++) {
-                 output += " <option value='" + arr[is] + "'>" + arr[is] + "</option>";
-                 }//end of dropdown for loop
-                 output += "</select></div>";
-                 }//end of options for loop
-                 
-                 }//end of mix and match
-                 */
+
 
                 if (response["question_type"] === "M&M") {
                     var arr = optionsArr[0].split(",");
@@ -472,49 +560,6 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
 
 
 
-function updateQuizPage() {
-
-    var url = window.location.href;
-    var stuff = url.split('=');
-    var quiz_id = stuff[stuff.length - 1];
-    $.ajax({
-        type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizDetails.php",
-        data: "id=" + quiz_id,
-        cache: false,
-        dataType: "JSON",
-        success: function (response) {
-
-            $('#quizTitle').html(response["title"]);
-            var quizTime = response["duration"];
-            var interval = setInterval(function () {
-
-                var quizTimer = quizTime.split(':');
-                var minutes = parseInt(quizTimer[0], 10);
-                var seconds = parseInt(quizTimer[1], 10);
-                --seconds;
-                minutes = (seconds < 0) ? --minutes : minutes;
-                seconds = (seconds < 0) ? 59 : seconds;
-                seconds = (seconds < 10) ? '0' + seconds : seconds;
-                $('#quizTimer').html(minutes + ':' + seconds);
-                if (minutes < 0)
-                    clearInterval(interval);
-                if ((seconds <= 0) && (minutes <= 0)) {
-                    clearInterval(interval);
-                    $('#times_up_modal').modal('show');
-                    setTimeout(function () {
-                        window.location.replace("http://localhost/Histologie/quizzesPage.php");
-                    }, 2000)
-                }
-
-                quizTime = minutes + ':' + seconds;
-            }, 1000);
-        },
-        error: function (obj, textStatus, errorThrown) {
-            console.log("Error " + textStatus + ": " + errorThrown);
-        }
-    });
-}//end of updateQuizPage
 
 function updateProgress(currValue) {
 

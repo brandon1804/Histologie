@@ -25,19 +25,19 @@ function updateQuizResultPage() {
 
             $("#quizTitle").text(response['title'] + " Quiz Results");
             $("#score").html(userScore + "/" + quizScore);
-            
-            
-            $(".circlechart").attr("data-percentage", Math.round(percentage));
-            
-            if (percentage < 50) {
-                $(".circlechart").text("Try harder!");
+
+
+            if (percentage >= 80) {
+                $(".circlechart").text("Well done!");
             } 
-            else if (percentage > 50 && percentage < 80) {
+            else if (percentage < 80) {
                 $(".circlechart").text("Good try!");
             } 
-            else if (percentage >= 80) {
-                $(".circlechart").text("Well done!");
-            }
+
+
+
+            $(".circlechart").attr("data-percentage", Math.round(percentage));
+
 
             $('.circlechart').circlechart();
 

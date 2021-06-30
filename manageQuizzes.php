@@ -83,7 +83,7 @@ and open the template in the editor.
                            color: #FFF;"><i class='bx bx-log-out bx-sm mr-1'></i>Sign Out</a>
                     </li>
                 </ul>
-            </nav
+            </nav>
 
             <!-- Page Content  -->
             <div id="content">
@@ -94,7 +94,7 @@ and open the template in the editor.
                             <h1>Quizzes</h1>
                         </div>
                         <div class="col-6 d-flex justify-content-end align-items-center">
-                              <a class="btn d-flex align-items-center" href="addQuizPage.php" role="button" style="background-color: #00D207; color:#fff"><i class='bx bx-sm bx-plus'></i>Add Quiz</a>
+                            <a class="btn d-flex align-items-center" href="addQuizPage.php" role="button" style="background-color: #00D207; color:#fff"><i class='bx bx-sm bx-plus'></i>Add Quiz</a>
                         </div>
                     </div>
                     <div class="row mt-4 mb-5">
@@ -170,5 +170,6 @@ and open the template in the editor.
                     </div><br><br>
                 </div>
             </div>
+        </div>
     </body>
 </html>

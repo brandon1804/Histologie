@@ -87,16 +87,18 @@ mysqli_close($link);
             </div><br><br>
 
             <h1>Quiz History</h1>
-            <div class="table-responsive-xl">
-                <table id="quizHistoryTable" class="table table-bordered" cellspacing="0" width="100%">
-                    <thead>
-                        <tr><th>Date</th>
-                            <th>Quiz Title</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <div class="card shadow" style="border-color: #fff; border-radius: 20px;">
+                <div class="table-responsive">
+                    <table id="quizHistoryTable" class="table table-borderless" cellspacing="0" width="100%">
+                        <thead style="background-color: #fafafa;">
+                            <tr><th>Date</th>
+                                <th>Quiz Title</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </body>

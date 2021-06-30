@@ -26,7 +26,6 @@ function updateQuizzes() {
                         + "<h5 class='card-title'>" + response[i].title + "</h5>"
                         + "<h6 class='card-subtitle mb-2 text-muted'>" + response[i].summary + "<br>" + response[i].questions + " Questions  " + response[i].score + " Marks</h6>"
                         + "<a href='manageQuizPage.php?id=" + response[i].quiz_id + "' class='btn btn-primary mr-2'>Manage Quiz</a>"
-                        + "<a href='deleteQuiz.php?id=" + response[i].quiz_id + "' class='btn btn-danger'>Delete Quiz</a>"
                         + "</div></div></div>";
             }
             $("#quizzesRow").html(message);
@@ -60,7 +59,6 @@ function reload_quizzes() {
                                 + "<h5 class='card-title'>" + response[i].title + "</h5>"
                                 + "<h6 class='card-subtitle mb-2 text-muted'>" + response[i].summary + "<br>" + response[i].questions + " Questions  " + response[i].score + " Marks</h6>"
                                 + "<a href='manageQuizPage.php?id=" + response[i].quiz_id + "' class='btn btn-primary mr-2'>Manage Quiz</a>"
-                                + "<a href='deleteQuiz.php?id=" + response[i].quiz_id + "' class='btn btn-danger'>Delete Quiz</a>"
                                 + "</div></div></div>";
                     }
                     $("#quizzesRow").html(message);
