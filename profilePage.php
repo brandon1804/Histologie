@@ -25,7 +25,7 @@ and open the template in the editor.
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/additional-methods.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <style type="text/css">
             form .error {
                 color: #ff0000;
@@ -54,8 +54,8 @@ and open the template in the editor.
             }
         </style>
         <script>
-            $(document).ready(function(){
-                
+            $(document).ready(function () {
+
                 $("#defaultForm").validate({
                     rules: {
                         name: {
@@ -70,7 +70,7 @@ and open the template in the editor.
                             required: true,
                             pattern: /^[A-Za-z\d]{6,8}$/
                         }
-                    }, 
+                    },
                     messages: {
                         name: {
                             required: "Please enter new name",
@@ -85,8 +85,8 @@ and open the template in the editor.
                             pattern: "Password must be 6 to 8 character long"
                         }
                     },
-                    
-                    submitHandler: function(){
+
+                    submitHandler: function () {
                         return true;
                     }
                 });
@@ -98,9 +98,9 @@ and open the template in the editor.
         session_start();
         include("navbar.php");
         ?>
-         <div class="container ">
+        <div class="container ">
             <h3 class="title">Edit Profile</h3></br></br>
-            
+
             <form id="defaultForm">
                 <div class="form-group">
                     <label class="label">Name</label>

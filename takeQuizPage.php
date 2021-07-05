@@ -26,7 +26,7 @@ and open the template in the editor.
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/additional-methods.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/takeQuiz.js" type="text/javascript"></script>
         <style type="text/css">
             body{

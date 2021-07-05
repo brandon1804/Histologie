@@ -24,7 +24,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <link rel="stylesheet" href="css/progresscircle.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/progresscircle.js"></script>
         <script src="js/quizResult.js"></script>
         <style>

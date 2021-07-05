@@ -23,7 +23,7 @@ and open the template in the editor.
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/quiz.js" type="text/javascript"></script>
         <style type="text/css">
             body{

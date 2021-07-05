@@ -8,13 +8,13 @@ include("dbFunctions.php");
 //    exit();
 //}//end of user validation
 //else {
-    $lessonCategories = array();
-    $query = "SELECT * FROM lesson_category";
-    $result = mysqli_query($link, $query);
+$lessonCategories = array();
+$query = "SELECT * FROM lesson_category";
+$result = mysqli_query($link, $query);
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $lessonCategories[] = $row;
-    }
+while ($row = mysqli_fetch_assoc($result)) {
+    $lessonCategories[] = $row;
+}
 //}//end of else 
 
 mysqli_close($link);
@@ -23,7 +23,7 @@ mysqli_close($link);
 <html lang="en">
     <head>
         <title>Learn</title>
-       <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="icon.png">
         <link rel="stylesheet" href="css/all.css">
@@ -32,7 +32,7 @@ mysqli_close($link);
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/learn.js" type="text/javascript"></script>
         <style type="text/css">
             body{
@@ -122,7 +122,7 @@ mysqli_close($link);
             <h4>Lessons:</h4>
             <div id="lessonsRow" class="row d-flex flex-row flex-nowrap overflow-auto">
             </div><br><br>
- 
+
         </div>
     </body>
 </html>
