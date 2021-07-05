@@ -6,7 +6,7 @@ $(document).ready(function () {
 function updateLessons() {
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/getLesson.php",
+        url: "getLesson.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
@@ -53,7 +53,7 @@ function reload_lessons() {
         } else {
             $.ajax({
                 type: "GET",
-                url: "http://localhost/Histologie/getLessonByCategory.php",
+                url: "getLessonByCategory.php",
                 data: "id=" + lessonCat,
                 cache: false,
                 dataType: "JSON",
