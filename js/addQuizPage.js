@@ -109,7 +109,12 @@ function addQuizLogic() {
     var questionScore = "";
     var questionAnswer = "";
 
-
+    
+    $("#imageUpload").fileinput({
+        maxFileCount: 4,
+        validateInitialCount: true,
+        allowedFileTypes: ["image"]
+    });
 
     $("#questionType").change(function () {
 

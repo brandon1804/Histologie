@@ -13,7 +13,6 @@ function updateLessons() {
             var message = "";
             var output = "";
             var random = Math.floor(Math.random() * response.length);
-
             output += "<div class='card2' id=" + response[random].lesson_id + ">"
                     + "<div class='row g-0'>"
                     + "<div class='col-md-4'>"

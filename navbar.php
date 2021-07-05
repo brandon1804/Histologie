@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="homepage.php"><img src="./css/img/histologie.png" alt="logo" style="width: 100px"></a>
+    <a class="navbar-brand" href="index.php"><img src="./css/img/histologie.png" alt="logo" style="width: 100px"></a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
                     <a class="nav-link" href="createAccount.php" style="color: #E11A7A"><b>Sign up</b></a>
                 </li>
             <?php } else { ?>
-                <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="homepage.php"><b>Home</b></a></li>
+                <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="learnPage.php"><b>Home</b></a></li>
                 <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="quizzesPage.php"><b>Quiz</b></a></li>
                 <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href=""><b>Images</b></a></li>
                 <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="profilePage.php"><b>Profile</b></a></li>

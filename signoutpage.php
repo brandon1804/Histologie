@@ -79,7 +79,7 @@ and open the template in the editor.
                     <div class="card-body text-right">
                     </div>
                     <div style='text-align: center;'>
-                        <a href="homepage.php" class="card-link">Click here to go to homepage</a>
+                        <a href="index.php" class="card-link">Click here to go to homepage</a>
                     </div>
                     <div style='text-align: center; margin-bottom: 10px'>
                         <a href="signinpage.php" class="card-link">Click here to sign in again</a>

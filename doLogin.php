@@ -19,7 +19,7 @@ if (mysqli_num_rows($result) == 1) {
     if ($_SESSION['account_type'] === "student") {
         $message = "<div class='alert alert-success text-left' role='alert'>"
                 . "You have logged in successfully"
-                . "<a href='homepage.php'> Continue</a></div>";
+                . "<a href='learnPage.php'> Continue</a></div>";
     }//end of student validation
     else if ($_SESSION['account_type'] === "staff") {
         $message = "<div class='alert alert-success text-left' role='alert'>"

@@ -37,12 +37,17 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/all.css">
         <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="css/addQuizPage.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/js/plugins/piexif.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/js/plugins/sortable.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/js/fileinput.min.js"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/additional-methods.min.js" type="text/javascript"></script>
@@ -95,7 +100,7 @@ and open the template in the editor.
                             <div class="card shadow" style="border-color: #fff; border-radius: 10px;">
                                 <div class="card-body">
                                     <h1 class="card-title mb-4">Add Quiz</h1>
-                                    <form id="addQuizForm">
+                                    <form id="addQuizForm"> 
                                         <div class="form-group">
                                             <label for="title">Title</label>
                                             <input type="text" class="form-control" name="title" placeholder="Enter the quiz title">
@@ -145,11 +150,8 @@ and open the template in the editor.
                                 <div class="card-body">
                                     <h1 class="card-title mb-4">Add Question</h1>
                                     <form id="addQuestionForm">
-                                        <div class="custom-file form-group mb-3">
-                                            <input type="file" class="custom-file-input" id="imagesUpload">
-                                            <label class="custom-file-label" for="imagesUpload">Upload image(s)</label>
-                                        </div>
-                                        <div class="form-group">
+                                        <input id="imageUpload" name="images[]" multiple type="file"  data-show-upload="false" accept="image/*" data-browse-on-zone-click="true" data-msg-placeholder="Select images for upload...">
+                                        <div class="form-group mt-3">
                                             <label for="question">Question</label>
                                             <textarea class="form-control" name="question" rows="3" placeholder="Enter the question"></textarea>
                                         </div>
