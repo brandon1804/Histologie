@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("#pwResetBtn").click(function (e){
         var email = $('#idEmail').val();
         $.ajax({
-            url: 'http://localhost/Histologie/gmail/testmail.php',
+            url: 'gmail/testmail.php',
             type: 'POST',
             data: {email: email},
             success: function (response) {

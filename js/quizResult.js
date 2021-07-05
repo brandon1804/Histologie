@@ -14,7 +14,7 @@ function updateQuizResultPage() {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizResult.php",
+        url: "QuizPHPFiles/getQuizResult.php",
         data: "quiz_id=" + quiz_id,
         cache: false,
         dataType: "JSON",
@@ -52,7 +52,7 @@ function updateQuizResultPage() {
 function showQuizzes() {
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizzes.php",
+        url: "QuizPHPFiles/getQuizzes.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {

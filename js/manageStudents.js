@@ -13,7 +13,7 @@ $(document).ready(function () {
         var id = $(this).val();
         $.ajax({
             type: "GET",
-            url: "http://localhost/Histologie/AdministratorPHPFiles/getStudentDetails.php",
+            url: "AdministratorPHPFiles/getStudentDetails.php",
             cache: false,
             data: "student_id=" + id,
             dataType: "JSON",
@@ -58,7 +58,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost/Histologie/AdministratorPHPFiles/editStudent.php",
+                url: "AdministratorPHPFiles/editStudent.php",
                 cache: false,
                 data: "studentid=" + studentid + "&name=" + name + "&email=" + email + "&account_type=" + account_type,
                 dataType: "JSON",
@@ -88,7 +88,7 @@ $(document).ready(function () {
         if (result === true) {
             $.ajax({
                 type: "GET",
-                url: "http://localhost/Histologie/AdministratorPHPFiles/deleteStudent.php",
+                url: "AdministratorPHPFiles/deleteStudent.php",
                 cache: false,
                 data: "studentid=" + id,
                 dataType: "JSON",
@@ -113,7 +113,7 @@ function reload_table() {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/AdministratorPHPFiles/getStudents.php",
+        url: "AdministratorPHPFiles/getStudents.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
@@ -140,7 +140,7 @@ function reload_table() {
 function updateCards() {
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/AdministratorPHPFiles/getStudentContent.php",
+        url: "AdministratorPHPFiles/getStudentContent.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {

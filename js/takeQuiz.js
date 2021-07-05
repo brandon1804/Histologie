@@ -13,7 +13,7 @@ function quizLogic(callback) {
     var quiz_id = stuff[stuff.length - 1];
 
     $.ajax({
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizQuestions.php",
+        url: "QuizPHPFiles/getQuizQuestions.php",
         data: "quiz_id=" + quiz_id,
         type: 'GET',
         cache: false,
@@ -40,7 +40,7 @@ quizLogic(function (response) {
         function validateAnswer(callback) {
             $.ajax({
                 type: "GET",
-                url: "http://localhost/Histologie/QuizPHPFiles/getQuizQuestionById.php",
+                url: "QuizPHPFiles/getQuizQuestionById.php",
                 data: "quiz_id=" + quiz_id + "&question_id=" + shuffledQuestionsArr[currQuestionIndex],
                 cache: false,
                 dataType: "JSON",
@@ -164,7 +164,7 @@ quizLogic(function (response) {
             if (currQuestionIndex === shuffledQuestionsArr.length) {
                 function markAnswers(callback) {
                     $.ajax({
-                        url: "http://localhost/Histologie/QuizPHPFiles/getQuizAnswers.php",
+                        url: "QuizPHPFiles/getQuizAnswers.php",
                         data: "quiz_id=" + quiz_id,
                         type: 'GET',
                         cache: false,
@@ -229,7 +229,7 @@ quizLogic(function (response) {
                 $('#quiz_end_modal').modal('show');
 
                 setTimeout(function () {
-                    window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
+                    window.location.replace("quizResultPage.php?quiz_id=" + quiz_id);
                 }, 2000);
 
 
@@ -244,7 +244,7 @@ quizLogic(function (response) {
 //Update Quiz Page and Times Up validation
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizDetails.php",
+        url: "QuizPHPFiles/getQuizDetails.php",
         data: "id=" + quiz_id,
         cache: false,
         dataType: "JSON",
@@ -270,7 +270,7 @@ quizLogic(function (response) {
                     if ((seconds <= 0) && (minutes <= 0)) {
                         function markAnswers(callback) {
                             $.ajax({
-                                url: "http://localhost/Histologie/QuizPHPFiles/getQuizAnswers.php",
+                                url: "QuizPHPFiles/getQuizAnswers.php",
                                 data: "quiz_id=" + quiz_id,
                                 type: 'GET',
                                 cache: false,
@@ -335,7 +335,7 @@ quizLogic(function (response) {
                         clearInterval(interval);
                         $('#times_up_modal').modal('show');
                         setTimeout(function () {
-                            window.location.replace("http://localhost/Histologie/quizResultPage.php?quiz_id=" + quiz_id);
+                            window.location.replace("quizResultPage.php?quiz_id=" + quiz_id);
                         }, 2000)
                     }//end of times up
 
@@ -361,7 +361,7 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
     if (currQuestionIndex < shuffledQuestionsArr.length) {
         $.ajax({
             type: "GET",
-            url: "http://localhost/Histologie/QuizPHPFiles/getQuizQuestionById.php",
+            url: "QuizPHPFiles/getQuizQuestionById.php",
             data: "quiz_id=" + quiz_id + "&question_id=" + shuffledQuestionsArr[currQuestionIndex],
             cache: false,
             dataType: "JSON",
@@ -568,7 +568,7 @@ function updateProgress(currValue) {
     var quiz_id = stuff[stuff.length - 1];
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizDetails.php",
+        url: "QuizPHPFiles/getQuizDetails.php",
         data: "id=" + quiz_id,
         cache: false,
         dataType: "JSON",
@@ -621,7 +621,7 @@ function arrayValidator(answerArr, userArr) {
 function insertStudentQuizRecord(quiz_id, marks) {
     $.ajax({
         type: "POST",
-        url: "http://localhost/Histologie/QuizPHPFiles/insertStudentQuizRecord.php",
+        url: "QuizPHPFiles/insertStudentQuizRecord.php",
         data: "quiz_id=" + quiz_id + "&marks=" + marks,
         cache: false,
         dataType: "JSON",

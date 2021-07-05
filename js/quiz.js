@@ -13,7 +13,7 @@ function updateQuizLandingPage() {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizDetails.php",
+        url: "QuizPHPFiles/getQuizDetails.php",
         data: "id=" + id,
         cache: false,
         dataType: "JSON",

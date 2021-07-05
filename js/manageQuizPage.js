@@ -18,7 +18,7 @@ function updateManageQuizPage() {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/AdministratorPHPFiles/getManageQuizDetails.php",
+        url: "AdministratorPHPFiles/getManageQuizDetails.php",
         data: "quiz_id=" + quiz_id,
         cache: false,
         dataType: "JSON",
@@ -77,7 +77,7 @@ function reload_table() {
 
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/AdministratorPHPFiles/getQuestionsByQuizId.php",
+        url: "AdministratorPHPFiles/getQuestionsByQuizId.php",
         data: "quiz_id=" + quiz_id,
         cache: false,
         dataType: "JSON",

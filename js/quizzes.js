@@ -8,7 +8,7 @@ $(document).ready(function () {
 function updateQuizzes() {
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizzes.php",
+        url: "QuizPHPFiles/getQuizzes.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
@@ -34,7 +34,7 @@ function updateQuizzes() {
 function updateQuizHistoryTable() {
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/QuizPHPFiles/getQuizHistory.php",
+        url: "QuizPHPFiles/getQuizHistory.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
@@ -65,7 +65,7 @@ function reload_quizzes() {
         } else {
             $.ajax({
                 type: "GET",
-                url: "http://localhost/Histologie/QuizPHPFiles/getQuizByCategory.php",
+                url: "QuizPHPFiles/getQuizByCategory.php",
                 data: "id=" + categoryID,
                 cache: false,
                 dataType: "JSON",
