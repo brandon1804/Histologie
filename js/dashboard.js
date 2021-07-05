@@ -11,7 +11,7 @@ $(document).ready(function () {
 function updateCards() {
     $.ajax({
         type: "GET",
-        url: "http://localhost/Histologie/AdministratorPHPFiles/getDashboardContent.php",
+        url: "AdministratorPHPFiles/getDashboardContent.php",
         cache: false,
         dataType: "JSON",
         success: function (response) {
