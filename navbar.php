@@ -1,6 +1,14 @@
 <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
+<style type="text/css">
+    body{
+        font-family: europa,sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="index.php"><img src="./css/img/histologie.png" alt="logo" style="width: 100px"></a>
 
@@ -9,7 +17,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <?php if (!isset($_SESSION['user_id'])) { ?>
                 <li class="nav-item active">
                     <a class="nav-link" href="signinpage.php" style="color: #E11A7A"><b>Login</b></a>
