@@ -25,7 +25,9 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/progresscircle.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="https://kit.fontawesome.com/95b700a8fe.js" crossorigin="anonymous"></script>
         <script src="js/progresscircle.js"></script>
+        <script src="js/jquery.c-share.js"></script>
         <script src="js/quizResult.js"></script>
         <style>
             body {
@@ -77,7 +79,14 @@ and open the template in the editor.
         <div class="container"> 
             <div class="d-flex justify-content-center">
                 <div id="resultContent">
-                    <h1 id="quizTitle"></h1>
+                    <div class="row justify-content-between"> 
+                        <div class="col-6">
+                            <h1 id="quizTitle"></h1>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end align-items-center">
+                            <div id="shareBlock"></div>
+                        </div>
+                    </div>
                     <div class="row mb-5">
                         <div class="col-sm-12 col-xl-6 border-right">
                             <div class="d-flex justify-content-center">
@@ -85,7 +94,7 @@ and open the template in the editor.
                             </div>
                         </div>
                         <div class="col-sm-12 col-xl-6 d-flex align-items-center justify-content-center">
-                            
+
                             <text id="score"></text>
                         </div>
                     </div>

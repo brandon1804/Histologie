@@ -382,7 +382,7 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                             var arr = optionsArr[t].split(",");
                             output += "<div class='form-group'>"
                                     + "<label for='" + t + "'>Blank " + (t + 1) + "</label>"
-                                    + "<select class='form-control w-25' id= '" + t + "'>"
+                                    + "<select class='form-control' id= '" + t + "'>"
                                     + "<option value=''>Select Answer</option>";
                             for (var i = 0; i < arr.length; i++) {
                                 output += " <option value='" + arr[i] + "'>" + arr[i] + "</option>";
@@ -393,12 +393,12 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                     }//end of length 1 without image FIB
 
                     else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 1) {
-                        output += "<input type='text' class='form-control mb-3 w-25' id='0' placeholder ='Fill in the blank'>";
+                        output += "<input type='text' class='form-control mb-3' id='0' placeholder ='Fill in the blank'>";
                     }//end of length 1 & 1 text field FIB
 
                     else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 2) {
                         for (var i = 0; i < optionsArr.length; i++) {
-                            output += "<input type='text' class='form-control mb-3 w-50' id='" + optionsArr[i] + "'placeholder ='Fill in the blank'>";
+                            output += "<input type='text' class='form-control mb-3' id='" + optionsArr[i] + "'placeholder ='Fill in the blank'>";
                         }//end of images for loop
 
                     }//end of length 1 & 2 text field FIB
@@ -535,7 +535,7 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                     for (var t = 0; t < 2; t++) {
                         output += "<div class='form-group'>"
                                 + "<label for='" + t + "'>" + arr[t] + "--Cellular Component--Colour of stain" + "</label>"
-                                + "<select multiple class='form-control w-25 mb-2' id= '" + t + "'>"
+                                + "<select multiple class='form-control mb-2' id= '" + t + "'>"
                                 + "<option value=''>Select Cellular Component & Colour of stain</option>";
                         for (var i = 2; i < arr.length; i++) {
                             output += " <option value='" + arr[i] + "'>" + arr[i] + "</option>";

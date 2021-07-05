@@ -84,8 +84,8 @@ $(document).ready(function () {
 
     $("#defaultTable").on("click", ".btnDelete", function () {
         var id = $(this).val();
-        var result = confirm("Delete Student?");
-        if (result === true) {
+        $("#delete_student_modal").modal('show');
+        $("#delete_student_modal .btnDeleteStudent").on("click", function () {
             $.ajax({
                 type: "GET",
                 url: "AdministratorPHPFiles/deleteStudent.php",
@@ -94,17 +94,15 @@ $(document).ready(function () {
                 dataType: "JSON",
                 success: function (data) {
                     reload_table();
+                    updateCards();
+                    $("#delete_student_modal").modal('hide');
                 },
                 error: function (obj, textStatus, errorThrown) {
                     console.log("Error " + textStatus + ": " + errorThrown);
                 }
             });
-        }//end of result true
-        else {
-            return false;
-        }
+        });//end of result true
     });
-
 
 
 }); //end of document ready

@@ -13,6 +13,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
         exit();
     }
 }//end of account type validation
+
+ $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <!--
@@ -88,7 +90,7 @@ and open the template in the editor.
                             <h1 id="quizTitle"></h1>
                         </div>
                         <div class="col-6 d-flex justify-content-end align-items-center">
-                            <a class="btn btn-primary d-flex align-items-center" href="previewPage.php" role="button"><i class='bx bx-sm bx-play'></i>Preview Quiz</a>
+                            <a class="btn btn-primary d-flex align-items-center" href="quizPage.php?id=<?php echo $id ?>" role="button"><i class='bx bx-sm bx-play'></i>Preview Quiz</a>
                         </div>
                     </div>
                     <div id="infoRow" class="row">
@@ -145,7 +147,25 @@ and open the template in the editor.
                             </table> 
                         </div>
                     </div>
-
+                    <div class="modal fade" id="delete_question_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Delete Question?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>This action is irreversible.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger btnDeleteQuestion">Delete Question</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

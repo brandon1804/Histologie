@@ -29,12 +29,16 @@ function updateQuizResultPage() {
 
             if (percentage >= 80) {
                 $(".circlechart").text("Well done!");
-            } 
-            else if (percentage < 80) {
+            } else if (percentage < 80) {
                 $(".circlechart").text("Good try!");
-            } 
+            }
 
-
+            var description = "I got " + userScore + " out of " + quizScore + " marks for the " + response['title'] + "Quiz on Histologie!";
+           
+            $('#shareBlock').cShare({
+                description: description,
+                showButtons: ['fb', 'twitter', 'email']
+            });
 
             $(".circlechart").attr("data-percentage", Math.round(percentage));
 

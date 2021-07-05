@@ -3,8 +3,32 @@ $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
     });
+
     updateManageQuizPage();
     reload_table();
+
+    $("#questionsTable").on("click", ".btnDelete", function () {
+        var id = $(this).val();
+        $("#delete_question_modal").modal('show');
+        $("#delete_question_modal .btnDeleteQuestion").on("click", function () {
+            $.ajax({
+                type: "GET",
+                url: "AdministratorPHPFiles/deleteQuizQuestion.php",
+                cache: false,
+                data: "question_id=" + id,
+                dataType: "JSON",
+                success: function (data) {
+                    reload_table();
+                    $("#delete_question_modal").modal('hide');
+                },
+                error: function (obj, textStatus, errorThrown) {
+                    console.log("Error " + textStatus + ": " + errorThrown);
+                }
+            });
+        });//end of result true
+    });
+
+
 
 }); //end of document ready
 
@@ -89,8 +113,8 @@ function reload_table() {
                         + "<td>" + response[i].question_type + "</td>"
                         + "<td>" + response[i].question_score + "</td>"
                         + "<td>" + response[i].answer + "</td>"
-                        + "<td><button class='btnEdit btn btn-primary mb-2' value='" + response[i].quiz_id + "'><i class='bx bx-pencil'></i>Edit</button>&nbsp;&nbsp;"
-                        + "<button class='btnDelete btn btn-danger' value='" + response[i].quiz_id + "'><i class='bx bx-trash-alt'></i>Delete</button></td>"
+                        + "<td><button class='btnEdit btn btn-primary mb-2' value='" + response[i].question_id + "'><i class='bx bx-pencil'></i>Edit</button>&nbsp;&nbsp;"
+                        + "<button class='btnDelete btn btn-danger' value='" + response[i].question_id + "'><i class='bx bx-trash-alt'></i>Delete</button></td>"
                         + "</tr>";
             }
 
