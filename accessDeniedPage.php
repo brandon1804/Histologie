@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: http://localhost/Histologie/signinpage.php");
+    exit();
+}//end of user validation
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -113,7 +120,7 @@
                         <p class="text-center">Please login as an administrator to view this page.</p>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-danger btn-block" href="doLogout.php" role="button">Login</a>
+                        <a href="doLogout.php" class="btn btn-danger btn-block" role="button">Login</a>
                     </div>
                 </div>
             </div>

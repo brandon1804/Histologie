@@ -30,6 +30,7 @@ quizLogic(function (response) {
     var currQuestionIndex = 0;
     var savedAnswers = [];
     var marks = 0;
+    var questionType = "";
 
     let shuffledQuestionsArr = shuffleQuestions(response);
     console.log(shuffledQuestionsArr);
@@ -49,7 +50,7 @@ quizLogic(function (response) {
         }
         validateAnswer(function (response) {
 
-            var questionType = response["question_type"];
+            questionType = response["question_type"];
             var isAnswered = false;
             if (response["images"].length !== 0) {
                 var imgArr = response["images"];
@@ -219,9 +220,9 @@ quizLogic(function (response) {
                         }//end of user answer for loop
 
                     }//end of response for loop
-                    console.log(response);
-                    console.log(savedAnswers);
-                    console.log(marks);
+                    //console.log(response);
+                    //console.log(savedAnswers);
+                    //console.log(marks);
                     insertStudentQuizRecord(quiz_id, marks);
 
                 });//end of markAnswers
@@ -325,9 +326,9 @@ quizLogic(function (response) {
                                 }//end of user answer for loop
 
                             }//end of response for loop
-                            console.log(response);
-                            console.log(savedAnswers);
-                            console.log(marks);
+                            //console.log(response);
+                            //console.log(savedAnswers);
+                            //console.log(marks);
                             insertStudentQuizRecord(quiz_id, marks);
 
                         });//end of markAnswers
