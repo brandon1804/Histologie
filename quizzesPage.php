@@ -31,6 +31,7 @@ mysqli_close($link);
         <link rel ="stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/quizzes.js" type="text/javascript"></script>
@@ -65,7 +66,7 @@ mysqli_close($link);
         <?php
         include("navbar.php");
         ?>
-        <div class="container"> 
+        <div class="container">
             <div class="row justify-content-between"> 
                 <div class="col-6">
                     <h1>Quizzes</h1>
@@ -83,9 +84,61 @@ mysqli_close($link);
             </div>
             <div id="quizzesRow" class="row d-flex flex-row flex-nowrap overflow-auto">
 
-            </div><br><br>
-
-            <h1>Quiz History</h1>
+            </div>
+            <h1 class="mt-5">Quiz Statistics</h1>
+            <div class="row mb-4">
+                <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                    <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 id="quizzesCompleted" style="color: #00D207"></h3>
+                                        <span>Quiz Attempts</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class='bx bx-md bxs-check-circle' style="color: #00D207"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                    <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 id="passPercentage" class="text-primary"></h3>
+                                        <span>Passing Rate</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class='bx bx-md bx-book-open text-primary'></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                    <div class="card shadow" style="border-radius: 10px; border-color: white;">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="media-body text-left">
+                                        <h3 id="asPercentage"  style="color: #08B3E5"></h3>
+                                        <span>Average Score</span>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class='bx bx-md bxs-edit-alt' style="color: #08B3E5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card shadow" style="border-color: #fff; border-radius: 20px;">
                 <div class="table-responsive">
                     <table id="quizHistoryTable" class="table table-borderless" cellspacing="0" width="100%">

@@ -28,6 +28,7 @@ and open the template in the editor.
         <script src="https://kit.fontawesome.com/95b700a8fe.js" crossorigin="anonymous"></script>
         <script src="js/progresscircle.js"></script>
         <script src="js/jquery.c-share.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
         <script src="js/quizResult.js"></script>
         <style>
             body {
@@ -35,7 +36,7 @@ and open the template in the editor.
                 font-weight: 400;
                 font-style: normal;
                 padding-top: 100px; 
-                background-color:#E11A7A;
+                background-color: hsla(331, 79%, 49%, 1);
             }
 
             .circlechart {
@@ -69,6 +70,26 @@ and open the template in the editor.
                 padding: 30px;
                 border-radius: 20px;
             }
+            .btn-circle {
+                width: 45px;
+                height: 45px;
+                line-height: 45px;
+                text-align: center;
+                padding: 0;
+                border-radius: 50%;
+            }
+
+            .btn-circle i {
+                position: relative;
+                top: -1px;
+            }
+
+            .btn-circle-sm {
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 0.8rem; 
+            }
 
         </style>
     </head>
@@ -79,31 +100,32 @@ and open the template in the editor.
         <div class="container"> 
             <div class="d-flex justify-content-center">
                 <div id="resultContent">
-                    <div class="row justify-content-between"> 
-                        <div class="col-6">
-                            <h1 id="quizTitle"></h1>
-                        </div>
-                        <div class="col-6 d-flex justify-content-end align-items-center">
-                            <div id="shareBlock"></div>
-                        </div>
-                    </div>
-                    <div class="row mb-5">
-                        <div class="col-sm-12 col-xl-6 border-right">
-                            <div class="d-flex justify-content-center">
-                                <div class="circlechart" data-percentage="0"></div>
+                    <div id="result">
+                        <div class="row justify-content-between"> 
+                            <div class="col-6">
+                                <h1 id="quizTitle"></h1>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end align-items-center">     
+                                <div id="shareBlock" class="mr-2"></div>
+                                <button class="btn btn-danger btn-circle btn-circle-sm m-1" id="generatePDF"  title="Share as PDF"><i class="fas fa-file-pdf"></i></button>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-xl-6 d-flex align-items-center justify-content-center">
+                        <div class="row mb-5">
+                            <div class="col-sm-12 col-xl-6 border-right">
+                                <div class="d-flex justify-content-center">
+                                    <div class="circlechart" data-percentage="0"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xl-6 d-flex align-items-center justify-content-center">
 
-                            <text id="score"></text>
+                                <text id="score"></text>
+                            </div>
                         </div>
                     </div>
                     <h1 class="mb-2">More Quizzes</h1>
                     <div id="quizzesRow" class="row flex-row">
-
                     </div>
                 </div>
-
             </div>
         </div>
     </body>

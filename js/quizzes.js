@@ -2,6 +2,7 @@ $(document).ready(function () {
     reload_quizzes();
     updateQuizzes();
     updateQuizHistoryTable();
+    updateCards();
 }); //end of document ready
 
 
@@ -92,3 +93,20 @@ function reload_quizzes() {
 
     });
 }//end of reload_quizzes()
+
+function updateCards() {
+    $.ajax({
+        type: "GET",
+        url: "QuizPHPFiles/getQuizStatistics.php",
+        cache: false,
+        dataType: "JSON",
+        success: function (response) {
+            $("#quizzesCompleted").text(response['quizzesC']);
+            $("#passPercentage").text(response['passPercentage'] + "%");
+            $("#asPercentage").text(response['asPercentage'] + "%");
+        },
+        error: function (obj, textStatus, errorThrown) {
+            console.log("Error " + textStatus + ": " + errorThrown);
+        }
+    });
+}//end of updateCards

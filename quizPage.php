@@ -22,6 +22,7 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/quiz.js" type="text/javascript"></script>
@@ -30,8 +31,8 @@ and open the template in the editor.
                 font-family: europa,sans-serif;
                 font-weight: 400;
                 font-style: normal;
-                padding-top: 100px;
-                background-color: #E11A7A;
+                background-color: hsla(331, 79%, 49%, 1);
+                padding-top: 150px;
             }
             .card-text{
                 font-family: europa,sans-serif;
@@ -45,14 +46,18 @@ and open the template in the editor.
                 border-top-left-radius: 20px;
                 border-top-right-radius: 20px;
             }
+
+
         </style>
     </head>
     <body>
         <?php
         include("navbar.php");
         ?>
-        <div class="col d-flex justify-content-center" id = "quizDetails">
+        <div class="container">
+            <div class="col d-flex justify-content-center" id = "quizDetails">
 
+            </div>
         </div>
     </body>
 </html>

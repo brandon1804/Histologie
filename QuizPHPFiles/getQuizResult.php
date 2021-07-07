@@ -15,6 +15,14 @@ if (!empty($row)) {
     $quizResult = $row;
 }
 
+$queryUser = "SELECT name from user WHERE user_id = $userID";
+$resultUser = mysqli_query($link, $queryUser);
+
+$rowUser = mysqli_fetch_assoc($resultUser);
+
+if (!empty($row)) {
+    $quizResult['user_name'] = $rowUser['name'];
+}
 
 mysqli_close($link);
 
