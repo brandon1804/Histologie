@@ -127,11 +127,11 @@ mysqli_close($link);
                             <div class="card-body">
                                 <div class="media d-flex">
                                     <div class="media-body text-left">
-                                        <h3 id="asPercentage"  style="color: #08B3E5"></h3>
+                                        <h3 id="asPercentage"  style="color: #9342f5"></h3>
                                         <span>Average Score</span>
                                     </div>
                                     <div class="align-self-center">
-                                        <i class='bx bx-md bxs-edit-alt' style="color: #08B3E5"></i>
+                                        <i class='bx bx-md bxs-edit-alt' style="color: #9342f5"></i>
                                     </div>
                                 </div>
                             </div>

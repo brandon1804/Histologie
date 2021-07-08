@@ -20,12 +20,13 @@ function updateQuizzes() {
             var message = "";
             for (i = 0; i < response.length; i++) {
                 message += "<div class='col-sm-12 col-md-6 col-lg-4 col-xl-4'>"
-                        + "<div class='card shadow' style='width: 20rem;' id=" + response[i].quiz_id + ">"
+                        + "<div class='card shadow' style='width: 20rem' id=" + response[i].quiz_id + ">"
                         + "<img class='card-img-top' src='css/img/quizImg/" + response[i].filename + "' alt='quizImage'>"
                         + "<div class='card-body'>"
                         + "<h5 class='card-title'>" + response[i].title + "</h5>"
                         + "<h6 class='card-subtitle mb-2 text-muted'>" + response[i].summary + "<br>" + response[i].questions + " Questions  " + response[i].score + " Marks</h6>"
                         + "<a href='manageQuizPage.php?id=" + response[i].quiz_id + "' class='btn btn-primary mr-2'>Manage Quiz</a>"
+                        + "<a href='quizStatisticsPage.php?id=" + response[i].quiz_id + "' class='btn btn-success mr-2'>Quiz Statistics</a>"
                         + "</div></div></div>";
             }
             $("#quizzesRow").html(message);
@@ -53,12 +54,13 @@ function reload_quizzes() {
                     var message = "";
                     for (i = 0; i < response.length; i++) {
                         message += "<div class='col-sm-6 col-lg-4'>"
-                                + "<div class='card shadow' style='width: 20rem;' id=" + response[i].quiz_id + ">"
+                                + "<div class='card shadow' style='width: 20rem' id=" + response[i].quiz_id + ">"
                                 + "<img class='card-img-top' src='css/img/quizImg/" + response[i].filename + "' alt='quizImage'>"
                                 + "<div class='card-body'>"
                                 + "<h5 class='card-title'>" + response[i].title + "</h5>"
                                 + "<h6 class='card-subtitle mb-2 text-muted'>" + response[i].summary + "<br>" + response[i].questions + " Questions  " + response[i].score + " Marks</h6>"
                                 + "<a href='manageQuizPage.php?id=" + response[i].quiz_id + "' class='btn btn-primary mr-2'>Manage Quiz</a>"
+                                + "<a href='quizStatisticsPage.php?id=" + response[i].quiz_id + "' class='btn btn-success mr-2'>Quiz Statistics</a>"
                                 + "</div></div></div>";
                     }
                     $("#quizzesRow").html(message);

@@ -47,44 +47,8 @@ function updateManageQuizPage() {
         cache: false,
         dataType: "JSON",
         success: function (response) {
-            var students = response['students'];
-            var completed = response['quizzesCompleted']
 
-
-
-            $("#quizTitle").html(response['title'] + " Quiz");
-
-            var completedPercentage = (completed / students) * 100;
-            $(".circlechartSC").attr("data-percentage", Math.round(completedPercentage));
-            $(".circlechartSC").text(students + " / " + completed);
-
-            $('.circlechartSC').circlechart();
-            $("#scText").text(students + " out of " + completed + " students have completed this quiz.");
-
-            var avgScore = response['average_score'];
-            var quizScore = response['score'];
-            var avgPercentage = (avgScore / quizScore) * 100;
-            $(".circlechartAS").attr("data-percentage", Math.round(avgPercentage));
-            $(".circlechartAS").text(Math.round(avgScore) + " / " + quizScore);
-
-            $('.circlechartAS').circlechart();
-            $("#asText").text("The average score for this quiz is " + Math.round(avgScore) + " / " + quizScore + ".");
-
-            var tsScore = response['highest_score'];
-            var tsPercentage = (tsScore / quizScore) * 100;
-            var topScorer = response['top_scorer_name'];
-            var studentID = response['student_id'];
-            $(".circlechartTS").attr("data-percentage", Math.round(tsPercentage));
-            $(".circlechartTS").text(tsScore + " / " + quizScore);
-
-            $('.circlechartTS').circlechart();
-            $("#tsText").text(topScorer + " (Student ID: " + studentID + ") is the top scorer for this quiz, attaining " + tsScore + " out of " + quizScore + " marks.");
-
-
-
-            //amount of students who took the quiz
-
-
+            $("#quizTitle").html("Manage " + response['title'] + " Quiz");
 
         },
         error: function (obj, textStatus, errorThrown) {

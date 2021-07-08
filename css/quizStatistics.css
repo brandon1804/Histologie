@@ -45,26 +45,6 @@ a:focus {
     margin: 40px 0;
 }
 
-.card-text{
-    font-family: europa,sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-.card{
-    border-radius: 20px;
-}
-.card img{
-    height: 10rem;
-    width: 20rem;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-#quizzesRow{
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -142,6 +122,11 @@ ul.CTAs a {
     border-radius: 5px;
     margin-bottom: 5px;
 }
+
+.card{
+    border-radius: 20px;
+}
+
 
 
 /* ---------------------------------------------------

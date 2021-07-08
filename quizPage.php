@@ -32,7 +32,7 @@ and open the template in the editor.
                 font-weight: 400;
                 font-style: normal;
                 background-color: hsla(331, 79%, 49%, 1);
-                padding-top: 150px;
+                padding-top: 100px;
             }
             .card-text{
                 font-family: europa,sans-serif;

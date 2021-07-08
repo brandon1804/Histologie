@@ -23,7 +23,7 @@
         data: {
           fb: {
             fa: 'fab fa-facebook-f',
-            name: 'Fb',
+            name: 'Facebook',
             href: function href(url) {
               return "https://www.facebook.com/sharer.php?u=".concat(url);
             },

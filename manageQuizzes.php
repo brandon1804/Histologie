@@ -122,7 +122,7 @@ and open the template in the editor.
                                         <div class="media d-flex">
                                             <div class="media-body text-left">
                                                 <h3 id="quizzesCompleted" style="color: #00D207"></h3>
-                                                <span>Quizzes Completed</span>
+                                                <span>Quiz Attempts</span>
                                             </div>
                                             <div class="align-self-center">
                                                 <i class='bx bx-md bxs-check-circle' style="color: #00D207"></i>
@@ -139,7 +139,7 @@ and open the template in the editor.
                                         <div class="media d-flex">
                                             <div class="media-body text-left">
                                                 <h3 id="passPercentage" class="text-primary"></h3>
-                                                <span>Pass Rate</span>
+                                                <span>Passing Rate</span>
                                             </div>
                                             <div class="align-self-center">
                                                 <i class='bx bx-md bx-book-open text-primary'></i>
