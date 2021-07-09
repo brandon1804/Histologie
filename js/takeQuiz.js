@@ -108,6 +108,20 @@ quizLogic(function (response) {
 
                 }//end of length 2  && FIB text field
 
+                else if (imgArr.length === 1 && optionsArr[0] !== "0" && optionsArr.length === 2) {
+                    var answersArr = [];
+                    for (var i = 0; i < optionsArr.length; i++) {
+                        answersArr.push($("#" + i + " option:selected").val());
+                    }//end of options for loop
+
+                    if (answersArr.length === optionsArr.length && !answersArr.includes("")) {
+                        isAnswered = true;
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                        savedAnswers.push(answerObj);
+                    }
+                } //end of length 1  && 2 FIB dropdown
+
+
                 else if (imgArr.length >= 2 && optionsArr[0] !== "0") {
                     var answersArr = [];
                     for (var i = 0; i < optionsArr.length; i++) {
@@ -220,18 +234,21 @@ quizLogic(function (response) {
                         }//end of user answer for loop
 
                     }//end of response for loop
-                    //console.log(response);
-                    //console.log(savedAnswers);
-                    //console.log(marks);
+
+                    console.log(response);
+                    console.log(savedAnswers);
+                    console.log(marks);
                     insertStudentQuizRecord(quiz_id, marks);
 
                 });//end of markAnswers
 
-                $('#quiz_end_modal').modal('show');
 
-                setTimeout(function () {
-                    window.location.replace("quizResultPage.php?quiz_id=" + quiz_id);
-                }, 2000);
+                $('#quiz_end_modal').modal('show');
+                
+                 setTimeout(function () {
+                 window.location.replace("quizResultPage.php?quiz_id=" + quiz_id);
+                 }, 2000);
+                 
 
 
 
@@ -332,12 +349,12 @@ quizLogic(function (response) {
                             insertStudentQuizRecord(quiz_id, marks);
 
                         });//end of markAnswers
-                        
+
                         clearInterval(interval);
                         $('#times_up_modal').modal('show');
                         setTimeout(function () {
                             window.location.replace("quizResultPage.php?quiz_id=" + quiz_id);
-                        }, 2000)
+                        }, 2000);
                     }//end of times up
 
                     quizTime = minutes + ':' + seconds;
@@ -349,7 +366,7 @@ quizLogic(function (response) {
         }
     });
 
-    
+
 
 }); //end of quizLogic
 
@@ -415,6 +432,22 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
 
                         output += "</div>";
                     }//end of length 2 & 2 text field FIB
+
+                    else if (imgArr.length === 1 && optionsArr[0] !== "0" && optionsArr.length === 2) {
+
+                        for (var t = 0; t < optionsArr.length; t++) {
+
+                            var arr = optionsArr[t].split(",");
+                            output += "<div class='form-group'>"
+                                    + "<label for='" + t + "'>Blank " + (t + 1) + "</label>"
+                                    + "<select class='form-control' id= '" + t + "'>"
+                                    + "<option value=''>Select Answer</option>";
+                            for (var i = 0; i < arr.length; i++) {
+                                output += " <option value='" + arr[i] + "'>" + arr[i] + "</option>";
+                            }//end of dropdown for loop
+                            output += "</select></div>";
+                        }//end of options for loop
+                    }//end of length 1 & 2 dropwdown FIB
 
                     else if (imgArr.length === 2 && optionsArr[0] !== "0") {
 
