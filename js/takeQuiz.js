@@ -79,7 +79,7 @@ quizLogic(function (response) {
                     }
                 }//end of length 1 & 1 FIB text field 
 
-                else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 2) {
+                else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length > 1) {
                     var answersArr = [];
                     for (var i = 0; i < optionsArr.length; i++) {
                         answersArr.push($("#" + i).val());
@@ -91,7 +91,7 @@ quizLogic(function (response) {
                         savedAnswers.push(answerObj);
                     }
 
-                }//end of length 2  && 2 FIB text field
+                }//end of length 1  && 2 FIB text field
 
 
                 else if (imgArr.length === 2 && optionsArr[0] === "0") {
@@ -242,13 +242,13 @@ quizLogic(function (response) {
 
                 });//end of markAnswers
 
-
+                $('#quizTimer').hide;
                 $('#quiz_end_modal').modal('show');
-                
-                 setTimeout(function () {
-                 window.location.replace("quizResultPage.php?quiz_id=" + quiz_id);
-                 }, 2000);
-                 
+
+                setTimeout(function () {
+                    window.location.replace("quizResultPage.php?quiz_id=" + quiz_id);
+                }, 2000);
+
 
 
 
@@ -414,12 +414,12 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                         output += "<input type='text' class='form-control mb-3' id='0' placeholder ='Fill in the blank'>";
                     }//end of length 1 & 1 text field FIB
 
-                    else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length === 2) {
+                    else if (imgArr.length === 1 && optionsArr[0] === "0" && optionsArr.length > 1) {
                         for (var i = 0; i < optionsArr.length; i++) {
                             output += "<input type='text' class='form-control mb-3' id='" + optionsArr[i] + "'placeholder ='Fill in the blank'>";
                         }//end of images for loop
 
-                    }//end of length 1 & 2 text field FIB
+                    }//end of length 1 & more than 1 text field FIB
 
                     else if (imgArr.length === 2 && optionsArr[0] === "0") {
                         output += "<div class='row'>";

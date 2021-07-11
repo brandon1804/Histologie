@@ -42,7 +42,7 @@ function updateManageQuizPage() {
 
     $.ajax({
         type: "GET",
-        url: "AdministratorPHPFiles/getManageQuizDetails.php",
+        url: "AdministratorPHPFiles/getQuizTitle.php",
         data: "quiz_id=" + quiz_id,
         cache: false,
         dataType: "JSON",

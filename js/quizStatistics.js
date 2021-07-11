@@ -80,10 +80,11 @@ function updateQuizStatistics() {
             $("#rankingTable tbody").html(message);
 
 
-
         },
         error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);
+            $("#statsContent").hide();
+            $("#errorMsg").html("No student has attempted this quiz yet, hence the lack of statistics.<br>" + "<a href='manageQuizzes.php' class='btn btn-primary mt-3'>Back</a>");
         }
     });
 }//end of updateQuizStatistics

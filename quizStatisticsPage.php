@@ -85,68 +85,71 @@ and open the template in the editor.
             <div id="content">
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
-                    <div class="row justify-content-between mb-4"> 
-                        <div class="col-6">
-                            <h1 id="quizTitle"></h1>
+                    <div id="statsContent">
+                        <div class="row justify-content-between mb-4"> 
+                            <div class="col-6">
+                                <h1 id="quizTitle"></h1>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end align-items-center">
+                                <a class="btn btn-primary d-flex align-items-center" href="managequizPage.php?id=<?php echo $id ?>" role="button"><i class='bx bx-sm bx-pencil mr-1'></i>Manage Quiz</a>
+                            </div>
                         </div>
-                        <div class="col-6 d-flex justify-content-end align-items-center">
-                            <a class="btn btn-primary d-flex align-items-center" href="managequizPage.php?id=<?php echo $id ?>" role="button"><i class='bx bx-sm bx-pencil mr-1'></i>Manage Quiz</a>
-                        </div>
-                    </div>
-                    <div id="infoRow" class="row">
-                        <div class="col-xl-4 col-sm-6 col-12 mb-3">
-                            <div class="card shadow" style="border-color: #fff; height: 320px;">
-                                <div class="card-body">
-                                    <h3 class="card-title">Completion Rate</h3>  
-                                    <div class="d-flex align-items-center justify-content-center mb-2">
-                                        <div class="circlechartSC" data-percentage="0"></div>
+                        <div id="infoRow" class="row">
+                            <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                                <div class="card shadow" style="border-color: #fff; height: 320px;">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Completion Rate</h3>  
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <div class="circlechartSC" data-percentage="0"></div>
+                                        </div>
+                                        <p id="scText" class="card-text"></p>
                                     </div>
-                                    <p id="scText" class="card-text"></p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                                <div class="card shadow" style="border-color: #fff; height: 320px;">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Average Score</h3>
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <div class="circlechartAS" data-percentage="0"></div>
+                                        </div>
+                                        <p id="asText" class="card-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                                <div class="card shadow" style="border-color: #fff; height: 320px;">
+                                    <div class="card-body"> 
+                                        <h3 class="card-title">Top Scorer</h3>
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <div class="circlechartTS" data-percentage="0"></div>
+                                        </div>
+                                        <p id="tsText" class="card-text"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-sm-6 col-12 mb-3">
-                            <div class="card shadow" style="border-color: #fff; height: 320px;">
-                                <div class="card-body">
-                                    <h3 class="card-title">Average Score</h3>
-                                    <div class="d-flex align-items-center justify-content-center mb-2">
-                                        <div class="circlechartAS" data-percentage="0"></div>
-                                    </div>
-                                    <p id="asText" class="card-text"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-sm-6 col-12 mb-3">
-                            <div class="card shadow" style="border-color: #fff; height: 320px;">
-                                <div class="card-body"> 
-                                    <h3 class="card-title">Top Scorer</h3>
-                                    <div class="d-flex align-items-center justify-content-center mb-2">
-                                        <div class="circlechartTS" data-percentage="0"></div>
-                                    </div>
-                                    <p id="tsText" class="card-text"></p>
-                                </div>
+                        <h1 class="mt-4 mb-4">Student Ranking</h1>
+                        <div class="card shadow" style="border-color: #fff;">
+                            <div class="table-responsive">
+                                <table id="rankingTable" class="table table-borderless" cellspacing="0" width="100%">
+                                    <thead style="background-color: #fafafa;">
+                                        <tr>
+                                            <th>Rank</th>
+                                            <th>Student</th>
+                                            <th>Score</th>
+                                            <th>Date</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table> 
                             </div>
                         </div>
                     </div>
-                    <h1 class="mt-4 mb-4">Student Ranking</h1>
-                    <div class="card shadow" style="border-color: #fff;">
-                        <div class="table-responsive">
-                            <table id="rankingTable" class="table table-borderless" cellspacing="0" width="100%">
-                                <thead style="background-color: #fafafa;">
-                                    <tr>
-                                        <th>Rank</th>
-                                        <th>Student</th>
-                                        <th>Score</th>
-                                        <th>Date</th> 
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table> 
-                        </div>
-                    </div>
-
+                    <h5 id="errorMsg"></h5>
 
                 </div>
             </div>
+        </div>
     </body>
 </html>

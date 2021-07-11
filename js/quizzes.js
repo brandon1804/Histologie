@@ -51,6 +51,8 @@ function updateQuizHistoryTable() {
         },
         error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);
+            $("#historyCard").hide();
+            $("#errorMsg").html("Attempt a quiz to generate your statistics!");
         }
     });
 }//end of updateQuizHistoryTable
@@ -107,6 +109,7 @@ function updateCards() {
         },
         error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);
+            $("#cardsRow").html("");
         }
     });
 }//end of updateCards

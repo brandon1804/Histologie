@@ -100,8 +100,9 @@ and open the template in the editor.
                             <div class="card shadow" style="border-color: #fff; border-radius: 10px;">
                                 <div class="card-body">
                                     <h1 class="card-title mb-4">Add Quiz</h1>
-                                    <form id="addQuizForm"> 
-                                        <div class="form-group">
+                                    <form id="addQuizForm" enctype="multipart/form-data"> 
+                                        <input id='quizImageUpload' name="quizImage" type="file" data-show-upload="false" accept="image/*" data-browse-on-zone-click="true" data-msg-placeholder="Select image for upload">
+                                        <div class="form-group mt-3">
                                             <label for="title">Title</label>
                                             <input type="text" class="form-control" name="title" placeholder="Enter the quiz title">
                                         </div>
@@ -149,8 +150,8 @@ and open the template in the editor.
                             <div class="card shadow" style="border-color: #fff; border-radius: 10px;">
                                 <div class="card-body">
                                     <h1 class="card-title mb-4">Add Question</h1>
-                                    <form id="addQuestionForm">
-                                        <input id="imageUpload" name="images[]" multiple type="file"  data-show-upload="false" accept="image/*" data-browse-on-zone-click="true" data-msg-placeholder="Select images for upload...">
+                                    <form id="addQuestionForm" enctype="multipart/form-data">
+                                           <input id='files' name="files[]" multiple type="file" data-show-upload="false" accept="image/*" data-browse-on-zone-click="true" data-msg-placeholder="Select images for upload (Optional)">
                                         <div class="form-group mt-3">
                                             <label for="question">Question</label>
                                             <textarea class="form-control" name="question" rows="3" placeholder="Enter the question"></textarea>
@@ -175,7 +176,8 @@ and open the template in the editor.
                                         <div class="form-group" id='optionsCountDiv'>
                                             <hr/>
                                             <label for="optionsCount">Number of options</label>
-                                            <select class="form-control" id="optionsCount" required>
+                                            <select class="form-control" name="optionsCountSelect" id="optionsCount" required>
+                                                <option value="">Select Question Type</option>
                                                 <option value=2 selected>2</option>
                                                 <option value=3>3</option>
                                                 <option value=4>4</option>
@@ -194,8 +196,7 @@ and open the template in the editor.
                                             </select>
                                         </div>
                                         <div class="d-flex flex-row-reverse mt-4">
-                                            <div class='row'>
-                                                <button type="submit" id = "nextBtn" class="btn btn-primary d-flex align-items-center"><i class='bx bx-sm bx-plus'></i>Add Another Question</button>
+                                            <div class='row'> 
                                                 <button type="submit" id = "saveBtn" class="btn btn-success d-flex align-items-center"><i class='bx bx-sm bx-save'></i>Save Changes</button>
                                             </div>
                                         </div>

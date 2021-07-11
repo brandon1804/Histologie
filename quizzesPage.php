@@ -60,6 +60,9 @@ mysqli_close($link);
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
+            #errorMsg{
+                color: #E11A7A;
+            }
         </style>
     </head>
     <body>
@@ -86,7 +89,7 @@ mysqli_close($link);
 
             </div>
             <h1 class="mt-5">Quiz Statistics</h1>
-            <div class="row mb-4">
+            <div class="row mb-4" id="cardsRow">
                 <div class="col-xl-4 col-sm-6 col-12 mb-3">
                     <div class="card shadow" style="border-radius: 10px; border-color: white;">
                         <div class="card-content">
@@ -139,7 +142,7 @@ mysqli_close($link);
                     </div>
                 </div>
             </div>
-            <div class="card shadow" style="border-color: #fff; border-radius: 20px;">
+            <div class="card shadow" id="historyCard" style="border-color: #fff; border-radius: 20px;">
                 <div class="table-responsive">
                     <table id="quizHistoryTable" class="table table-borderless" cellspacing="0" width="100%">
                         <thead style="background-color: #fafafa;">
@@ -152,6 +155,7 @@ mysqli_close($link);
                     </table>
                 </div>
             </div>
+            <h5 id="errorMsg"></h5>
         </div>
     </body>
 </html>

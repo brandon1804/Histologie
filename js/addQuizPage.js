@@ -11,6 +11,8 @@ $(document).ready(function () {
 
 function addQuizLogic() {
 
+    var formData = new FormData();
+
 //start of add quiz
     //add quiz global variables 
     var title = "";
@@ -18,6 +20,13 @@ function addQuizLogic() {
     var timeLimitYN = "";
     var timeLimit = "00:00";
 
+    $("#quizImageUpload").fileinput({
+        required: true,
+        maxFileCount: 1,
+        maxFileSize: 0,
+        validateInitialCount: true,
+        allowedFileTypes: ["image"]
+    });
 
     $("#addQuestionContent").hide();
     $('#timeLimit').hide();
@@ -76,6 +85,7 @@ function addQuizLogic() {
             title = $("input[name='title']").val();
             summary = $("input[name='summary']").val();
             timeLimitYN = $("input[name='timeLimitYN']:checked").val();
+
             if ($("input[name='timeLimitYN']:checked").val() === 'Yes') {
                 var minutes = $("#minutes option:selected").val();
                 var seconds = $("#seconds option:selected").val();
@@ -87,6 +97,12 @@ function addQuizLogic() {
                 }
                 timeLimit = minutes + ":" + seconds;
             }
+
+            formData.append("quizImage", document.getElementById('quizImageUpload').files[0]);
+            formData.append("title", title);
+            formData.append("summary", summary);
+            formData.append("timeLimit", timeLimit);
+
             $("#addQuizContent").hide();
             $("#addQuestionContent").show();
             return false;
@@ -103,15 +119,16 @@ function addQuizLogic() {
 
 
     //add question global variables 
-    var questionsArr = [];
+    var questionObj;
     var question = "";
     var questionType = "";
     var questionScore = "";
     var questionAnswer = "";
 
-    
-    $("#imageUpload").fileinput({
+
+    $("#files").fileinput({
         maxFileCount: 4,
+        maxFileSize: 0,
         validateInitialCount: true,
         allowedFileTypes: ["image"]
     });
@@ -224,88 +241,97 @@ function addQuizLogic() {
             }
         },
         submitHandler: function () {
-            var submitButtonName = $(this.submitButton).attr("id");
-            var qExists = false;
+            var totalfiles = document.getElementById('files').files.length;
+            for (var index = 0; index < totalfiles; index++) {
+                formData.append("files[]", document.getElementById('files').files[index]);
+            }
 
             question = $("textarea[name='question']").val();
             questionScore = $("input[name='questionScore']").val();
             questionAnswer = $("input[name='questionAnswer']").val();
 
-            for (var i = 0; i < questionsArr.length; i++) {
-                if (questionsArr[i].question === question) {
-                    qExists = true;
-                }//end of question validation
-            }//end of options for loop
+            formData.append("question", question);
+            formData.append("questionScore", questionScore);
+            formData.append("questionAnswer", questionAnswer);
 
 
-            if (qExists === true) {
-                $('#question_exists_modal').modal('show');
-            } else {
+            formData.append("question", question);
+            formData.append("questionScore", questionScore);
+            formData.append("questionAnswer", questionAnswer);
+            formData.append("questionType", questionType);
 
-                if (questionType === 'MCQ') {
-                    var optionsCount = $("#optionsCount option:selected").val();
-                    var optionsStr = "";
+            if (questionType === 'MCQ') {
+                var optionsCount = $("#optionsCount option:selected").val();
+                var optionsStr = "";
 
-                    for (var i = 0; i < optionsCount; i++) {
-                        if (i === 0) {
-                            optionsStr += ($("input[name='questionOption" + i + "']").val());
-                        } else if (i !== 0) {
-                            optionsStr += ("," + $("input[name='questionOption" + i + "']").val());
-                        }
-                    }//end of options for loop
+                for (var i = 0; i < optionsCount; i++) {
+                    if (i === 0) {
+                        optionsStr += ($("input[name='questionOption" + i + "']").val());
+                    } else if (i !== 0) {
+                        optionsStr += ("," + $("input[name='questionOption" + i + "']").val());
+                    }
+                }//end of options for loop
 
-                    var questionObj = {question: question, questionScore: questionScore, questionAnswer: questionAnswer, questionType: questionType, questionOption: optionsStr, questionImage: "None", insertAmount: 1};
-                    questionsArr.push(questionObj);
-                }//end of mcq
+                formData.append("questionOption", optionsStr);
+                formData.append("insertAmount", 1);
+            }//end of mcq
 
-                else if (questionType === 'FIB') {
-                    var inputsCount = $("#inputsCount option:selected").val();
-                    var optionsStr = "";
-                    for (var i = 0; i < inputsCount; i++) {
-                        if (i === 0) {
-                            optionsStr += "0";
-                        } else if (i !== 0) {
-                            optionsStr += ("," + i);
-                        }
-                    }//end of options for loop
+            else if (questionType === 'FIB') {
+                var inputsCount = $("#inputsCount option:selected").val();
+                var optionsStr = "";
+                for (var i = 0; i < inputsCount; i++) {
+                    if (i === 0) {
+                        optionsStr += "0";
+                    } else if (i !== 0) {
+                        optionsStr += ("," + i);
+                    }
+                }//end of options for loop
 
-                    var questionObj = {question: question, questionScore: questionScore, questionAnswer: questionAnswer, questionType: questionType, questionOption: optionsStr, questionImage: "None", insertAmount: inputsCount};
-                    questionsArr.push(questionObj);
-                }//end of FIB
+                formData.append("questionOption", optionsStr);
+                formData.append("insertAmount", inputsCount);
 
-                else if (questionType === 'FIBWO') {
-                    questionType = "FIB";
+            }//end of FIB
 
-                    var inputsCount = $("#inputsCount option:selected").val();
-                    var optionsCount = $("#optionsCount option:selected").val();
-                    var optionsStr = "";
+            else if (questionType === 'FIBWO') {
+                questionType = "FIB";
 
-                    for (var i = 0; i < optionsCount; i++) {
-                        if (i === 0) {
-                            optionsStr += ($("input[name='questionOption" + i + "']").val());
-                        } else if (i !== 0) {
-                            optionsStr += ("," + $("input[name='questionOption" + i + "']").val());
-                        }
-                    }//end of options for loop
+                var inputsCount = $("#inputsCount option:selected").val();
+                var optionsCount = $("#optionsCount option:selected").val();
+                var optionsStr = "";
 
-                    var questionObj = {question: question, questionScore: questionScore, questionAnswer: questionAnswer, questionType: questionType, questionOption: optionsStr, questionImage: "None", insertAmount: inputsCount};
-                    questionsArr.push(questionObj);
-                }//end of FIBWO
+                for (var i = 0; i < optionsCount; i++) {
+                    if (i === 0) {
+                        optionsStr += ($("input[name='questionOption" + i + "']").val());
+                    } else if (i !== 0) {
+                        optionsStr += ("," + $("input[name='questionOption" + i + "']").val());
+                    }
+                }//end of options for loop
 
-                if (submitButtonName === 'nextBtn') {
-                    $('#addQuestionForm')[0].reset();
-                    $('#inputsCountDiv').hide();
-                    $('#optionsCountDiv').hide();
-                    $('#questionOptionsTextFields').html("");
-                }//end of next question 
+                formData.append("questionOption", optionsStr);
+                formData.append("insertAmount", inputsCount);
+            }//end of FIBWO
 
 
-                else if (submitButtonName === 'saveBtn') {
-                    $('#publish_quiz_modal').modal('show');
-                    console.log(questionsArr);
-                }//end of save
+            $.ajax({
+                url: 'AdministratorPHPFiles/addQuiz.php',
+                enctype: 'multipart/form-data',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response);
+                },
+                error: function (obj, textStatus, errorThrown) {
+                    console.log("Error " + textStatus + ": " + errorThrown);
+                }
+            });
 
-            }//end of question validation
+            //$('#addQuestionForm')[0].reset();
+            //$('#inputsCountDiv').hide();
+            //$('#optionsCountDiv').hide();
+            //$('#questionOptionsTextFields').html("");
+            //$('#publish_quiz_modal').modal('show');
 
             return false;
         }
