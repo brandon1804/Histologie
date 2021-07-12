@@ -2,7 +2,7 @@
 session_start();
 include("dbFunctions.php");
 
-$id = 1;
+$id = $_SESSION['user_id'];
 
 if(isset($_POST)){
     $name = $_POST['name'];

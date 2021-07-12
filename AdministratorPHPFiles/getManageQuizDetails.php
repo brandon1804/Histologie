@@ -6,13 +6,13 @@ include "dbFunctions.php";
 
 $quiz_id = $_GET['quiz_id'];
 
-$query = "SELECT Q.title FROM quiz Q WHERE QT.quiz_id = $quiz_id";
+$query = "SELECT Q.title, COUNT(DISTINCT QT.user_id) AS 'quizzesCompleted', AVG(QT.user_score) AS 'average_score', MAX(QT.user_score) AS 'highest_score', Q.score FROM quiz_taken QT INNER JOIN quiz Q ON QT.quiz_id = Q.quiz_id INNER JOIN user U ON QT.user_id = U.user_id WHERE QT.quiz_id = $quiz_id AND U.account_type = 'student'";
 $result = mysqli_query($link, $query);
 
 $row = mysqli_fetch_assoc($result);
 
 if (!empty($row)) {
-    $output = $row['title'];
+    $output = $row;
     $topScore = $row['highest_score'];
 }
 

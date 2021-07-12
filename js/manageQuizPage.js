@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    var url = window.location.href;
+    var stuff = url.split('=');
+    var quiz_id = stuff[stuff.length - 1];
+
+
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
     });
@@ -29,6 +34,35 @@ $(document).ready(function () {
     });
 
 
+
+    $(".addQuestionBtn").on("click", function () {
+        window.location.href = "addQuizQuestionPage.php?quiz_id=" + quiz_id;
+    });
+
+    $(".deleteQuizBtn").on("click", function () {
+        $('#delete_quiz_modal').modal('show');
+
+        $("#delete_quiz_modal .modalBtnDeleteQuiz").on("click", function () {
+            $.ajax({
+                type: "GET",
+                url: "AdministratorPHPFiles/deleteQuiz.php",
+                cache: false,
+                data: "quiz_id=" + quiz_id,
+                dataType: "JSON",
+                success: function (response) {
+                    if (response.message === "Success") {
+                        $('#quiz_deleted_modal').modal('show');
+                        setTimeout(function () {
+                            window.location.href = "manageQuizzes.php";
+                        }, 2000);
+                    }//end of success
+                },
+                error: function (obj, textStatus, errorThrown) {
+                    console.log("Error " + textStatus + ": " + errorThrown);
+                }
+            });
+        });
+    });
 
 }); //end of document ready
 

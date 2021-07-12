@@ -26,6 +26,7 @@ and open the template in the editor.
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/additional-methods.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/profile.js" type="text/javascript"></script>
         <style type="text/css">
             form .error {
                 color: #ff0000;
@@ -53,45 +54,6 @@ and open the template in the editor.
                 color: black;
             }
         </style>
-        <script>
-            $(document).ready(function () {
-
-                $("#defaultForm").validate({
-                    rules: {
-                        name: {
-                            required: true,
-                            pattern: /^[a-zA-Z]* $/
-                        },
-                        email: {
-                            required: true,
-                            pattern: /^(\w+[\-\.])*\w+@(\w+\.)+[A-Za-z]+$/
-                        },
-                        password: {
-                            required: true,
-                            pattern: /^[A-Za-z\d]{6,8}$/
-                        }
-                    },
-                    messages: {
-                        name: {
-                            required: "Please enter new name",
-                            pattern: "Name must contain only alphabet"
-                        },
-                        email: {
-                            required: "Please enter new email",
-                            pattern: "Please enter a valid email"
-                        },
-                        password: {
-                            required: "Please enter new password",
-                            pattern: "Password must be 6 to 8 character long"
-                        }
-                    },
-
-                    submitHandler: function () {
-                        return true;
-                    }
-                });
-            });
-        </script>
     </head>
     <body>
         <?php

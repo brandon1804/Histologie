@@ -4,7 +4,7 @@ $(document).ready(function () {
         rules: {
             name: {
                 required: true,
-                pattern: /^[a-zA-Z]* $/
+                pattern: /^[a-zA-Z\s]+$/
             },
             email: {
                 required: true,
@@ -31,9 +31,9 @@ $(document).ready(function () {
         },
 
         submitHandler: function () {
-            var name = $("#idName").val();
-            var email = $("#idEmail]").val();
-            var password = $("idPassword").val();
+            var name = $("input[name='name']").val();
+            var email = $("input[name='email']").val();
+            var password = $("input[name='password']").val();
             $.ajax({
                 url: "doProfile.php",
                 type: "POST",
@@ -47,7 +47,7 @@ $(document).ready(function () {
                     return false;
                 }
             });
-            return true;
+            return false;
         }
     });
 

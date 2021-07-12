@@ -6,16 +6,8 @@ if (isset($_POST)) {
 
     $isInserted = false;
 
-
-    // add quiz variables
-    $title = $_POST['title'];
-    $summary = $_POST['summary'];
-    $timeLimit = $_POST['timeLimit'];
-    $quizCategory = $_POST['quizCategory'];
-    $categoryYN = $_POST['categoryYN'];
-
-
     // add question variables
+    $quizID = $_POST['quiz_id'];
     $question = $_POST['question'];
     $questionType = $_POST['questionType'];
     $questionScore = $_POST['questionScore'];
@@ -23,71 +15,16 @@ if (isset($_POST)) {
     $questionOption = $_POST['questionOption'];
     $insertAmount = $_POST['insertAmount'];
 
+    $marksQuery = "SELECT score, questions FROM quiz WHERE quiz_id = $quizID";
 
-    if ($categoryYN == "No") {
-        $insertCategoryQuery = "INSERT INTO quiz_category(category_name) VALUES ('$title')";
+    $marksResult = mysqli_query($link, $marksQuery) or die(mysqli_error($link));
 
-        $categoryInsertResult = mysqli_query($link, $insertCategoryQuery) or die(mysqli_error($link));
+    $marksRow = mysqli_fetch_assoc($marksResult);
 
-        if ($categoryInsertResult) {
-            $isInserted = true;
-        }//end of insert quiz result
-
-
-        $catIDQuery = "SELECT MAX(quizcategory_id) AS 'catID' FROM quiz_category";
-
-        $catIDResult = mysqli_query($link, $catIDQuery) or die(mysqli_error($link));
-
-        $catIDRow = mysqli_fetch_assoc($catIDResult);
-
-        if (!empty($catIDRow)) {
-            $quizCategory = $catIDRow['catID'];
-        }
-        
-  
-    }//end of custom category
-
-    $insertQuizQuery = "INSERT INTO quiz(quizcategory_id, duration, score, title, summary, questions) 
-                VALUES  
-                ($quizCategory, '$timeLimit', $questionScore, '$title', '$summary', 1)";
-
-    $quizInsertResult = mysqli_query($link, $insertQuizQuery) or die(mysqli_error($link));
-
-    if ($quizInsertResult) {
-        $isInserted = true;
-    }//end of insert quiz result
-
-
-    $quizIDQuery = "SELECT MAX(quiz_id) AS 'quizID' FROM quiz";
-
-    $quizIDResult = mysqli_query($link, $quizIDQuery) or die(mysqli_error($link));
-
-    $quizIDRow = mysqli_fetch_assoc($quizIDResult);
-
-    if (!empty($quizIDRow)) {
-        $quizID = $quizIDRow['quizID'];
+    if (!empty($marksRow)) {
+        $quizMarks = $marksRow['score'];
+        $quizQuestions = $marksRow['questions'];
     }
-
-    $filename = $_FILES["quizImage"]["name"];
-    $tempname = $_FILES["quizImage"]["tmp_name"];
-    $upload_location = "../css/img/quizImg/";
-    $completePath = $upload_location . $filename;
-    $imageName = pathinfo($filename)['filename'];
-
-    $insertQuizImageQuery = "INSERT INTO image(lesson_id, quiz_id, image_category_id, filename, name) 
-                VALUES  
-                (NULL, $quizID, NULL, '$filename', '$imageName')";
-
-    $quizImageInsertResult = mysqli_query($link, $insertQuizImageQuery) or die(mysqli_error($link));
-
-
-    if (move_uploaded_file($tempname, $completePath)) {
-        $isInserted = true;
-    } else {
-        $isInserted = false;
-    }
-
-    //end of add quiz
 
 
 
@@ -154,8 +91,6 @@ if (isset($_POST)) {
 
         $countfiles = count($_FILES['files']['name']);
 
-        mkdir("../css/img/quizImg/quiz" . strval($quizID));
-
         $upload_location = "../css/img/quizImg/quiz" . strval($quizID) . "/";
 
         $files_arr = array();
@@ -185,6 +120,21 @@ if (isset($_POST)) {
         $noImageInsertResult = mysqli_query($link, $noImageQuery) or die(mysqli_error($link));
     }//end of no images
 
+    
+    
+    $quizMarks += $questionScore;
+    $quizQuestions += 1;
+
+    $updateQuizQuery = "UPDATE quiz SET score=$quizMarks, questions=$quizQuestions WHERE quiz_id=$quizID";
+
+    $updateQuizResult = mysqli_query($link, $updateQuizQuery) or die(mysqli_error($link));
+
+    if ($updateQuizResult) {
+        $isInserted = true;
+    }//end of update quiz
+    else {
+        $isInserted = false;
+    }
 
     echo $quizID;
 }//end of POST validation

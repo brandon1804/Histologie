@@ -17,7 +17,9 @@ function addQuizLogic() {
     //add quiz global variables 
     var title = "";
     var summary = "";
+    var categoryYN = "";
     var timeLimitYN = "";
+    var quizCategory = "";
     var timeLimit = "00:00";
 
     $("#quizImageUpload").fileinput({
@@ -30,6 +32,8 @@ function addQuizLogic() {
 
     $("#addQuestionContent").hide();
     $('#timeLimit').hide();
+    $('#quizCategorySelectContent').hide();
+    $('#quizCategoryInputContent').hide();
 
     var selectMinutesOutput = "";
     selectMinutesOutput += "<select class='form-control' id='minutes' required='required'>"
@@ -58,12 +62,26 @@ function addQuizLogic() {
         }
     }); //end of time limit radio button
 
+    $("input[name='categoryYN']").change(function () {
+        if (this.value === 'Yes') {
+            $('#quizCategorySelectContent').show();
+            $('#quizCategoryInputContent').hide();
+        } else if (this.value === 'No') {
+            $('#quizCategorySelectContent').hide();
+            $('#quizCategoryInputContent').show();
+        }
+    }); //end of time limit radio button
+
+
     $("#addQuizForm").validate({
         rules: {
             title: {
                 required: true
             },
             summary: {
+                required: true
+            },
+            categoryYN: {
                 required: true
             },
             timeLimitYN: {
@@ -77,6 +95,9 @@ function addQuizLogic() {
             summary: {
                 required: "Please enter your summary"
             },
+            categoryYN: {
+                required: "Please specify whether you are using an existing category"
+            },
             timeLimitYN: {
                 required: "Please specify whether there is a time limit"
             }
@@ -84,9 +105,10 @@ function addQuizLogic() {
         submitHandler: function () {
             title = $("input[name='title']").val();
             summary = $("input[name='summary']").val();
+            categoryYN = $("input[name='categoryYN']:checked").val();
             timeLimitYN = $("input[name='timeLimitYN']:checked").val();
 
-            if ($("input[name='timeLimitYN']:checked").val() === 'Yes') {
+            if (timeLimitYN === 'Yes') {
                 var minutes = $("#minutes option:selected").val();
                 var seconds = $("#seconds option:selected").val();
                 if (minutes < 10) {
@@ -96,15 +118,55 @@ function addQuizLogic() {
                     seconds = '0' + seconds;
                 }
                 timeLimit = minutes + ":" + seconds;
-            }
+            }//end of timeLimit yes
 
-            formData.append("quizImage", document.getElementById('quizImageUpload').files[0]);
-            formData.append("title", title);
-            formData.append("summary", summary);
-            formData.append("timeLimit", timeLimit);
+            if (categoryYN === 'Yes') {
+                quizCategory = $("#quizCategoryChooser option:selected").val();
+                formData.append("quizImage", document.getElementById('quizImageUpload').files[0]);
+                formData.append("title", title);
+                formData.append("summary", summary);
+                formData.append("quizCategory", quizCategory);
+                formData.append("categoryYN", categoryYN);
+                formData.append("timeLimit", timeLimit);
 
-            $("#addQuizContent").hide();
-            $("#addQuestionContent").show();
+                $("#addQuizContent").hide();
+                $("#addQuestionContent").show();
+            }//end of quizCategory yes
+            else if (categoryYN === 'No') {
+                quizCategory = $("input[name='quizCategoryInput']").val();
+                $.ajax({
+                    type: "GET",
+                    url: "AdministratorPHPFiles/getQuizCategories.php",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        var categoryExists = false;
+
+                        for (var i = 0; i <= response.length; i++) {
+                            if (quizCategory === response[i]) {
+                                categoryExists = true;
+                            }
+                        }//end of response for loop
+
+                        if (categoryExists === false) {
+                            formData.append("quizImage", document.getElementById('quizImageUpload').files[0]);
+                            formData.append("title", title);
+                            formData.append("summary", summary);
+                            formData.append("quizCategory", quizCategory);
+                            formData.append("categoryYN", categoryYN);
+                            formData.append("timeLimit", timeLimit);
+
+                            $("#addQuizContent").hide();
+                            $("#addQuestionContent").show();
+                        }//end of false
+                        else if (categoryExists === true) {
+                            $('#category_exists_modal').modal('show');
+                        }//end of true
+
+                    }//end of success    
+                });
+            }//end of quizCategory no
+
             return false;
         }
     });//end of add quiz form validation
@@ -250,10 +312,6 @@ function addQuizLogic() {
             questionScore = $("input[name='questionScore']").val();
             questionAnswer = $("input[name='questionAnswer']").val();
 
-            formData.append("question", question);
-            formData.append("questionScore", questionScore);
-            formData.append("questionAnswer", questionAnswer);
-
 
             formData.append("question", question);
             formData.append("questionScore", questionScore);
@@ -320,18 +378,14 @@ function addQuizLogic() {
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    alert(response);
+                    var buttonAdd = "<a class='btn d-flex align-items-center' href='addQuizQuestionPage.php?quiz_id=" + response + "' role='button' style='background-color: #00D207; color:#fff'><i class='bx bx-sm bx-plus'></i>Add Another Question</a>";
+                    $('#publish_quiz_modal .modal-footer').append(buttonAdd);
+                    $('#publish_quiz_modal').modal('show');
                 },
                 error: function (obj, textStatus, errorThrown) {
                     console.log("Error " + textStatus + ": " + errorThrown);
                 }
             });
-
-            //$('#addQuestionForm')[0].reset();
-            //$('#inputsCountDiv').hide();
-            //$('#optionsCountDiv').hide();
-            //$('#questionOptionsTextFields').html("");
-            //$('#publish_quiz_modal').modal('show');
 
             return false;
         }
