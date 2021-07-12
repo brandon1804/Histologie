@@ -8,14 +8,14 @@ include("dbFunctions.php");
 //    exit();
 //}//end of user validation
 //else {
-$lessonCategories = array();
-$query = "SELECT * FROM lesson_category";
-$result = mysqli_query($link, $query);
+    $lessonCategories = array();
+    $query = "SELECT * FROM lesson_category";
+    $result = mysqli_query($link, $query);
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $lessonCategories[] = $row;
-}
-//}//end of else 
+    while ($row = mysqli_fetch_assoc($result)) {
+        $lessonCategories[] = $row;
+    }
+//}//end of else
 
 mysqli_close($link);
 ?>
