@@ -102,30 +102,30 @@ and open the template in the editor.
             .card-img-top{
                 width: 40%;
                 margin-left: 20px;
-                margin-top: 10px;
+                margin-top: 20px;
             }
             .card-title{
-                margin-top: 20px;
+                margin-top: 15px;
                 margin-left: 20px;
                 text-align: left;
             }
             #idEmail{
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             #idName{
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             #idPassword{
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             .radioButton{
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             .btn{
                 background-color: #E11E7A;
                 border-color: #E11E7A;
                 margin-left: 20px;
-                margin-bottom: 5px;
+                margin-bottom: -5px;
                 margin-right: 20px;
                 border-radius: 10px;
             }

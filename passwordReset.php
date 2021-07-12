@@ -65,7 +65,7 @@ and open the template in the editor.
             .btn{
                 background-color: #E11E7A;
                 border-color: #E11E7A;
-                margin-bottom: 10px;
+                margin-bottom: -10px;
                 margin-left: 20px;
                 margin-right: 20px;
                 border-radius: 10px;

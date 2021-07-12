@@ -8,15 +8,34 @@ $id = $_POST['id'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $accountType = $_POST['accountType'];
+$doesExist = false; // For checking if email already exists in the database or not
 
 $query = "";
 
-if ($accountType == "student") {
-    $query = "INSERT INTO user (name, student_id, staff_id, email, password, account_type) VALUES ('$name', $id, NULL, '$email', SHA1('$password'), '$accountType')";
-} else if ($accountType == "staff") {
-    $query = "INSERT INTO user (name, student_id, staff_id, email, password, account_type) VALUES ('$name', NULL, $id, '$email', SHA1('$password'), '$accountType')";
-}
 
+// Verification Incomplete.
+
+if ($doesExist == false) {
+    $sql = "SELECT email FROM user WHERE email LIKE $email";
+    $select = mysqli_query($sql);
+    $row = mysqli_fetch_assoc($select);
+
+    if (mysqli_num_rows > 0) {
+        $doesExist = true;
+        $response = "<div class='alert alert-danger text-left' role='alert'>"
+                . "Email already exists"
+                . "<a href='passwordReset.php'> Click here to reset your password</a></div>";
+        
+        echo $response;
+    } else {
+        if ($accountType == "student") {
+            $query = "INSERT INTO user (name, student_id, staff_id, email, password, account_type) VALUES ('$name', $id, NULL, '$email', SHA1('$password'), '$accountType')";    
+        } 
+        else if ($accountType == "staff") {
+            $query = "INSERT INTO user (name, student_id, staff_id, email, password, account_type) VALUES ('$name', NULL, $id, '$email', SHA1('$password'), '$accountType')";
+        }
+    }
+}
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 
 if ($result) {

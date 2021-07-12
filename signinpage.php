@@ -87,7 +87,7 @@ and open the template in the editor.
                 flex-direction: row;
             }
             .card-img-top{
-                height: 100%;
+
                 width: 40%;
                 margin-left: 20px;
                 margin-top: 10px;
@@ -103,7 +103,7 @@ and open the template in the editor.
             .btn{
                 background-color: #E11E7A;
                 border-color: #E11E7A;
-                margin-bottom: 10px;
+                margin-bottom: -10px;
                 margin-left: 20px;
                 margin-right: 20px;
                 border-radius: 10px;
@@ -226,13 +226,13 @@ and open the template in the editor.
                         <h4 class="modal-title w-100">Awesome!</h4>	
                     </div>
                     <div class="modal-body">
-                        <p class="text-center">Your booking has been confirmed. Check your email for detials.</p>
+                        <p class="text-center">Your booking has been confirmed. Check your email for details.</p>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>
+        </div>
     </body>
 </html>
-
