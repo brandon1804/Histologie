@@ -29,12 +29,16 @@ quizLogic(function (response) {
     var currValue = 1;
     var currQuestionIndex = 0;
     var savedAnswers = [];
+    var correctQ = [];
+    var pcorrectQ = [];
     var marks = 0;
-    var questionType = "";
+    //var questionType = "";
 
+    sessionStorage.setItem("questionsArr", "");
     let shuffledQuestionsArr = shuffleQuestions(response);
     console.log(shuffledQuestionsArr);
     updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr);
+    sessionStorage.setItem("shuffledQuestionsArr", shuffledQuestionsArr);
     updateProgress(currValue);
 
     $("#nextBtn").click(function () {
@@ -50,7 +54,7 @@ quizLogic(function (response) {
         }
         validateAnswer(function (response) {
 
-            questionType = response["question_type"];
+
             var isAnswered = false;
             if (response["images"].length !== 0) {
                 var imgArr = response["images"];
@@ -64,7 +68,7 @@ quizLogic(function (response) {
 
                     if (answersArr.length === optionsArr.length && !answersArr.includes("")) {
                         isAnswered = true;
-                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], question_type: response["question_type"], user_answer: answersArr};
                         savedAnswers.push(answerObj);
                     }
                 }//end of no image & dropdown option more than 1
@@ -74,7 +78,7 @@ quizLogic(function (response) {
                     if ($("#0").val() !== "") {
                         var answer = ($("#0").val());
                         isAnswered = true;
-                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answer};
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], question_type: response["question_type"], user_answer: answer};
                         savedAnswers.push(answerObj);
                     }
                 }//end of length 1 & 1 FIB text field 
@@ -87,7 +91,7 @@ quizLogic(function (response) {
 
                     if (answersArr.length === optionsArr.length && !answersArr.includes("")) {
                         isAnswered = true;
-                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], question_type: response["question_type"], user_answer: answersArr};
                         savedAnswers.push(answerObj);
                     }
 
@@ -102,7 +106,7 @@ quizLogic(function (response) {
 
                     if (answersArr.length === optionsArr.length && !answersArr.includes("")) {
                         isAnswered = true;
-                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], question_type: response["question_type"], user_answer: answersArr};
                         savedAnswers.push(answerObj);
                     }
 
@@ -116,7 +120,7 @@ quizLogic(function (response) {
 
                     if (answersArr.length === optionsArr.length && !answersArr.includes("")) {
                         isAnswered = true;
-                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], question_type: response["question_type"], user_answer: answersArr};
                         savedAnswers.push(answerObj);
                     }
                 } //end of length 1  && 2 FIB dropdown
@@ -130,7 +134,7 @@ quizLogic(function (response) {
 
                     if (answersArr.length === optionsArr.length && !answersArr.includes("")) {
                         isAnswered = true;
-                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                        var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], question_type: response["question_type"], user_answer: answersArr};
                         savedAnswers.push(answerObj);
                     }
 
@@ -142,7 +146,7 @@ quizLogic(function (response) {
 
                 if (answer !== undefined) {
                     isAnswered = true;
-                    var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answer};
+                    var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], question_type: response["question_type"], user_answer: answer};
                     savedAnswers.push(answerObj);
                 }
 
@@ -158,7 +162,7 @@ quizLogic(function (response) {
                 console.log(answersArr);
                 if (answersArr.length === 4 && !answersArr.includes("")) {
                     isAnswered = true;
-                    var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], user_answer: answersArr};
+                    var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], question_type: response["question_type"], user_answer: answersArr};
                     savedAnswers.push(answerObj);
                 }
 
@@ -204,30 +208,46 @@ quizLogic(function (response) {
                         for (var ua = 0; ua < savedAnswers.length; ua++) {
                             var userQI = savedAnswers[ua]['question_id'];
                             var userA = savedAnswers[ua]['user_answer'];
+                            var questionT = savedAnswers[ua]['question_type'];
 
                             if (question_id === userQI) {
                                 if (answer === userA) {
                                     marks += marksAllocated;
+                                    correctQ.push(userQI);
+                                    //alert(userQI + "MCQ");
                                 }//end of mcq/single text field validation 
+
                                 else if (arrayValidator(answer, userA) === true) {
                                     marks += marksAllocated;
+                                    correctQ.push(userQI);
+                                    //alert(userQI + "Multiple Answers");
                                 }//full marks for arrays
 
-                                else if (arrayValidator(answer, userA) === false && questionType !== "M&M") {
+                                else if (arrayValidator(answer, userA) === false && questionT === "FIB") {
                                     for (var a = 0; a < answer.length; a++) {
                                         if (answer[a] === userA[a]) {
                                             marks += 1;
+                                            if (pcorrectQ.includes(userQI) === false) {
+                                                pcorrectQ.push(userQI);
+                                            }
+                                            //alert(userQI + "Multiple Answers Some Wrong");
                                         }
                                     }//end of answer for loop
                                 }//end of per option 
 
-                                else if (arrayValidator(answer, userA) === false && questionType === "M&M") {
+                                else if (arrayValidator(answer, userA) === false && questionT === "M&M") {
                                     for (var a = 0; a < answer.length; a++) {
                                         if (answer[a] === userA[a]) {
                                             marks += 0.5;
+                                            if (pcorrectQ.includes(userQI) === false) {
+                                                pcorrectQ.push(userQI);
+                                            }
+
                                         }
                                     }//end of answer for loop
                                 }//end of per option 
+
+
 
                             }//end of question validation
 
@@ -235,15 +255,23 @@ quizLogic(function (response) {
 
                     }//end of response for loop
 
-                    console.log(response);
-                    console.log(savedAnswers);
-                    console.log(marks);
+                    //console.log(response);
+                    //console.log(savedAnswers);
+                    //console.log(marks);
+
                     insertStudentQuizRecord(quiz_id, marks);
+                    alert('Call');
+                    sessionStorage.setItem("shuffledQuestionsArr", JSON.stringify(shuffledQuestionsArr));
+                    sessionStorage.setItem("savedAnswers", JSON.stringify(savedAnswers));
+                    sessionStorage.setItem("pcorrectQ", JSON.stringify(pcorrectQ));
+                    sessionStorage.setItem("correctQ", JSON.stringify(correctQ));
+
 
                 });//end of markAnswers
 
-                $('#quizTimer').hide;
+                $('#quizTimer').hide();
                 $('#quiz_end_modal').modal('show');
+
 
                 setTimeout(function () {
                     window.location.replace("quizResultPage.php?quiz_id=" + quiz_id);
@@ -313,30 +341,40 @@ quizLogic(function (response) {
                                 for (var ua = 0; ua < savedAnswers.length; ua++) {
                                     var userQI = savedAnswers[ua]['question_id'];
                                     var userA = savedAnswers[ua]['user_answer'];
+                                    var questionT = savedAnswers[ua]['question_type'];
 
                                     if (question_id === userQI) {
                                         if (answer === userA) {
                                             marks += marksAllocated;
+                                            correctQ.push(userQI);
                                         }//end of mcq/single text field validation 
                                         else if (arrayValidator(answer, userA) === true) {
                                             marks += marksAllocated;
+                                            correctQ.push(userQI);
                                         }//full marks for arrays
 
-                                        else if (arrayValidator(answer, userA) === false && questionType !== "M&M") {
+                                        else if (arrayValidator(answer, userA) === false && questionT === "FIB") {
                                             for (var a = 0; a < answer.length; a++) {
                                                 if (answer[a] === userA[a]) {
                                                     marks += 1;
+                                                    if (pcorrectQ.includes(userQI) === false) {
+                                                        pcorrectQ.push(userQI);
+                                                    }
                                                 }
                                             }//end of answer for loop
                                         }//end of per option 
 
-                                        else if (arrayValidator(answer, userA) === false && questionType === "M&M") {
+                                        else if (arrayValidator(answer, userA) === false && questionT === "M&M") {
                                             for (var a = 0; a < answer.length; a++) {
                                                 if (answer[a] === userA[a]) {
                                                     marks += 0.5;
+                                                    if (pcorrectQ.includes(userQI) === false) {
+                                                        pcorrectQ.push(userQI);
+                                                    }
                                                 }
                                             }//end of answer for loop
                                         }//end of per option 
+
 
                                     }//end of question validation
 
@@ -346,7 +384,14 @@ quizLogic(function (response) {
                             //console.log(response);
                             //console.log(savedAnswers);
                             //console.log(marks);
+
                             insertStudentQuizRecord(quiz_id, marks);
+                            sessionStorage.setItem("shuffledQuestionsArr", JSON.stringify(shuffledQuestionsArr));
+                            sessionStorage.setItem("savedAnswers", JSON.stringify(savedAnswers));
+                            sessionStorage.setItem("pcorrectQ", JSON.stringify(pcorrectQ));
+                            sessionStorage.setItem("correctQ", JSON.stringify(correctQ));
+
+
 
                         });//end of markAnswers
 
@@ -376,6 +421,7 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
     var stuff = url.split('=');
     var quiz_id = stuff[stuff.length - 1];
 
+
     if (currQuestionIndex < shuffledQuestionsArr.length) {
         $.ajax({
             type: "GET",
@@ -386,6 +432,12 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
             success: function (response) {
                 var output = "";
                 $('#questionTitle').text(response["question"]);
+
+                if (sessionStorage.getItem("questionsArr") === "") {
+                    sessionStorage.setItem("questionsArr", response["question"]);
+                } else if (sessionStorage.getItem("questionsArr") !== "") {
+                    sessionStorage.setItem("questionsArr", sessionStorage.questionsArr + "SPACE" + (response["question"]));
+                }
 
                 if (response["images"].length !== 0) {
                     var imgArr = response["images"];
@@ -643,10 +695,11 @@ function arrayValidator(answerArr, userArr) {
         return false;
     } else {
 
-        for (var i = 0; i < answerArr.length; i++)
+        for (var i = 0; i < answerArr.length; i++) {
             if (answerArr[i] !== userArr[i]) {
                 return false;
             }
+        }
 
         return true;
     }

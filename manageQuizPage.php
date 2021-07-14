@@ -15,6 +15,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
 }//end of account type validation
 
 $id = $_GET['id'];
+
+include("AdministratorPHPFiles\getNumOfQuizQuestions.php");
 ?>
 <!DOCTYPE html>
 <!--
@@ -87,6 +89,7 @@ and open the template in the editor.
             <div id="content">
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
+                    <h1 id="quizNumOfQuestions" hidden><?php echo $quizNumOfQuestions; ?></h1>
                     <div class="row justify-content-between mb-3"> 
                         <div class="col-6">
                             <h1 id="quizTitle"></h1>
@@ -166,6 +169,24 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="question_validation_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-danger">Action Restricted</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="color: black">A quiz should have at least one question at any point of time.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <ul id="menu" class="mfb-component--br mfb-slidein" data-mfb-toggle="click" data-mfb-state="closed">
                         <li class="mfb-component__wrap">
                             <a class="mfb-component__button--main" style="color: white; background-color: #0d6efd">
@@ -176,6 +197,11 @@ and open the template in the editor.
                                 <li>
                                     <a data-mfb-label="Add Question" class="mfb-component__button--child addQuestionBtn" style="padding-left: 0px !important; color: white; background-color: #00D207">
                                         <i class="mfb-component__child-icon ion-plus-round" style="font-size: 22px"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-mfb-label="Edit Quiz Details" class="mfb-component__button--child editQuizBtn" style="padding-left: 0px !important; color: white; background-color: #ffbb33">
+                                        <i class="mfb-component__child-icon ion-edit" style="font-size: 22px"></i>
                                     </a>
                                 </li>
                                 <li>

@@ -2,6 +2,7 @@ $(document).ready(function () {
 
 
     updateQuizResultPage();
+    updateQuestionsTable();
     showQuizzes();
 
 
@@ -93,7 +94,7 @@ function updateQuizResultPage() {
                 doc.setFontSize(30);
                 doc.setTextColor("#000000");
                 doc.setFontType('normal');
-                doc.text(20, 160, response['title'] + "Quiz");
+                doc.text(20, 160, response['title'] + " Quiz");
 
 
                 let today = new Date().toISOString().slice(0, 10);
@@ -146,5 +147,42 @@ function showQuizzes() {
         }
     });
 }//end of showQuizzes
+
+
+function updateQuestionsTable() {
+
+    var shuffledQuestionsArr = JSON.parse(sessionStorage.getItem("shuffledQuestionsArr"));
+    var questionsArr = sessionStorage.getItem("questionsArr").split("SPACE");
+    var savedAnswers = JSON.parse(sessionStorage.getItem("savedAnswers"));
+    var correctQ = JSON.parse(sessionStorage.getItem("correctQ"));
+    var pcorrectQ = JSON.parse(sessionStorage.getItem("pcorrectQ"));
+
+
+    var output = "";
+    for (var i = 0; i < shuffledQuestionsArr.length; i++) {
+        var status = "";
+        // + "<td>" + savedAnswers[i] + "</td>"
+        if (correctQ.includes(shuffledQuestionsArr[i])) {
+            status = "<td class='text-success'> Correct </td>";
+        } else if (pcorrectQ.includes(shuffledQuestionsArr[i])) {
+            status = "<td class='text-warning'> Partially Correct </td>";
+        } else {
+            status = "<td class='text-danger'> Incorrect </td>";
+        }
+
+        /*
+         if (userAnswer.includes(",")) {
+         userAnswer = userAnswer.join();
+         } 
+         */
+        output += "<tr><td>" + questionsArr[i] + "</td>"
+                + "<td>" + savedAnswers[i]['user_answer'] + "</td>"
+                + status
+                + "</tr>";
+    }//end of table for loop
+
+    $("#questionsTable tbody").html(output);
+
+}//end of updateQuestionsTable
 
 

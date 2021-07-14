@@ -240,7 +240,7 @@ function addQuestionLogic() {
                             success: function (response) {
                                 var buttonAdd = "<a class='btn d-flex align-items-center' href='addQuizQuestionPage.php?quiz_id=" + response + "' role='button' style='background-color: #00D207; color:#fff'><i class='bx bx-sm bx-plus'></i>Add Another Question</a>";
                                 $('#publish_question_modal .modal-footer').append(buttonAdd);
-                                $('#publish_question_modal').modal('show');
+                                $('#publish_question_modal').modal('show'); 
                             },
                             error: function (obj, textStatus, errorThrown) {
                                 console.log("Error " + textStatus + ": " + errorThrown);

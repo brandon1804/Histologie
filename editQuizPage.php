@@ -11,6 +11,16 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
     if ($accountType !== "staff") {
         header("Location: http://localhost/Histologie/accessDeniedPage.php");
         exit();
+    } else {
+        $quizCategories = array();
+        $query = "SELECT * FROM quiz_category";
+        $result = mysqli_query($link, $query);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $quizCategories[] = $row;
+        }
+
+        include("AdministratorPHPFiles/getQuizImage.php");
     }
 }//end of account type validation
 ?>
@@ -22,7 +32,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Add Question</title>
+        <title>Edit Quiz</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="icon.png">
@@ -31,7 +41,7 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="css/addQuizQuestion.css">
+        <link rel="stylesheet" href="css/editQuizPage.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
@@ -43,7 +53,7 @@ and open the template in the editor.
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/additional-methods.min.js" type="text/javascript"></script>
-        <script src="js/addQuizQuestion.js" type="text/javascript"></script>
+        <script src="js/editQuizPage.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="wrapper">
@@ -87,75 +97,96 @@ and open the template in the editor.
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
                     <h1 id="headerTitle"></h1>
-                    <div id="addQuestionContent" class="mt-4 mb-4">
+                    <h1 id="imageName"><?php echo $filename; ?></h1>
+                    <div id="addQuizContent" class="mt-4 mb-4">
                         <div class="col-12">
                             <div class="card shadow" style="border-color: #fff; border-radius: 10px;">
                                 <div class="card-body">
-                                    <h1 class="card-title mb-4">Add Question</h1>
-                                    <form id="addQuestionForm" enctype="multipart/form-data">
-                                        <input id='files' name="files[]" multiple type="file" data-show-upload="false" accept="image/*" data-browse-on-zone-click="true" data-msg-placeholder="Select images for upload (Optional)">
+                                    <h1 class="card-title mb-4" id="quizTitle"></h1>
+                                    <form id="editQuizForm" enctype="multipart/form-data"> 
+                                        <input id='quizImageUpload' name="quizImage" type="file" data-show-upload="false" accept="image/*" data-browse-on-zone-click="true" data-msg-placeholder="Select image for upload">
+                                        <small class="form-text text-muted">Click on the dropzone or browse button to replace the existing image.</small>
                                         <div class="form-group mt-3">
-                                            <label for="question">Question</label>
-                                            <textarea class="form-control" name="question" rows="3" placeholder="Enter the question"></textarea>
+                                            <label for="title">Title</label>
+                                            <input type="text" class="form-control" name="title" placeholder="Enter the quiz title">
                                         </div>
                                         <div class="form-group">
-                                            <label for="questionType">Question Type</label>
-                                            <select class="form-control" name="questionTypeSelect" id="questionType" required>
-                                                <option value="">Select Question Type</option>
-                                                <option value="0">Multiple Choice Question</option>
-                                                <option value="1">Fill in the blanks</option>
-                                                <option value="2">Drop-down</option>
-                                            </select>
+                                            <label for="summary">Summary</label>
+                                            <input type="text" class="form-control" name="summary" placeholder="A short summary of the quiz">
                                         </div>
                                         <div class="form-group">
-                                            <label for="questionScore">Question Score</label>
-                                            <input type="text" class="form-control" name="questionScore" placeholder="Enter the question score">
+                                            <label>Use Existing Category</label><br>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="categoryYN" id="categoryY" value="Yes">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="categoryYN" id="categoryN" value="No">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                            <br><label for="categoryYN" class="error" style="display:none;">Please specify whether you are using an existing category</label>
+                                        </div>
+                                        <div class="form-group" id ="quizCategorySelectContent">
+                                            <label for="quizCategoryChooser">Select Quiz Category</label>
+                                            <select class="form-control" id="quizCategoryChooser" required>
+                                                <option value="">Select Quiz Category</option>
+                                                <?php
+                                                for ($i = 0; $i < count($quizCategories); $i++) {
+                                                    ?>
+                                                    <option value="<?php echo $quizCategories[$i]['quizcategory_id']; ?>"><?php echo $quizCategories[$i]['category_name']; ?></option>                 
+                                                <?php } ?>        
+                                            </select>
+                                        </div>
+                                        <div class="form-group" id ="quizCategoryInputContent">
+                                            <label for="quizCategoryInput">Quiz Category</label>
+                                            <input type="text" class="form-control" name="quizCategoryInput" placeholder="Enter the quiz's category" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="questionAnswer">Question Answer</label>
-                                            <input type="text" class="form-control" name="questionAnswer" placeholder="Enter the question's answer(s)">
+                                            <label>Time Limit</label><br>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="timeLimitYN" id="timeLimitY" value="Yes">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="timeLimitYN" id="timeLimitN" value="No">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                            <br><label for="timeLimitYN" class="error" style="display:none;">Please specify whether there is a time limit</label>
                                         </div>
-                                        <div class="form-group" id='optionsCountDiv'>
-                                            <hr/>
-                                            <label for="optionsCount">Number of options</label>
-                                            <select class="form-control" name="optionsCountSelect" id="optionsCount" required>
-                                                <option value="">Select Question Type</option>
-                                                <option value=2 selected>2</option>
-                                                <option value=3>3</option>
-                                                <option value=4>4</option>
-                                            </select>
-                                        </div>
-                                        <div id='questionOptionsTextFields'>
-                                        </div>
-                                        <div class="form-group" id='inputsCountDiv'>
-                                            <hr/>
-                                            <label for="inputsCount">Number of inputs</label>
-                                            <select class="form-control" id="inputsCount" required>
-                                                <option value=1 selected>1</option>
-                                                <option value=2>2</option>
-                                                <option value=3>3</option>
-                                                <option value=4>4</option>
-                                            </select>
+                                        <div id="timeLimit">
+                                            <label>Set Time Limit</label>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group" id="minutesSelect">
+
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group" id="secondsSelect">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
-                                            <button type="submit" id = "saveBtn" class="btn btn-primary d-flex align-items-center"><i class='bx bx-sm bx-save'></i>Save Changes</button>
+                                            <button type="submit" id = "submitEditQuizBtn" class="btn btn-primary d-flex align-items-center"><i class='bx bx-sm bx-save'></i>Save Changes</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="question_exists_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="category_exists_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Question Already Exists!</h5>
+                                    <h5 class="modal-title">Category Already Exists!</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p style="color: black">Please change your question.</p>
+                                    <p style="color: black">Please change your category.</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -163,18 +194,18 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
-                    <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="publish_question_modal">
+                    <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="editing_done_modal">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Question Published!</h5>
+                                    <h5 class="modal-title">Quiz Successfully Edited!</h5>
                                 </div>
                                 <div class="modal-body text-center"> 
                                     <div class="modal-body text-center">
-                                        <p style="color: black">The question has been published, would you like to ?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a class="btn btn-primary d-flex align-items-center" href="manageQuizzes.php" role="button"><i class='bx bx-sm bx-edit-alt'></i>Manage Quizzes</a>
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;  color: #E11A7A;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div><br><br>
+                                        <p style="color: black">The quiz has been edited successfully, you will be redirected to the manage quizzes page shortly.</p>
                                     </div>
                                 </div>
                             </div>
