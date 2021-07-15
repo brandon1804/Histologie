@@ -122,6 +122,21 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
+                    <h1 class="mt-5 mb-4">Questions</h1>
+                    <div class="card shadow mb-4" style="border-color: #fff; border-radius: 20px;">
+                        <div class="table-responsive">
+                            <table id="questionsTable" class="table table-borderless" cellspacing="0" width="100%">
+                                <thead style="background-color: #fafafa;">
+                                    <tr>
+                                        <th>Question</th>
+                                        <th>Your Answer</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table> 
+                        </div>
+                    </div>
                     <h1 class="mb-2">More Quizzes</h1>
                     <div id="quizzesRow" class="row flex-row">
                     </div>

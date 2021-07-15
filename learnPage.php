@@ -75,6 +75,7 @@ mysqli_close($link);
                 width: 69rem;
                 height: 18rem;
                 margin-right: 60px;
+                margin-left: 10px;
             }
             .img-fluid{
                 width: 25rem;
@@ -92,6 +93,38 @@ mysqli_close($link);
             .card-body2{
                 align-content: center;
                 justify-content: center;
+            }
+            .card3{
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                border-radius: 20px;
+                margin-right: 60px;
+                width: 20rem;
+                height: 22rem;
+            }
+            .card-body3{
+                margin-right: 10px;
+                margin-left: 10px;
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+            .card-title3{
+                margin-left: 10px;
+                margin-top: 20px;
+            }
+            .card-subtitle3{
+                margin-left: 10px;
+            }
+            .progress{
+                margin-left: 10px;
+            }
+            .btn{
+                margin-left: 5px;
+            }
+            .card-img-top{
+                width: 20rem;
+                height: 10rem;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
             }
         </style>
     </head>
@@ -113,6 +146,42 @@ mysqli_close($link);
                             <option value="<?php echo $lessonCategories[$i]['lesson_category_id']; ?>"><?php echo $lessonCategories[$i]['name']; ?></option>                 
                         <?php } ?> 
                     </select>
+                </div>
+            </div>
+            </br>
+            <h4>In Progress:</h4>
+            <div class="row">
+                <div class="column">
+                    <div class="card3">
+                        <img class="card-img-top" src="img/Small Intestine.PNG" />
+                        <div class="card-body3">
+                            <div class="card-body4">
+                                <h5 class="card-title3">Lungs</h5>
+                                <h6 class="card-subtitle3 text-muted">Last attempt: 12/07/2021</h6>
+                            </div>  
+                            </br>
+                            <div class="progress">
+                                <div class="progress-bar bg-blue" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>             
+                            </div>
+                            </br>
+                            <a href="faq.php" class="btn btn-primary">Resume lesson</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card3">
+                        <img class="card-img-top" src="img/Small Intestine.PNG" />
+                        <div class="card-body3">
+                            <h5 class="card-title3">Small Intestine</h5>
+                            <h6 class="card-subtitle3 text-muted">Last attempt: 14/07/2021</h6>
+                            </br>
+                            <div class="progress">
+                                <div class="progress-bar bg-blue" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>             
+                            </div>
+                            </br>
+                            <a href="faq.php" class="btn btn-primary">Resume lesson</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             </br>
