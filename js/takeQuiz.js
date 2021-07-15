@@ -260,7 +260,7 @@ quizLogic(function (response) {
                     //console.log(marks);
 
                     insertStudentQuizRecord(quiz_id, marks);
-                    alert('Call');
+                    //alert('Call');
                     sessionStorage.setItem("shuffledQuestionsArr", JSON.stringify(shuffledQuestionsArr));
                     sessionStorage.setItem("savedAnswers", JSON.stringify(savedAnswers));
                     sessionStorage.setItem("pcorrectQ", JSON.stringify(pcorrectQ));
