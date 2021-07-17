@@ -14,9 +14,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
     }
 }//end of account type validation
 
-$id = $_GET['id'];
-
-include("AdministratorPHPFiles\getNumOfQuizQuestions.php");
+if (isset($_GET['quiz_id'])) {
+    $id = $_GET['quiz_id'];
+} else {
+    header("Location: http://localhost/Histologie/manageQuizzes.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -89,7 +92,6 @@ and open the template in the editor.
             <div id="content">
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
-                    <h1 id="quizNumOfQuestions" hidden><?php echo $quizNumOfQuestions; ?></h1>
                     <div class="row justify-content-between mb-3"> 
                         <div class="col-6">
                             <h1 id="quizTitle"></h1>

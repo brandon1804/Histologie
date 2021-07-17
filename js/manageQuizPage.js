@@ -21,30 +21,32 @@ $(document).ready(function () {
 
     $("#questionsTable").on("click", ".btnDelete", function () {
         var id = $(this).val();
-        var numOfQuestions = $('#quizNumOfQuestions').html();
 
-        if (numOfQuestions >= 2) {
-            $("#delete_question_modal").modal('show');
-            $("#delete_question_modal .btnDeleteQuestion").on("click", function () {
-                $.ajax({
-                    type: "GET",
-                    url: "AdministratorPHPFiles/deleteQuizQuestion.php",
-                    cache: false,
-                    data: "question_id=" + id + "&quiz_id=" + quiz_id,
-                    dataType: "JSON",
-                    success: function (response) {
+        $("#delete_question_modal").modal('show');
+        $("#delete_question_modal .btnDeleteQuestion").on("click", function () {
+            $.ajax({
+                type: "GET",
+                url: "AdministratorPHPFiles/deleteQuizQuestion.php",
+                cache: false,
+                data: "question_id=" + id + "&quiz_id=" + quiz_id,
+                dataType: "JSON",
+                success: function (response) {
+                    if(response === true){
                         reload_table();
                         $("#delete_question_modal").modal('hide');
-                    },
-                    error: function (obj, textStatus, errorThrown) {
-                        console.log("Error " + textStatus + ": " + errorThrown);
                     }
-                });
-            });//end of result true
-        }//end of questions validation
-        else {
-            $("#question_validation_modal").modal('show');
-        }
+                    else if(response === false){
+                        $("#delete_question_modal").modal('hide');
+                        $("#question_validation_modal").modal('show');
+                    } 
+                 
+                },
+                error: function (obj, textStatus, errorThrown) {
+                    console.log("Error " + textStatus + ": " + errorThrown);
+                }
+            });
+        });//end of result true
+
     });//end of delete question
 
 
