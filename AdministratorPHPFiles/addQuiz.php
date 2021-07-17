@@ -25,7 +25,7 @@ if (isset($_POST)) {
 
 
     if ($categoryYN == "No") {
-        $insertCategoryQuery = "INSERT INTO quiz_category(category_name) VALUES ('$title')";
+        $insertCategoryQuery = "INSERT INTO quiz_category(category_name) VALUES ('$quizCategory')";
 
         $categoryInsertResult = mysqli_query($link, $insertCategoryQuery) or die(mysqli_error($link));
 
@@ -43,8 +43,6 @@ if (isset($_POST)) {
         if (!empty($catIDRow)) {
             $quizCategory = $catIDRow['catID'];
         }
-        
-  
     }//end of custom category
 
     $insertQuizQuery = "INSERT INTO quiz(quizcategory_id, duration, score, title, summary, questions) 
@@ -186,6 +184,8 @@ if (isset($_POST)) {
     }//end of no images
 
 
-    echo $quizID;
+    if ($isInserted) {
+        echo $quizID;
+    }
 }//end of POST validation
 ?>

@@ -105,7 +105,7 @@ and open the template in the editor.
                                     <h1 class="card-title mb-4" id="quizTitle"></h1>
                                     <form id="editQuizForm" enctype="multipart/form-data"> 
                                         <input id='quizImageUpload' name="quizImage" type="file" data-show-upload="false" accept="image/*" data-browse-on-zone-click="true" data-msg-placeholder="Select image for upload">
-                                        <small class="form-text text-muted">Click on the dropzone or browse button to replace the existing image.</small>
+                                        <small class="form-text text-primary">Click on the dropzone or browse button to replace the existing image.</small>
                                         <div class="form-group mt-3">
                                             <label for="title">Title</label>
                                             <input type="text" class="form-control" name="title" placeholder="Enter the quiz title">
@@ -180,7 +180,7 @@ and open the template in the editor.
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Category Already Exists!</h5>
+                                    <h5 class="modal-title text-danger">Category Already Exists!</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -205,7 +205,7 @@ and open the template in the editor.
                                         <div class="spinner-border" style="width: 3rem; height: 3rem;  color: #E11A7A;" role="status">
                                             <span class="sr-only">Loading...</span>
                                         </div><br><br>
-                                        <p style="color: black">The quiz has been edited successfully, you will be redirected to the manage quizzes page shortly.</p>
+                                        <p style="color: black">The quiz has been edited successfully, you will be redirected to the manage quiz page shortly.</p>
                                     </div>
                                 </div>
                             </div>

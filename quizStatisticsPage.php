@@ -91,7 +91,7 @@ and open the template in the editor.
                                 <h1 id="quizTitle"></h1>
                             </div>
                             <div class="col-6 d-flex justify-content-end align-items-center">
-                                <a class="btn btn-primary d-flex align-items-center" href="managequizPage.php?id=<?php echo $id ?>" role="button"><i class='bx bx-sm bx-pencil mr-1'></i>Manage Quiz</a>
+                                <a class="btn btn-primary d-flex align-items-center" href="managequizPage.php?quiz_id=<?php echo $id ?>" role="button"><i class='bx bx-sm bx-pencil mr-1'></i>Manage Quiz</a>
                             </div>
                         </div>
                         <div id="infoRow" class="row">

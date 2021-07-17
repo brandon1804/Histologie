@@ -206,7 +206,7 @@ function editQuizLogic() {
                     success: function (response) {
                         $('#editing_done_modal').modal('show');
                         setTimeout(function () {
-                            window.location.href = "manageQuizzes.php";
+                             window.location.href = "manageQuizPage.php?quiz_id=" + quiz_id;
                         }, 1500);
                     },
                     error: function (obj, textStatus, errorThrown) {
@@ -253,7 +253,7 @@ function editQuizLogic() {
                                 success: function (response) {
                                     $('#editing_done_modal').modal('show');
                                     setTimeout(function () {
-                                        window.location.href = "manageQuizzes.php";
+                                        window.location.href = "manageQuizPage.php?quiz_id=" + quiz_id;
                                     }, 1500);
                                 },
                                 error: function (obj, textStatus, errorThrown) {

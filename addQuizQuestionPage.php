@@ -13,6 +13,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
         exit();
     }
 }//end of account type validation
+
+if (isset($_GET['quiz_id'])) {
+    $id = $_GET['quiz_id'];
+} else {
+    header("Location: http://localhost/Histologie/manageQuizzes.php");
+    exit();
+}//end of quiz id validation
 ?>
 <!DOCTYPE html>
 <!--
@@ -114,12 +121,13 @@ and open the template in the editor.
                                         <div class="form-group">
                                             <label for="questionAnswer">Question Answer</label>
                                             <input type="text" class="form-control" name="questionAnswer" placeholder="Enter the question's answer(s)">
+                                            <small class="form-text text-primary" id="answersInfo">Please separate the answers with a comma. Eg. Answer A, Answer B</small>
                                         </div>
                                         <div class="form-group" id='optionsCountDiv'>
                                             <hr/>
                                             <label for="optionsCount">Number of options</label>
                                             <select class="form-control" name="optionsCountSelect" id="optionsCount" required>
-                                                <option value="">Select Question Type</option>
+                                                <option value="">Select number of options</option>
                                                 <option value=2 selected>2</option>
                                                 <option value=3>3</option>
                                                 <option value=4>4</option>

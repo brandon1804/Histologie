@@ -15,17 +15,6 @@ if (isset($_POST)) {
     $questionOption = $_POST['questionOption'];
     $insertAmount = $_POST['insertAmount'];
 
-    $marksQuery = "SELECT score, questions FROM quiz WHERE quiz_id = $quizID";
-
-    $marksResult = mysqli_query($link, $marksQuery) or die(mysqli_error($link));
-
-    $marksRow = mysqli_fetch_assoc($marksResult);
-
-    if (!empty($marksRow)) {
-        $quizMarks = $marksRow['score'];
-        $quizQuestions = $marksRow['questions'];
-    }
-
 
 
     $insertQuizQuestionQuery = "INSERT INTO quiz_question(quiz_id, question_type, question_score, question) 
@@ -120,8 +109,19 @@ if (isset($_POST)) {
         $noImageInsertResult = mysqli_query($link, $noImageQuery) or die(mysqli_error($link));
     }//end of no images
 
-    
-    
+
+    $marksQuery = "SELECT score, questions FROM quiz WHERE quiz_id = $quizID";
+
+    $marksResult = mysqli_query($link, $marksQuery) or die(mysqli_error($link));
+
+    $marksRow = mysqli_fetch_assoc($marksResult);
+
+    if (!empty($marksRow)) {
+        $quizMarks = $marksRow['score'];
+        $quizQuestions = $marksRow['questions'];
+    }
+
+
     $quizMarks += $questionScore;
     $quizQuestions += 1;
 
@@ -135,7 +135,8 @@ if (isset($_POST)) {
     else {
         $isInserted = false;
     }
-
-    echo $quizID;
+    if ($isInserted) {
+        echo $quizID;
+    }
 }//end of POST validation
 ?>

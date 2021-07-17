@@ -16,6 +16,6 @@ if (isset($_GET['id'])) {
         $quizNumOfQuestions = $row['questions'];
     }
     
-
+    echo json_encode($quizNumOfQuestions);
 }
 ?>

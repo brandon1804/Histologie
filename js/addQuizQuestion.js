@@ -22,6 +22,7 @@ function addQuestionLogic() {
 
     $('#optionsCountDiv').hide();
     $('#inputsCountDiv').hide();
+    $("#answersInfo").hide();
 
 
     //add question global variables 
@@ -43,11 +44,13 @@ function addQuestionLogic() {
         if (this.value === '') {
             $('#inputsCountDiv').hide();
             $('#optionsCountDiv').hide();
+            $("#answersInfo").hide();
             $('#questionOptionsTextFields').html("");
         }//end of mcq
 
         else if (this.value === '0') {
             questionType = "MCQ";
+            $("#answersInfo").hide();
             $('#inputsCountDiv').hide();
             $('#optionsCountDiv').show();
             var optionAmount = $("#optionsCount option:selected").val();
@@ -66,12 +69,23 @@ function addQuestionLogic() {
             $('#optionsCountDiv').hide();
             $('#questionOptionsTextFields').html("");
             $('#inputsCountDiv').show();
+
+            var inputsAmount = $("#inputsCount option:selected").val();
+            if (inputsAmount >= 2) {
+                $("#answersInfo").show();
+            }
         }//end of fib
 
         else if (this.value === '2') {
             questionType = "FIBWO";
             $('#optionsCountDiv').show();
             $('#inputsCountDiv').show();
+
+            var inputsAmount = $("#inputsCount option:selected").val();
+            if (inputsAmount >= 2) {
+                $("#answersInfo").show();
+            }
+
             var optionAmount = $("#optionsCount option:selected").val();
             var optionOutput = "";
             for (var i = 0; i < optionAmount; i++) {
@@ -97,7 +111,13 @@ function addQuestionLogic() {
         $('#questionOptionsTextFields').html(output);
     }); //end of optionsCount
 
-
+    $("#inputsCount").change(function () {
+        if (this.value >= 2) {
+            $("#answersInfo").show();
+        } else {
+            $("#answersInfo").hide();
+        }
+    }); //end of inputsCount
 
     $.validator.addMethod("uniqueOption", function (value, element) {
         var parentForm = $(element).closest('form');
@@ -155,6 +175,13 @@ function addQuestionLogic() {
             questionScore = $("input[name='questionScore']").val();
             questionAnswer = $("input[name='questionAnswer']").val();
 
+            if (question.includes("'")) {
+                question = question.replace(/'/g, "\\'");
+            }
+
+            if (questionAnswer.includes("'")) {
+                questionAnswer = questionAnswer.replace(/'/g, "\\'");
+            }
 
             $.ajax({
                 type: "GET",
@@ -176,7 +203,7 @@ function addQuestionLogic() {
                         formData.append("question", question);
                         formData.append("questionScore", questionScore);
                         formData.append("questionAnswer", questionAnswer);
-                        formData.append("questionType", questionType);
+
 
                         if (questionType === 'MCQ') {
                             var optionsCount = $("#optionsCount option:selected").val();
@@ -190,6 +217,10 @@ function addQuestionLogic() {
                                 }
                             }//end of options for loop
 
+                            if (optionsStr.includes("'")) {
+                                optionsStr = optionsStr.replace(/'/g, "\\'");
+                            }
+                            formData.append("questionType", questionType);
                             formData.append("questionOption", optionsStr);
                             formData.append("insertAmount", 1);
                         }//end of mcq
@@ -205,6 +236,11 @@ function addQuestionLogic() {
                                 }
                             }//end of options for loop
 
+                            if (optionsStr.includes("'")) {
+                                optionsStr = optionsStr.replace(/'/g, "\\'");
+                            }
+
+                            formData.append("questionType", questionType);
                             formData.append("questionOption", optionsStr);
                             formData.append("insertAmount", inputsCount);
 
@@ -217,6 +253,7 @@ function addQuestionLogic() {
                             var optionsCount = $("#optionsCount option:selected").val();
                             var optionsStr = "";
 
+
                             for (var i = 0; i < optionsCount; i++) {
                                 if (i === 0) {
                                     optionsStr += ($("input[name='questionOption" + i + "']").val());
@@ -225,6 +262,13 @@ function addQuestionLogic() {
                                 }
                             }//end of options for loop
 
+
+                            if (optionsStr.includes("'")) {
+                                optionsStr = optionsStr.replace(/'/g, "\\'");
+                            }
+
+
+                            formData.append("questionType", questionType);
                             formData.append("questionOption", optionsStr);
                             formData.append("insertAmount", inputsCount);
                         }//end of FIBWO
@@ -240,12 +284,13 @@ function addQuestionLogic() {
                             success: function (response) {
                                 var buttonAdd = "<a class='btn d-flex align-items-center' href='addQuizQuestionPage.php?quiz_id=" + response + "' role='button' style='background-color: #00D207; color:#fff'><i class='bx bx-sm bx-plus'></i>Add Another Question</a>";
                                 $('#publish_question_modal .modal-footer').append(buttonAdd);
-                                $('#publish_question_modal').modal('show'); 
+                                $('#publish_question_modal').modal('show');
                             },
                             error: function (obj, textStatus, errorThrown) {
                                 console.log("Error " + textStatus + ": " + errorThrown);
                             }
                         });
+
                     }//end of false
                     else if (qExists === true) {
                         $('#question_exists_modal').modal('show');
