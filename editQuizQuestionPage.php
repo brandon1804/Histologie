@@ -14,8 +14,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
     }
 }//end of account type validation
 
-if (isset($_GET['quiz_id'])) {
-    $id = $_GET['quiz_id'];
+if (isset($_GET['quiz_id']) && isset($_GET['question_id'])) {
+    $quizId = $_GET['quiz_id'];
+    $questionId = $_GET['question_id'];
 } else {
     header("Location: http://localhost/Histologie/manageQuizzes.php");
     exit();
@@ -29,7 +30,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Add Question</title>
+        <title>Edit Question</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="icon.png">
@@ -38,7 +39,7 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.2/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="css/addQuizQuestion.css">
+        <link rel="stylesheet" href="css/editQuizQuestionPage.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
@@ -50,7 +51,7 @@ and open the template in the editor.
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/additional-methods.min.js" type="text/javascript"></script>
-        <script src="js/addQuizQuestion.js" type="text/javascript"></script>
+        <script src="js/editQuizQuestion.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="wrapper">
@@ -94,14 +95,16 @@ and open the template in the editor.
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
                     <h1 id="headerTitle"></h1>
-                    <div id="addQuestionContent" class="mt-4 mb-4">
+                    <div id="editQuestionContent" class="mt-4 mb-4">
                         <div class="col-12">
                             <div class="card shadow" style="border-color: #fff; border-radius: 10px;">
                                 <div class="card-body">
-                                    <h1 class="card-title mb-4">Add Question</h1>
-                                    <form id="addQuestionForm" enctype="multipart/form-data">
+                                    <h1 id="quizId" hidden><?php echo $quizId ?></h1>
+                                    <h1 id="questionId" hidden><?php echo $questionId ?></h1>
+                                    <h1 class="card-title mb-4">Edit Question</h1>
+                                    <form id="editQuestionForm" enctype="multipart/form-data">
                                         <input id='files' name="files[]" multiple type="file" data-show-upload="false" accept="image/*" data-browse-on-zone-click="true" data-msg-placeholder="Select images for upload (Optional)">
-                                        <small class="form-text text-primary">Click on the dropzone or browse button to add new images and select the images in the order you want them to display if you have multiple images.</small>
+                                        <small class="form-text text-primary">Click on the dropzone or browse button to add new images or replace the existing image(s) and select the images in the order you want them to display if you have multiple images.</small>
                                         <div class="form-group mt-3">
                                             <label for="question">Question</label>
                                             <textarea class="form-control" name="question" rows="3" placeholder="Enter the question"></textarea>
@@ -147,7 +150,7 @@ and open the template in the editor.
                                             </select>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
-                                            <button type="submit" id = "saveBtn" class="btn btn-primary d-flex align-items-center"><i class='bx bx-sm bx-plus'></i>Add Question</button>
+                                            <button type="submit" id = "saveBtn" class="btn btn-primary d-flex align-items-center"><i class='bx bx-sm bx-save'></i>Save Changes</button>
                                         </div>
                                     </form>
                                 </div>
@@ -172,18 +175,18 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
-                    <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="publish_question_modal">
+                    <div class="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" id="editing_done_modal">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Question Published!</h5>
+                                    <h5 class="modal-title">Question Successfully Updated!</h5>
                                 </div>
                                 <div class="modal-body text-center"> 
                                     <div class="modal-body text-center">
-                                        <p style="color: black">The question has been published, would you like to ?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a class="btn btn-primary d-flex align-items-center" href="manageQuizzes.php" role="button"><i class='bx bx-sm bx-edit-alt'></i>Manage Quizzes</a>
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;  color: #E11A7A;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div><br><br>
+                                        <p style="color: black">The question has been updated successfully, you will be redirected to the manage quiz page shortly.</p>
                                     </div>
                                 </div>
                             </div>

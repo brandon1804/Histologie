@@ -36,7 +36,7 @@ function updateQuizResultPage() {
                 $(".circlechart").text("Good try!");
             }
 
-            var description = "I got " + userScore + " out of " + quizScore + " marks for the " + response['title'] + "Quiz on Histologie!";
+            var description = "I got " + userScore + " out of " + quizScore + " marks for the " + response['title'] + " Quiz on Histologie!";
 
             $('#shareBlock').cShare({
                 description: description,

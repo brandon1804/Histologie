@@ -721,6 +721,3 @@ function insertStudentQuizRecord(quiz_id, marks) {
     });
 
 }//end of insertStudentQuizRecord
-
-
-

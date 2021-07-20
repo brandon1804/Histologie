@@ -179,6 +179,7 @@ and open the template in the editor.
                                     <h1 class="card-title mb-4">Add Question</h1>
                                     <form id="addQuestionForm" enctype="multipart/form-data">
                                         <input id='files' name="files[]" multiple type="file" data-show-upload="false" accept="image/*" data-browse-on-zone-click="true" data-msg-placeholder="Select images for upload (Optional)">
+                                        <small class="form-text text-primary">Click on the dropzone or browse button to add new images and select the images in the order you want them to display if you have multiple images.</small>
                                         <div class="form-group mt-3">
                                             <label for="question">Question</label>
                                             <textarea class="form-control" name="question" rows="3" placeholder="Enter the question"></textarea>
@@ -199,7 +200,7 @@ and open the template in the editor.
                                         <div class="form-group">
                                             <label for="questionAnswer">Question Answer</label>
                                             <input type="text" class="form-control" name="questionAnswer" placeholder="Enter the question's answer(s)">
-                                             <small class="form-text text-primary" id="answersInfo">Please separate the answers with a comma. Eg. Answer A, Answer B</small>
+                                            <small class="form-text text-primary" id="answersInfo">Please separate the answers with a comma. Eg. Answer A, Answer B</small>
                                         </div>
                                         <div class="form-group" id='optionsCountDiv'>
                                             <hr/>
@@ -224,9 +225,7 @@ and open the template in the editor.
                                             </select>
                                         </div>
                                         <div class="d-flex flex-row-reverse mt-4">
-                                            <div class='row'> 
-                                                <button type="submit" id = "saveBtn" class="btn btn-success d-flex align-items-center"><i class='bx bx-sm bx-save'></i>Save Changes</button>
-                                            </div>
+                                            <button type="submit" id = "saveBtn" class="btn btn-primary d-flex align-items-center"><i class='bx bx-sm bx-save'></i>Save Changes</button>
                                         </div>
                                     </form>
                                 </div>

@@ -47,7 +47,34 @@ if (isset($_GET['quiz_id'])) {
     }
 
 
-    $query = "DELETE FROM quiz WHERE quiz_id='$id'";
+    $quizCatQuery = "SELECT quizcategory_id FROM quiz WHERE quiz_id = $id";
+
+    $quizCatResult = mysqli_query($link, $quizCatQuery) or die(mysqli_error($link));
+
+    $quizCatRow = mysqli_fetch_assoc($quizCatResult);
+
+    if (!empty($quizCatRow)) {
+        $quizCategoryId = $quizCatRow['quizcategory_id'];
+    }
+
+
+    $quizzesQuery = "SELECT COUNT(Q.quiz_id) AS 'quizCount' FROM quiz Q INNER JOIN quiz_category QC ON Q.quizcategory_id = QC.quizcategory_id WHERE QC.quizcategory_id = $quizCategoryId GROUP BY QC.quizcategory_id";
+
+    $quizzesResult = mysqli_query($link, $quizzesQuery) or die(mysqli_error($link));
+
+    $quizzesRow = mysqli_fetch_assoc($quizzesResult);
+
+    if (!empty($quizzesRow)) {
+        $quizzesCount = $quizzesRow['quizCount'];
+    }
+
+
+    if ($quizzesCount <= 1) {
+        $query = "DELETE FROM quiz_category WHERE quizcategory_id= $quizCategoryId";
+    }//end of one quiz
+    else if ($quizzesCount > 1) {
+        $query = "DELETE FROM quiz WHERE quiz_id='$id'";
+    }//end of more than one quiz
 
 
     $status = mysqli_query($link, $query) or die(mysqli_error($link));
@@ -57,5 +84,6 @@ if (isset($_GET['quiz_id'])) {
     } else {
         $response["message"] = "Failed";
     }
+
     echo json_encode($response);
-}
+}//end of isset

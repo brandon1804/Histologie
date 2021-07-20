@@ -177,6 +177,7 @@ if (isset($_POST)) {
         }//end of image loop
     }//end of image validation
     else {
+        mkdir("../css/img/quizImg/quiz" . strval($quizID));
         $noImageQuery = "INSERT INTO question_image(question_id, name) 
                 VALUES  
                 ($questionID, 'None')";

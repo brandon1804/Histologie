@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     $("#questionsTable").on("click", ".btnEdit", function () {
         var id = $(this).val();
-        window.location.href = "editQuizQuestionPage.php?question_id=" + id;
+        window.location.href = "editQuizQuestionPage.php?quiz_id=" + quiz_id + "&question_id=" + id;
     });//end of edit question
 
     $("#questionsTable").on("click", ".btnDelete", function () {
@@ -75,7 +75,7 @@ $(document).ready(function () {
                         setTimeout(function () {
                             window.location.href = "manageQuizzes.php";
                         }, 2000);
-                    }//end of success
+                    }//end of success                   
                 },
                 error: function (obj, textStatus, errorThrown) {
                     console.log("Error " + textStatus + ": " + errorThrown);
