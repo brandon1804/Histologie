@@ -17,7 +17,7 @@
             <?php } else { ?>
                 <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="learnPage.php"><b>Home</b></a></li>
                 <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="quizzesPage.php"><b>Quiz</b></a></li>
-                <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href=""><b>Images</b></a></li>
+                <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="imageCategories.php"><b>Images</b></a></li>
                 <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="profilePage.php"><b>Profile</b></a></li>
                 <li class="nav-item active"><a class="nav-link" style="color: #E11A7A" href="doLogout.php"><b>Log Out</b></a></li>
                 <?php } ?>
