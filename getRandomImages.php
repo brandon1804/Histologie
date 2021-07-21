@@ -2,7 +2,7 @@
 
 include "dbFunctions.php";
 
-$query = "SELECT filename,name FROM image ORDER BY RAND() LIMIT 12";
+$query = "SELECT filename,name FROM image WHERE lesson_id IS NULL ORDER BY RAND() LIMIT 12";
 $result = mysqli_query($link, $query);
 
 while ($row = mysqli_fetch_assoc($result)) {

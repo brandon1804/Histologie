@@ -8,7 +8,7 @@
         <meta name="author" content="name">
         <meta name="description" content="description here">
         <meta name="keywords" content="keywords,here">
-        <!--        <link rel="stylesheet" href="css/all.css">-->
+        <link rel="stylesheet" href="css/all.css">-->
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
         <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -16,7 +16,7 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
-<!--        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>-->
+        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>-->
 
         <!--lesson.js-->
         <script src="js/lesson.js" type="text/javascript"></script>
@@ -28,18 +28,18 @@
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     </head>
-    <body class="bg-white font-sans leading-normal tracking-normal">
-
+    
+    <body>
         <?php
         session_start();
         include("navbar.php");
         ?>
 
-        <div class="container max-w-5xl pt-24 mx-auto mt20 pb-16">
+        <div class="container max-w-5xl pt-16 mx-auto mt20 pb-8">
 
             <div class="mx-0 sm:mx-6">
 
-                <div class="rounded-2xl shadow-lg bg-white w-full p-8 leading-normal" style="font-family:Europa,sans-serif;">
+                <div class="rounded-2xl shadow-lg w-full p-8 leading-normal" style="font-family:Europa,sans-serif;">
 
                     <p class="text-center md:text-4xl font-bold mb-5" id="title"></p>
 
