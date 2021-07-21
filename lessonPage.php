@@ -27,9 +27,10 @@
 
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     </head>
-    
-    <body>
+
+    <body class="bg-pink-500">
         <?php
         session_start();
         include("navbar.php");
@@ -39,17 +40,19 @@
 
             <div class="mx-0 sm:mx-6">
 
-                <div class="rounded-2xl shadow-lg w-full p-8 leading-normal" style="font-family:Europa,sans-serif;">
+                <div class="bg-white rounded-2xl shadow-lg w-full p-8 leading-normal" style="font-family:Europa,sans-serif;">
 
                     <p class="text-center md:text-4xl font-bold mb-5" id="title"></p>
 
                     <div id="slider" class="swiper-wrapper swiper-container w-full">
                         <div class="swiper-wrapper" id="swiper-wrapper">
-
+                            <div class="swiper-zoom-container" id="zoom">
+                                
+                            </div>
                         </div>
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>
-                        <div class="swiper-pagination"></div>  
+                        <div class="swiper-pagination"></div>
                     </div>
 
                     <div class="flex justify-evenly pt-8">
@@ -60,7 +63,7 @@
             </div>
         </div>
         <script>
-            var mySwiper = new Swiper('.swiper-container', {
+            var swiper = new Swiper('.swiper-container', {
                 direction: 'horizontal',
                 loop: true,
 
@@ -72,9 +75,8 @@
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
-
-                scrollbar: {
-                    el: '.swiper-scrollbar',
+                zoom: {
+                    maxRatio: 5,
                 },
             })
         </script>

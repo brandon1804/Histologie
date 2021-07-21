@@ -43,6 +43,7 @@ $(document).ready(function () {
                     +  "<img src='./css/img/lessonImage/"+ data.title + "/" + data.slides[i] +"'>"
                     +  "</div>";
         };
-        $("#swiper-wrapper").html(message);
+//        $("#swiper-wrapper").html(message);
+        $("#zoom").html(message);
     }, "JSON");
 });
