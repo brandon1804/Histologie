@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: http://localhost/Histologie/signinpage.php");
+    exit();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,7 +24,7 @@
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>-->
 
-        <!--        lesson.js
+        <!--lesson.js
                 <script src="js/lesson.js" type="text/javascript"></script>-->
 
         <!--swiper-->
