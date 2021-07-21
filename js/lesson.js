@@ -39,11 +39,15 @@ $(document).ready(function () {
         var message = "";
         $("#title").html(data.title);
         for (let i = 0; i < data.slides.length; i++){
-            message += "<div class='swiper-slide'>"
-                    +  "<img src='./css/img/lessonImage/"+ data.title + "/" + data.slides[i] +"'>"
-                    +  "</div>";
+//            message += "<div class='swiper-slide'>"
+//                    +  "<img src='./css/img/lessonImage/"+ data.title + "/" + data.slides[i] +"'>"
+//                    +  "</div>";
+            message += "<div class='swiper-slide' role='group'>"
+                    +  "<div class='swiper-zoom-container' style='transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);'>"
+                    +  "<img src='./css/img/lessonImage/"+ data.title + "/" + data.slides[i] +"' style='transition-duration: 300ms; transform: translate3d(0px, 0px, 0px) scale(1);'>"
+                    +  "</div></div>";
         };
 //        $("#swiper-wrapper").html(message);
-        $("#zoom").html(message);
+        $("#swiper-wrapper-10fc5411034466b78e").html(message);
     }, "JSON");
 });

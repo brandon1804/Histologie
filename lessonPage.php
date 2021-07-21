@@ -44,41 +44,60 @@
 
                     <p class="text-center md:text-4xl font-bold mb-5" id="title"></p>
 
-                    <div id="slider" class="swiper-wrapper swiper-container w-full">
-                        <div class="swiper-wrapper" id="swiper-wrapper">
-                            <div class="swiper-zoom-container" id="zoom">
-                                
-                            </div>
-                        </div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-pagination"></div>
-                    </div>
+                    <!--                    <div id="slider" class="swiper-wrapper swiper-container w-full">
+                                            <div class="swiper-wrapper" id="swiper-wrapper">
+                    
+                                            </div>
+                                            <div class="swiper-button-prev"></div>
+                                            <div class="swiper-button-next"></div>
+                                            <div class="swiper-pagination"></div>
+                                        </div>
+                    
+                                        <div class="flex justify-evenly pt-8">
+                                            <button class="text-white w-1/2 md:w-full mr-1 bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded-lg text-lg" id="nextLesson">Next Lesson</button>
+                                            <button class="text-white w-1/2 md:w-full ml-1 bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded-lg text-lg" id="quiz">Take Quiz</button>
+                                        </div>-->
 
+                    <div id="slider" class="swiper-container swiper-container w-full swiper swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+                        <div class="swiper-wrapper" id="swiper-wrapper-10fc5411034466b78e" aria-live="polite" style="transform: translate3d(-2744px, 0px, 0px); transition-duration: 0ms;">
+<!--                            <div class="swiper-slide" role="group">
+                                <div class="swiper-zoom-container" style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);">
+                                    <img src="./css/img/lessonImage/Lung/slide1.png" style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px) scale(1);">
+                                </div>
+                            </div>
+                            <div class="swiper-slide" role="group">
+                                <div class="swiper-zoom-container" style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);">
+                                    <img src="./css/img/lessonImage/Lung/slide2.png" style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px) scale(1);">
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="swiper-button-next swiper-button-disabled" tabindex="-1" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-10fc5411034466b78e" aria-disabled="true"></div>
+                        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-10fc5411034466b78e" aria-disabled="false"></div>
+                        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"></div>
+                    </div>
+                    <script></script>
                     <div class="flex justify-evenly pt-8">
                         <button class="text-white w-1/2 md:w-full mr-1 bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded-lg text-lg" id="nextLesson">Next Lesson</button>
                         <button class="text-white w-1/2 md:w-full ml-1 bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded-lg text-lg" id="quiz">Take Quiz</button>
                     </div>
                 </div>
             </div>
-        </div>
-        <script>
-            var swiper = new Swiper('.swiper-container', {
-                direction: 'horizontal',
-                loop: true,
+            <script>
+                var swiper = new Swiper('.swiper-container', {
+                    direction: 'horizontal',
+                    zoom: true,
+                    loop: false,
 
-                pagination: {
-                    el: '.swiper-pagination',
-                },
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                    },
 
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                zoom: {
-                    maxRatio: 5,
-                },
-            })
-        </script>
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                })
+            </script>
     </body>
 </html>
