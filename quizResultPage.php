@@ -4,6 +4,11 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: signinpage.php");
     exit();
 }//end of user validation
+
+if (isset($_GET['quiz_id']) == false) {
+    header("Location: quizzesPage.php");
+    exit();
+}//end of quiz id validation
 ?>
 <!DOCTYPE html>
 <!--

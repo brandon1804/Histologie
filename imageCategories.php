@@ -4,7 +4,7 @@ session_start();
 include("dbFunctions.php");
 
 //if (!isset($_SESSION['user_id'])) {
-//    header("Location: http://localhost/Histologie/signinpage.php");
+//    header("Location: signinpage.php");
 //    exit();
 //}//end of user validation
 //else {

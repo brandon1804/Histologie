@@ -2,14 +2,14 @@
 session_start();
 include("dbFunctions.php");
 if (!isset($_SESSION['user_id'])) {
-    header("Location: http://localhost/Histologie/signinpage.php");
+    header("Location: signinpage.php");
     exit();
 }//end of session validation
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
     $accountType = $_SESSION['account_type'];
     if ($accountType !== "staff") {
-        header("Location: http://localhost/Histologie/accessDeniedPage.php");
+        header("Location: accessDeniedPage.php");
         exit();
     } else {
         $quizCategories = array();
@@ -23,6 +23,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
         include("AdministratorPHPFiles/getQuizImage.php");
     }
 }//end of account type validation
+
+if (isset($_GET['quiz_id']) == false) {
+    header("Location: quizzesPage.php");
+    exit();
+}//end of quiz id validation
 ?>
 <!DOCTYPE html>
 <!--

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: http://localhost/Histologie/signinpage.php");
+    header("Location: signinpage.php");
     exit();
 }//end of user validation
 ?>

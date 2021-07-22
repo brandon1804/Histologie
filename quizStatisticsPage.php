@@ -2,19 +2,26 @@
 session_start();
 include("dbFunctions.php");
 if (!isset($_SESSION['user_id'])) {
-    header("Location: http://localhost/Histologie/signinpage.php");
+    header("Location: signinpage.php");
     exit();
 }//end of session validation
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
     $accountType = $_SESSION['account_type'];
     if ($accountType !== "staff") {
-        header("Location: http://localhost/Histologie/accessDeniedPage.php");
+        header("Location: accessDeniedPage.php");
         exit();
     }
 }//end of account type validation
 
-$id = $_GET['id'];
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}//end of id validation
+else {
+    header("Location: manageQuizzes.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <!--

@@ -2,14 +2,14 @@
 session_start();
 include("dbFunctions.php");
 if (!isset($_SESSION['user_id'])) {
-    header("Location: http://localhost/Histologie/signinpage.php");
+    header("Location: signinpage.php");
     exit();
 }//end of session validation
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
     $accountType = $_SESSION['account_type'];
     if ($accountType !== "staff") {
-        header("Location: http://localhost/Histologie/accessDeniedPage.php");
+        header("Location: accessDeniedPage.php");
         exit();
     }
 }//end of account type validation
@@ -18,7 +18,7 @@ if (isset($_GET['quiz_id']) && isset($_GET['question_id'])) {
     $quizId = $_GET['quiz_id'];
     $questionId = $_GET['question_id'];
 } else {
-    header("Location: http://localhost/Histologie/manageQuizzes.php");
+    header("Location: manageQuizzes.php");
     exit();
 }//end of quiz id validation
 ?>
