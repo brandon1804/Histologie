@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: signinpage.php");
-    exit();
-}//end of user validation
-?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -61,24 +54,33 @@ and open the template in the editor.
         include("navbar.php");
         ?>
         <div class="container ">
-            <h3 class="title">Edit Profile</h3></br></br>
 
-            <form id="defaultForm">
-                <div class="form-group">
-                    <label class="label">Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="Update new name" required />
+
+
+            <div class="col-12">
+                <div class="card shadow" style="border-color: white; border-radius: 10px">
+                    <div class="card-body">
+                        <h1 class="card-title mb-4">Edit Profile</h1>
+                        <form id="defaultForm">
+                            <div class="form-group">
+                                <label class="label">Name</label>
+                                <input type="text" class="form-control" name="name" placeholder="Update new name" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Email</label>
+                                <input type="text" class="form-control" name="email" placeholder="Update new email" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label">Password</label>
+                                <input type="text" class="form-control" name="password" placeholder="Update new password" required />
+                            </div>
+                            </br></br>
+                            <input type="submit" value="Done" class="btn btn-primary btn-block"/>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="label">Email</label>
-                    <input type="text" class="form-control" name="email" placeholder="Update new email" required />
-                </div>
-                <div class="form-group">
-                    <label class="label">Password</label>
-                    <input type="text" class="form-control" name="password" placeholder="Update new password" required />
-                </div>
-                </br></br>
-                <input type="submit" value="Done" class="btn btn-primary btn-block"/>
-            </form>
+            </div>
+
         </div>
     </body>
 </html>

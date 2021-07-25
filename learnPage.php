@@ -1,21 +1,23 @@
 <?php
 session_start();
-
 include("dbFunctions.php");
-
 //if (!isset($_SESSION['user_id'])) {
-//    header("Location: signinpage.php");
-//    exit();
+// header("Location: signinpage.php");
+// exit();
 //}//end of user validation
 //else {
-    $lessonCategories = array();
-    $query = "SELECT * FROM lesson_category";
-    $result = mysqli_query($link, $query);
+$lessonCategories = array();
+$query = "SELECT * FROM lesson_category";
+$result = mysqli_query($link, $query);
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $lessonCategories[] = $row;
-    }
+
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $lessonCategories[] = $row;
+}
 //}//end of else
+
+
 
 mysqli_close($link);
 ?>
@@ -81,7 +83,7 @@ mysqli_close($link);
                 width: 25rem;
                 height: 18rem;
                 border-top-left-radius: 20px;
-                border-bottom-left-radius: 20px; 
+                border-bottom-left-radius: 20px;
             }
             .card-title2{
                 margin-left: 10px;
@@ -143,44 +145,38 @@ mysqli_close($link);
                         <?php
                         for ($i = 0; $i < count($lessonCategories); $i++) {
                             ?>
-                            <option value="<?php echo $lessonCategories[$i]['lesson_category_id']; ?>"><?php echo $lessonCategories[$i]['name']; ?></option>                 
-                        <?php } ?> 
+                            <option value="<?php echo $lessonCategories[$i]['lesson_category_id']; ?>"><?php echo $lessonCategories[$i]['name']; ?></option>
+                        <?php } ?>
                     </select>
                 </div>
             </div>
             </br>
             <h4>In Progress:</h4>
             <div class="row">
-                <div class="column">
-                    <div class="card3">
-                        <img class="card-img-top" src="img/Small Intestine.PNG" />
-                        <div class="card-body3">
-                            <div class="card-body4">
-                                <h5 class="card-title3">Lungs</h5>
-                                <h6 class="card-subtitle3 text-muted">Last attempt: 12/07/2021</h6>
-                            </div>  
-                            </br>
-                            <div class="progress">
-                                <div class="progress-bar bg-blue" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>             
-                            </div>
-                            </br>
-                            <a href="faq.php" class="btn btn-primary">Resume lesson</a>
+                <div class="card3">
+                    <img class="card-img-top" src="img/Small Intestine.PNG" />
+                    <div class="card-body3">
+                        <h5 class="card-title3">Small Intestine</h5>
+                        <h6 class="card-subtitle3 text-muted">Last attempt: 14/07/2021</h6>
+                        </br>
+                        <div class="progress">
+                            <div class="progress-bar bg-blue" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
                         </div>
+                        </br>
+                        <a href="lessonPage.php" class="btn btn-primary">Resume lesson</a>
                     </div>
                 </div>
-                <div class="column">
-                    <div class="card3">
-                        <img class="card-img-top" src="img/Small Intestine.PNG" />
-                        <div class="card-body3">
-                            <h5 class="card-title3">Small Intestine</h5>
-                            <h6 class="card-subtitle3 text-muted">Last attempt: 14/07/2021</h6>
-                            </br>
-                            <div class="progress">
-                                <div class="progress-bar bg-blue" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>             
-                            </div>
-                            </br>
-                            <a href="faq.php" class="btn btn-primary">Resume lesson</a>
+                <div class="card3">
+                    <img class="card-img-top" src="img/Small Intestine.PNG" />
+                    <div class="card-body3">
+                        <h5 class="card-title3">Small Intestine</h5>
+                        <h6 class="card-subtitle3 text-muted">Last attempt: 14/07/2021</h6>
+                        </br>
+                        <div class="progress">
+                            <div class="progress-bar bg-blue" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
                         </div>
+                        </br>
+                        <a href="lessonPage.php" class="btn btn-primary">Resume lesson</a>
                     </div>
                 </div>
             </div>
@@ -191,6 +187,8 @@ mysqli_close($link);
             <h4>Lessons:</h4>
             <div id="lessonsRow" class="row d-flex flex-row flex-nowrap overflow-auto">
             </div><br><br>
+
+
 
         </div>
     </body>
