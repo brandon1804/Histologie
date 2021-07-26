@@ -122,7 +122,7 @@ if (isset($_POST)) {
         $deleteImagesResult = mysqli_query($link, $deleteImagesQuery) or die(mysqli_error($link));
 
         if ($deleteImagesQuery) {
-            $existingImgQuery = "SELECT name FROM question_image";
+            $existingImgQuery = "SELECT name FROM question_image QI INNER JOIN quiz_question QQ ON QI.question_id = QQ.question_id WHERE QQ.quiz_id = $quizID";
 
             $existingImgResult = mysqli_query($link, $existingImgQuery) or die(mysqli_error($link));
 

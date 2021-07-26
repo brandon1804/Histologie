@@ -27,8 +27,6 @@ if (isset($_GET['quiz_id'])) {
 
     if (!empty($iRow)) {
         $filename = $iRow['filename'];
-        $quizImgLocation = "../css/img/quizImg/" . $filename;
-        unlink($quizImgLocation);
     }
 
 
@@ -80,6 +78,19 @@ if (isset($_GET['quiz_id'])) {
     $status = mysqli_query($link, $query) or die(mysqli_error($link));
 
     if ($status) {
+        $existingImgQuery = "SELECT I.filename FROM image I WHERE I.quiz_id IS NOT NULL";
+
+        $existingImgResult = mysqli_query($link, $existingImgQuery) or die(mysqli_error($link));
+
+        while ($eIRow = mysqli_fetch_assoc($existingImgResult)) {
+            $existingImgArr[] = $eIRow['filename'];
+        }
+
+        if (in_array($filename, $existingImgArr) == false) {
+            $quizImgLocation = "../css/img/quizImg/" . $filename;
+            unlink($quizImgLocation);
+        }//end of image validation
+
         $response["message"] = "Success";
     } else {
         $response["message"] = "Failed";

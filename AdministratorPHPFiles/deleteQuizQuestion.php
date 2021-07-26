@@ -43,7 +43,7 @@ if (isset($_GET['question_id']) && isset($_GET['quiz_id'])) {
         $status = mysqli_query($link, $query) or die(mysqli_error($link));
 
         if ($status) {
-            $existingImgQuery = "SELECT name FROM question_image";
+            $existingImgQuery = "SELECT name FROM question_image QI INNER JOIN quiz_question QQ ON QI.question_id = QQ.question_id WHERE QQ.quiz_id = $quizID";
 
             $existingImgResult = mysqli_query($link, $existingImgQuery) or die(mysqli_error($link));
 

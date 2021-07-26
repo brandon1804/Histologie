@@ -48,7 +48,7 @@ if (isset($_POST)) {
     if ($quizUpdateResult) {
         $isUpdated = true;
     }//end of update quiz result
-    
+
 
     if ($imageChanged == "Yes") {
         $imageQuery = "SELECT I.filename FROM image I WHERE I.quiz_id ='$quizID'";
@@ -59,8 +59,6 @@ if (isset($_POST)) {
 
         if (!empty($iRow)) {
             $dfilename = $iRow['filename'];
-            $quizdImgLocation = "../css/img/quizImg/" . $dfilename;
-            unlink($quizdImgLocation);
         }
 
 
@@ -76,17 +74,27 @@ if (isset($_POST)) {
 
         $quizImageUpdateResult = mysqli_query($link, $updateQuizImageQuery) or die(mysqli_error($link));
 
+        if ($quizImageUpdateResult) {
+            if (move_uploaded_file($tempname, $completePath)) {
+                $existingImgQuery = "SELECT I.filename FROM image I WHERE I.quiz_id IS NOT NULL";
 
-        if (move_uploaded_file($tempname, $completePath)) {
-            $isUpdated = true;
-        } else {
-            $isUpdated = false;
-        }
+                $existingImgResult = mysqli_query($link, $existingImgQuery) or die(mysqli_error($link));
+
+                while ($eIRow = mysqli_fetch_assoc($existingImgResult)) {
+                    $existingImgArr[] = $eIRow['filename'];
+                }
+
+                if (in_array($dfilename, $existingImgArr) == false) {
+                    $quizdImgLocation = "../css/img/quizImg/" . $dfilename;
+                    unlink($quizdImgLocation);
+                }//end of image validation
+                $isUpdated = true;
+            } else {
+                $isUpdated = false;
+            }
+        }//end of result validation
     }//end of image changed
 
-    
-    
-    //end of add quiz
 
     echo $isUpdated;
 }//end of POST validation
