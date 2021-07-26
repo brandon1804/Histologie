@@ -75,26 +75,7 @@ and open the template in the editor.
                 padding: 30px;
                 border-radius: 20px;
             }
-            .btn-circle {
-                width: 45px;
-                height: 45px;
-                line-height: 45px;
-                text-align: center;
-                padding: 0;
-                border-radius: 50%;
-            }
 
-            .btn-circle i {
-                position: relative;
-                top: -1px;
-            }
-
-            .btn-circle-sm {
-                width: 30px;
-                height: 30px;
-                line-height: 30px;
-                font-size: 0.8rem; 
-            }
 
         </style>
     </head>
@@ -112,7 +93,7 @@ and open the template in the editor.
                             </div>
                             <div class="col-6 d-flex justify-content-end align-items-center">     
                                 <div id="shareBlock" class="mr-2"></div>
-                                <button class="btn btn-danger btn-circle btn-circle-sm m-1" id="generatePDF"  title="Share as PDF"><i class="fas fa-file-pdf"></i></button>
+                               
                             </div>
                         </div>
                         <div class="row mb-5">
@@ -126,6 +107,9 @@ and open the template in the editor.
                                 <text id="score"></text>
                             </div>
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-danger" id="generatePDF"><i class="fas fa-file-pdf mr-2"></i>Download Certificate</button>
                     </div>
                     <h1 class="mt-5 mb-4">Questions</h1>
                     <div class="card shadow mb-5" style="border-color: #fff; border-radius: 20px;">

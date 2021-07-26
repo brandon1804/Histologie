@@ -37,18 +37,28 @@ if (isset($_GET['question_id']) && isset($_GET['quiz_id'])) {
         }
 
 
-        if ($images[0] != "None") {
-            for ($i = 0; $i < count($images); $i++) {
-                $quizImgLocation = "../css/img/quizImg/quiz" . strval($quizID) . "/" . $images[$i];
-                unlink($quizImgLocation);
-            }//end of images delete loop
-        }
 
         $query = "DELETE FROM quiz_question WHERE question_id ='$id'";
 
         $status = mysqli_query($link, $query) or die(mysqli_error($link));
 
         if ($status) {
+            $existingImgQuery = "SELECT name FROM question_image";
+
+            $existingImgResult = mysqli_query($link, $existingImgQuery) or die(mysqli_error($link));
+
+            while ($eIRow = mysqli_fetch_assoc($existingImgResult)) {
+                $existingImgArr[] = $eIRow['name'];
+            }
+
+            $imagesToDelete = array_values(array_diff($images, $existingImgArr));
+            if ($images[0] != "None" && count($imagesToDelete) != 0) {
+                for ($i = 0; $i < count($imagesToDelete); $i++) {
+                    $quizImgLocation = "../css/img/quizImg/quiz" . strval($quizID) . "/" . $imagesToDelete[$i];
+                    unlink($quizImgLocation);
+                }//end of images delete loop
+            }
+
             $response = true;
             $marksQuery = "SELECT score, questions FROM quiz WHERE quiz_id = $quizID";
 
@@ -73,7 +83,6 @@ if (isset($_GET['question_id']) && isset($_GET['quiz_id'])) {
                 $response = true;
             }//end of update quiz result 
         }//end of deleted
-
     }//end of question number validation
     else {
         $response = false;

@@ -16,7 +16,7 @@ function addQuestionLogic() {
     var url = window.location.href;
     var stuff = url.split('=');
     var quiz_id = stuff[stuff.length - 1];
-
+    var fileNames = [];
 
 //start of add question
 
@@ -168,8 +168,12 @@ function addQuestionLogic() {
         submitHandler: function () {
             var totalfiles = document.getElementById('files').files.length;
             for (var index = 0; index < totalfiles; index++) {
-                formData.append("files[]", document.getElementById('files').files[index]);
-            }
+                var fileName = document.getElementById('files').files[index].name;
+                if (fileNames.includes(fileName) === false) {
+                    fileNames.push(fileName);
+                    formData.append("files[]", document.getElementById('files').files[index]);
+                }//end of filename validation 
+            }//end of images for loop
 
             question = $("textarea[name='question']").val();
             questionScore = $("input[name='questionScore']").val();

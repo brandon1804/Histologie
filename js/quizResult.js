@@ -43,19 +43,6 @@ function updateQuizResultPage() {
                 showButtons: ['fb', 'twitter', 'email']
             });
 
-            $("#generatePDF").hover(function () {
-                $(this).css({
-                    '-webkit-transform': 'translateY(-4px)',
-                    '-ms-transform': 'translateY(-4px)',
-                    'transform': 'translateY(-4px)'
-                });
-            }, function () {
-                $(this).css({
-                    '-webkit-transform': 'translateY(0px)',
-                    '-ms-transform': 'translateY(0px)',
-                    'transform': 'translateY(0px)'
-                });
-            });
 
 
 
@@ -161,7 +148,6 @@ function updateQuestionsTable() {
     var output = "";
     for (var i = 0; i < shuffledQuestionsArr.length; i++) {
         var status = "";
-        // + "<td>" + savedAnswers[i] + "</td>"
         if (correctQ.includes(shuffledQuestionsArr[i])) {
             status = "<td class='text-success'> Correct </td>";
         } else if (pcorrectQ.includes(shuffledQuestionsArr[i])) {
@@ -170,11 +156,6 @@ function updateQuestionsTable() {
             status = "<td class='text-danger'> Incorrect </td>";
         }
 
-        /*
-         if (userAnswer.includes(",")) {
-         userAnswer = userAnswer.join();
-         } 
-         */
         output += "<tr><td>" + questionsArr[i] + "</td>"
                 + "<td>" + savedAnswers[i]['user_answer'] + "</td>"
                 + status
