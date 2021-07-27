@@ -152,22 +152,6 @@ quizLogic(function (response) {
 
             }//end of MCQ validation
 
-            if (response["question_type"] === "M&M") {
-                var aArr = [];
-
-                for (var i = 0; i < 2; i++) {
-                    aArr.push($("#" + i).val());
-                }//end of options for loop
-                var answersArr = aArr[0].concat(aArr[1]);
-                console.log(answersArr);
-                if (answersArr.length === 4 && !answersArr.includes("")) {
-                    isAnswered = true;
-                    var answerObj = {question_id: shuffledQuestionsArr[currQuestionIndex], question_type: response["question_type"], user_answer: answersArr};
-                    savedAnswers.push(answerObj);
-                }
-
-            }//end of mix and match
-
             if (isAnswered === true) {
                 currValue += 1;
                 currQuestionIndex += 1;
@@ -231,18 +215,6 @@ quizLogic(function (response) {
                                                 pcorrectQ.push(userQI);
                                             }
                                             //alert(userQI + "Multiple Answers Some Wrong");
-                                        }
-                                    }//end of answer for loop
-                                }//end of per option 
-
-                                else if (arrayValidator(answer, userA) === false && questionT === "M&M") {
-                                    for (var a = 0; a < answer.length; a++) {
-                                        if (answer[a] === userA[a]) {
-                                            marks += 0.5;
-                                            if (pcorrectQ.includes(userQI) === false) {
-                                                pcorrectQ.push(userQI);
-                                            }
-
                                         }
                                     }//end of answer for loop
                                 }//end of per option 
@@ -357,17 +329,6 @@ quizLogic(function (response) {
                                             for (var a = 0; a < answer.length; a++) {
                                                 if (answer[a] === userA[a]) {
                                                     marks += 1;
-                                                    if (pcorrectQ.includes(userQI) === false) {
-                                                        pcorrectQ.push(userQI);
-                                                    }
-                                                }
-                                            }//end of answer for loop
-                                        }//end of per option 
-
-                                        else if (arrayValidator(answer, userA) === false && questionT === "M&M") {
-                                            for (var a = 0; a < answer.length; a++) {
-                                                if (answer[a] === userA[a]) {
-                                                    marks += 0.5;
                                                     if (pcorrectQ.includes(userQI) === false) {
                                                         pcorrectQ.push(userQI);
                                                     }
@@ -615,22 +576,6 @@ function updateQuizQuestion(currQuestionIndex, shuffledQuestionsArr) {
                 }//end of MCQ
 
 
-
-                if (response["question_type"] === "M&M") {
-                    var arr = optionsArr[0].split(",");
-                    for (var t = 0; t < 2; t++) {
-                        output += "<div class='form-group'>"
-                                + "<label for='" + t + "'>" + arr[t] + "--Cellular Component--Colour of stain" + "</label>"
-                                + "<select multiple class='form-control mb-2' id= '" + t + "'>"
-                                + "<option value=''>Select Cellular Component & Colour of stain</option>";
-                        for (var i = 2; i < arr.length; i++) {
-                            output += " <option value='" + arr[i] + "'>" + arr[i] + "</option>";
-                        }//end of dropdown for loop
-
-                        output += "</select></div>";
-                    }//end of options for loop
-
-                }//end of mix and match
 
 
 
