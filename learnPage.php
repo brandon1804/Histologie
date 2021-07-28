@@ -151,6 +151,36 @@ mysqli_close($link);
                 </div>
             </div>
             </br>
+            <h4>In Progress:</h4>
+            <div class="row">
+                <div class="card3">
+                    <img class="card-img-top" src="img/Small Intestine.PNG" />
+                    <div class="card-body3">
+                        <h5 class="card-title3">Small Intestine</h5>
+                        <h6 class="card-subtitle3 text-muted">Last attempt: 14/07/2021</h6>
+                        </br>
+                        <div class="progress">
+                            <div class="progress-bar bg-blue" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                        </div>
+                        </br>
+                        <a href="lessonPage.php" class="btn btn-primary">Resume lesson</a>
+                    </div>
+                </div>
+                <div class="card3">
+                    <img class="card-img-top" src="img/Small Intestine.PNG" />
+                    <div class="card-body3">
+                        <h5 class="card-title3">Small Intestine</h5>
+                        <h6 class="card-subtitle3 text-muted">Last attempt: 14/07/2021</h6>
+                        </br>
+                        <div class="progress">
+                            <div class="progress-bar bg-blue" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                        </div>
+                        </br>
+                        <a href="lessonPage.php" class="btn btn-primary">Resume lesson</a>
+                    </div>
+                </div>
+            </div>
+            </br>
             <h4>Recommended for you:</h4>
             <div id="lessons" class="row"></div>
             </br>
