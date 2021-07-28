@@ -233,7 +233,9 @@ quizLogic(function (response) {
 
                     insertStudentQuizRecord(quiz_id, marks);
                     //alert('Call');
+                    sessionStorage.setItem("quizStatus", "Completed");
                     sessionStorage.setItem("shuffledQuestionsArr", JSON.stringify(shuffledQuestionsArr));
+                    sessionStorage.setItem("quizAnswers", JSON.stringify(response));
                     sessionStorage.setItem("savedAnswers", JSON.stringify(savedAnswers));
                     sessionStorage.setItem("pcorrectQ", JSON.stringify(pcorrectQ));
                     sessionStorage.setItem("correctQ", JSON.stringify(correctQ));
@@ -302,7 +304,7 @@ quizLogic(function (response) {
                                 var question_id = response[i]['question_id'];
                                 var answer = response[i]['answer'];
                                 var marksAllocated = parseInt(response[i]['question_score']);
-
+                            
 
                                 if (answer.includes(",")) {
                                     answer = answer.split(",");
@@ -347,7 +349,9 @@ quizLogic(function (response) {
                             //console.log(marks);
 
                             insertStudentQuizRecord(quiz_id, marks);
+                            sessionStorage.setItem("quizStatus", "Times Up");
                             sessionStorage.setItem("shuffledQuestionsArr", JSON.stringify(shuffledQuestionsArr));
+                            sessionStorage.setItem("quizAnswers", JSON.stringify(response));
                             sessionStorage.setItem("savedAnswers", JSON.stringify(savedAnswers));
                             sessionStorage.setItem("pcorrectQ", JSON.stringify(pcorrectQ));
                             sessionStorage.setItem("correctQ", JSON.stringify(correctQ));
