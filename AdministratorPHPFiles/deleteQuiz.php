@@ -86,10 +86,16 @@ if (isset($_GET['quiz_id'])) {
             $existingImgArr[] = $eIRow['filename'];
         }
 
-        if (in_array($filename, $existingImgArr) == false) {
+        if (isset($existingImgArr)) {
+            if (in_array($filename, $existingImgArr) == false) {
+                $quizImgLocation = "../css/img/quizImg/" . $filename;
+                unlink($quizImgLocation);
+            }//end of image validation
+        }//end of existingImgArr validation
+        else {
             $quizImgLocation = "../css/img/quizImg/" . $filename;
             unlink($quizImgLocation);
-        }//end of image validation
+        }
 
         $response["message"] = "Success";
     } else {

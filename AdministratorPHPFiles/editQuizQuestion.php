@@ -130,13 +130,24 @@ if (isset($_POST)) {
                 $existingImgArr[] = $eIRow['name'];
             }
 
-            $imagesToDelete = array_values(array_diff($images, $existingImgArr));
-            if ($images[0] != "None" && count($imagesToDelete) != 0) {
-                for ($i = 0; $i < count($imagesToDelete); $i++) {
-                    $quizImgLocation = "../css/img/quizImg/quiz" . strval($quizID) . "/" . $imagesToDelete[$i];
-                    unlink($quizImgLocation);
-                }//end of images delete loop
-            }
+            if (isset($existingImgArr)) {
+                $imagesToDelete = array_values(array_diff($images, $existingImgArr));
+                if ($images[0] != "None" && count($imagesToDelete) != 0) {
+                    for ($i = 0; $i < count($imagesToDelete); $i++) {
+                        $quizImgLocation = "../css/img/quizImg/quiz" . strval($quizID) . "/" . $imagesToDelete[$i];
+                        unlink($quizImgLocation);
+                    }//end of images delete loop
+                }
+            }//end of existingImgArr validation
+            else {
+                if ($images[0] != "None") {
+                    for ($i = 0; $i < count($images); $i++) {
+                        $quizImgLocation = "../css/img/quizImg/quiz" . strval($quizID) . "/" . $images[$i];
+                        unlink($quizImgLocation);
+                    }//end of images delete loop
+                }
+            }//end of no existing images
+
             if (isset($_FILES['files'])) {
 
                 $countfiles = count($_FILES['files']['name']);
