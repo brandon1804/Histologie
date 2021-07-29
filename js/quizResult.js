@@ -138,29 +138,58 @@ function showQuizzes() {
 
 function updateQuestionsTable() {
 
+    var quizStatus = sessionStorage.getItem("quizStatus");
     var shuffledQuestionsArr = JSON.parse(sessionStorage.getItem("shuffledQuestionsArr"));
     var questionsArr = sessionStorage.getItem("questionsArr").split("SPACE");
+    var quizAnswers = JSON.parse(sessionStorage.getItem("quizAnswers"));
     var savedAnswers = JSON.parse(sessionStorage.getItem("savedAnswers"));
     var correctQ = JSON.parse(sessionStorage.getItem("correctQ"));
     var pcorrectQ = JSON.parse(sessionStorage.getItem("pcorrectQ"));
 
-
     var output = "";
-    for (var i = 0; i < shuffledQuestionsArr.length; i++) {
-        var status = "";
-        if (correctQ.includes(shuffledQuestionsArr[i])) {
-            status = "<td class='text-success'> Correct </td>";
-        } else if (pcorrectQ.includes(shuffledQuestionsArr[i])) {
-            status = "<td class='text-warning'> Partially Correct </td>";
-        } else {
-            status = "<td class='text-danger'> Incorrect </td>";
-        }
+    function sortArr(a, b) {
+        return shuffledQuestionsArr.indexOf(a.question_id) - shuffledQuestionsArr.indexOf(b.question_id);
+    }//end of sortArr
 
-        output += "<tr><td>" + questionsArr[i] + "</td>"
-                + "<td>" + savedAnswers[i]['user_answer'] + "</td>"
-                + status
-                + "</tr>";
-    }//end of table for loop
+    quizAnswers.sort(sortArr);
+
+    if (quizStatus === "Completed") {
+        for (var i = 0; i < shuffledQuestionsArr.length; i++) {
+            var status = "";
+            if (correctQ.includes(shuffledQuestionsArr[i])) {
+                status = "<td class='text-success'> Correct </td>";
+            } else if (pcorrectQ.includes(shuffledQuestionsArr[i])) {
+                status = "<td class='text-warning'> Partially Correct </td>";
+            } else {
+                status = "<td class='text-danger'> Incorrect </td>";
+            }
+
+            output += "<tr><td>" + questionsArr[i] + "</td>"
+                    + "<td>" + savedAnswers[i]['user_answer'] + "</td>"
+                    + "<td>" + quizAnswers[i]['answer'] + "</td>"
+                    + status
+                    + "</tr>";
+        }//end of table for loop
+    }//end of completed
+
+    else if (quizStatus === "Times Up") {
+        for (var i = 0; i < savedAnswers.length; i++) {
+            var status = "";
+            if (correctQ.includes(savedAnswers[i].question_id)) {
+                status = "<td class='text-success'> Correct </td>";
+            } else if (pcorrectQ.includes(savedAnswers[i].question_id)) {
+                status = "<td class='text-warning'> Partially Correct </td>";
+            } else {
+                status = "<td class='text-danger'> Incorrect </td>";
+            }
+
+            output += "<tr><td>" + questionsArr[i] + "</td>"
+                    + "<td>" + savedAnswers[i]['user_answer'] + "</td>"
+                    + "<td>" + quizAnswers[i]['answer'] + "</td>"
+                    + status
+                    + "</tr>";
+        }//end of table for loop
+    }//end of times up
 
     $("#questionsTable tbody").html(output);
 

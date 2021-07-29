@@ -73,7 +73,7 @@ $(document).ready(function () {
                     if (response.message === "Success") {
                         $('#quiz_deleted_modal').modal('show');
                         setTimeout(function () {
-                            window.location.href = "manageQuizzes.php";
+                            location.replace("manageQuizzes.php");
                         }, 2000);
                     }//end of success                   
                 },

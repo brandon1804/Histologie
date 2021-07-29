@@ -93,7 +93,7 @@ and open the template in the editor.
                             </div>
                             <div class="col-6 d-flex justify-content-end align-items-center">     
                                 <div id="shareBlock" class="mr-2"></div>
-                               
+
                             </div>
                         </div>
                         <div class="row mb-5">
@@ -114,11 +114,12 @@ and open the template in the editor.
                     <h1 class="mt-5 mb-4">Questions</h1>
                     <div class="card shadow mb-5" style="border-color: #fff; border-radius: 20px;">
                         <div class="table-responsive">
-                            <table id="questionsTable" class="table table-borderless" cellspacing="0" width="100%">
+                            <table id="questionsTable" class="table table-borderless">
                                 <thead style="background-color: #fafafa;">
                                     <tr>
                                         <th>Question</th>
                                         <th>Your Answer</th>
+                                        <th>Answer</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
