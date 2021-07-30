@@ -82,7 +82,7 @@ and open the template in the editor.
                 <div class="container">
                     <h1>Student Statistics</h1>
                     <div class="row mt-4">
-                        <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                        <div class="col-xl-6 col-sm-6 col-12 mb-3">
                             <div class="card shadow" style="border-radius: 10px; border-color: white;">
                                 <div class="card-content">
                                     <div class="card-body">
@@ -99,24 +99,7 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-sm-6 col-12 mb-3">
-                            <div class="card shadow" style="border-radius: 10px; border-color: white;">
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="media d-flex">
-                                            <div class="media-body text-left">
-                                                <h3 id="lessonsCompleted" style="color: #00D207"></h3>
-                                                <span>Lessons Completed</span>
-                                            </div>
-                                            <div class="align-self-center">
-                                                <i class='bx bx-md bx-book-open' style="color: #00D207"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-sm-6 col-12 mb-3">
+                        <div class="col-xl-6 col-sm-6 col-12 mb-3">
                             <div class="card shadow" style="border-radius: 10px; border-color: white;">
                                 <div class="card-content">
                                     <div class="card-body">
