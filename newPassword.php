@@ -116,9 +116,9 @@ and open the template in the editor.
                     <h4 class="card-title">Reset your password</h4>
                     <div class="card-body text-right">
                         <h6 class="card-new-password text-left">Enter new password</h6>
-                        <input type="text" class="form-control" name="newPassword" id="idNewPassword" placeholder="New Password" required autofocus>
+                        <input type="password" class="form-control" name="newPassword" id="idNewPassword" placeholder="New Password" required autofocus>
                         <h6 class="card-confirm-password text-left">Confirm password</h6>
-                        <input type="text" class="form-control" name="confirmPassword" id="idConfirmPassword" placeholder="Confirm Password" required>
+                        <input type="password" class="form-control" name="confirmPassword" id="idConfirmPassword" placeholder="Confirm Password" required>
                     </div>
 
                     <input type="submit" value="Reset Password" class="btn btn-primary" id="pwResetBtn"/>

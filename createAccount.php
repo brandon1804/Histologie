@@ -153,7 +153,7 @@ and open the template in the editor.
                         <h6 class="card-email text-left">Email</h6>
                         <input type="text" class="form-control" name="email" id="idEmail" placeholder="Email Address" required>
                         <h6 class="card-password text-left">Password</h6>
-                        <input type="text" class="form-control" name="password" id="idPassword" placeholder="Password" required> 
+                        <input type="password" class="form-control" name="password" id="idPassword" placeholder="Password" required> 
                         <input type="radio" id="staff" name="staffORstudent" value="staff" class="radioButton" checked="checked">
                         <label for="staff">Staff</label>
                         <input type="radio" id="student" name="staffORstudent" value="student" class="radioButton">

@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    reload_lessons();
-    updateLessons();
+    reload_Images();
+    updateImages();
 });
 
-function updateLessons() {
+function updateImages() {
     $.ajax({
         type: "GET",
         url: "getImgCat.php",
@@ -24,13 +24,13 @@ function updateLessons() {
             }
             $("#imgRow").html(message);
         },
-        error: function (obj, textStatus, erroThrown) {
+        error: function (obj, textStatus, errorThrown) {
             console.log("Error " + textStatus + ": " + errorThrown);
         }
     });
 }
 
-function reload_lessons() {
+function reload_Images() {
     $("#idImgCategory").change(function () {
         var imgCat = $("#idImgCategory").val();
 
