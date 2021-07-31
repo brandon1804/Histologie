@@ -26,7 +26,7 @@ function updateQuizResultPage() {
             var quizScore = response['score'];
             var percentage = (userScore / quizScore) * 100;
 
-            $("#quizTitle").text(response['title'] + " Quiz Results");
+            $("#quizTitle").text(response['title'] + " Quiz Result");
             $("#score").html(userScore + "/" + quizScore);
 
 
@@ -82,6 +82,18 @@ function updateQuizResultPage() {
                 doc.setTextColor("#000000");
                 doc.setFontType('normal');
                 doc.text(20, 160, response['title'] + " Quiz");
+                
+                
+                doc.setFontSize(10);
+                doc.setTextColor("#000000");
+                doc.setFontType('normal');
+                doc.text(20, 180, 'With a score of:');
+
+
+                doc.setFontSize(30);
+                doc.setTextColor("#000000");
+                doc.setFontType('normal');
+                doc.text(20, 200, userScore + " / " + quizScore);
 
 
                 let today = new Date().toISOString().slice(0, 10);
@@ -119,7 +131,7 @@ function showQuizzes() {
             var message = "";
             for (i = 0; i < response.length; i++) {
                 message += "<div class='col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-5'>"
-                        + "<div class='card shadow' style='width: 20rem;' id=" + response[i].quiz_id + ">"
+                        + "<div class='card shadow' id=" + response[i].quiz_id + ">"
                         + "<img class='card-img-top' src='css/img/quizImg/" + response[i].filename + "' alt='quizImage'>"
                         + "<div class='card-body'>"
                         + "<h5 class='card-title'>" + response[i].title + "</h5>"
