@@ -64,7 +64,10 @@ and open the template in the editor.
                         <a class="d-flex align-items-center" href="manageQuizzes.php"><i class='bx bx-sm bxs-edit mr-2' ></i>Quizzes</a>
                     </li>
                     <li>
-                        <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
+                        <a class="d-flex align-items-center" href="manageFaqPage.php"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="adminHelpPage.php"><i class='bx bx-sm bx-help-circle mr-2' ></i>Help</a>
                     </li>
                 </ul>
 
@@ -80,7 +83,7 @@ and open the template in the editor.
             <div id="content">
                 <i id="sidebarCollapse" class='bx bx-sm bx-menu' style="color:#E11A7A"></i>
                 <div class="container">
-                    <h1 id="greeting">Welcome back, <?php echo $_SESSION['name'] ?>.</h1>
+                    <h1 id="greeting">Welcome back to the administrator's portal, <?php echo $_SESSION['name'] ?>.</h1>
                     <div class="row mt-4">
                         <div class="col-xl-4 col-sm-6 col-12 mb-3">
                             <div class="card shadow" style="border-radius: 10px; border-color: white;">

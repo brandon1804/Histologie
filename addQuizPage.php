@@ -2,7 +2,7 @@
 session_start();
 include("dbFunctions.php");
 if (!isset($_SESSION['user_id'])) {
-     header("Location: signinpage.php");
+    header("Location: signinpage.php");
     exit();
 }//end of session validation
 
@@ -78,7 +78,10 @@ and open the template in the editor.
                         <a class="d-flex align-items-center" href="manageQuizzes.php"><i class='bx bx-sm bxs-edit mr-2' ></i>Quizzes</a>
                     </li>
                     <li>
-                        <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
+                        <a class="d-flex align-items-center" href="manageFaqPage.php"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="adminHelpPage.php"><i class='bx bx-sm bx-help-circle mr-2' ></i>Help</a>
                     </li>
                 </ul>
 

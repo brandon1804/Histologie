@@ -78,6 +78,9 @@ and open the template in the editor.
                     <li>
                         <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
                     </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="adminHelpPage.php"><i class='bx bx-sm bx-help-circle mr-2' ></i>Help</a>
+                    </li>
                 </ul>
 
                 <ul class="list-unstyled CTAs">

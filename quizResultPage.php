@@ -62,7 +62,6 @@ and open the template in the editor.
                 border-radius: 20px;
             }
             .card img{
-                width: 20rem;
                 height: 10rem;
                 border-top-left-radius: 20px;
                 border-top-right-radius: 20px;
@@ -70,13 +69,13 @@ and open the template in the editor.
             #score{
                 font-size: 100px;
             }
-            #resultContent{
-                background-color:white;
-                padding: 30px;
-                border-radius: 20px;
+
+
+            @media (min-width: 576px) and (max-width: 1200px) { 
+                #quizzesRow .card{
+                    width: 22rem;
+                }
             }
-
-
         </style>
     </head>
     <body>
@@ -85,50 +84,54 @@ and open the template in the editor.
         ?>
         <div class="container"> 
             <div class="d-flex justify-content-center">
-                <div id="resultContent">
-                    <div id="result">
-                        <div class="row justify-content-between"> 
-                            <div class="col-6">
-                                <h1 id="quizTitle"></h1>
-                            </div>
-                            <div class="col-6 d-flex justify-content-end align-items-center">     
-                                <div id="shareBlock" class="mr-2"></div>
+                <div class = "col-12" id="resultContent">
+                    <div class="card shadow" style="border-color: #fff; border-radius: 20px;">
+                        <div class="card-body">
+                            <div id="result">
+                                <div class="row justify-content-between"> 
+                                    <div class="col-6">
+                                        <h1 id="quizTitle"></h1>
+                                    </div>
+                                    <div class="col-6 d-flex justify-content-end align-items-center">     
+                                        <div id="shareBlock" class="mr-2"></div>
 
-                            </div>
-                        </div>
-                        <div class="row mb-5">
-                            <div class="col-sm-12 col-xl-6 border-right">
-                                <div class="d-flex justify-content-center">
-                                    <div class="circlechart" data-percentage="0"></div>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-sm-12 col-xl-6 border-right">
+                                        <div class="d-flex justify-content-center">
+                                            <div class="circlechart" data-percentage="0"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-xl-6 d-flex align-items-center justify-content-center">
+
+                                        <text id="score"></text>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-xl-6 d-flex align-items-center justify-content-center">
-
-                                <text id="score"></text>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-danger" id="generatePDF"><i class="fas fa-file-pdf mr-2"></i>Download Certificate</button>
+                            </div>
+                            <h1 class="mt-5 mb-4">Questions</h1>
+                            <div class="card shadow mb-5" style="border-color: #fff; border-radius: 20px;">
+                                <div class="table-responsive">
+                                    <table id="questionsTable" class="table table-borderless" cellspacing="0" width="100%">
+                                        <thead style="background-color: #fafafa;">
+                                            <tr>
+                                                <th>Question</th>
+                                                <th>Your Answer</th>
+                                                <th>Answer</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table> 
+                                </div>
+                            </div>
+                            <h1 class="mb-4">More Quizzes</h1>
+                            <div id="quizzesRow" class="row flex-row">
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-danger" id="generatePDF"><i class="fas fa-file-pdf mr-2"></i>Download Certificate</button>
-                    </div>
-                    <h1 class="mt-5 mb-4">Questions</h1>
-                    <div class="card shadow mb-5" style="border-color: #fff; border-radius: 20px;">
-                        <div class="table-responsive">
-                            <table id="questionsTable" class="table table-borderless">
-                                <thead style="background-color: #fafafa;">
-                                    <tr>
-                                        <th>Question</th>
-                                        <th>Your Answer</th>
-                                        <th>Answer</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table> 
-                        </div>
-                    </div>
-                    <h1 class="mb-4">More Quizzes</h1>
-                    <div id="quizzesRow" class="row flex-row">
                     </div>
                 </div>
             </div>
