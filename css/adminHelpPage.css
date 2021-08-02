@@ -5,9 +5,6 @@ body{
     background-color: #fcfcfc;
 }
 
-form .error{
-    color: #dc3545;
-}
 
 p {
     font-family: europa,sans-serif;
@@ -16,6 +13,16 @@ p {
     line-height: 1.7em;
     color: #999;
 }
+
+form .error{
+    color: #dc3545;
+}
+
+.card{
+    border-radius: 20px;
+    border-color: #fff;
+}
+
 
 a,
 a:hover,
@@ -46,6 +53,7 @@ a:focus {
     border-bottom: 1px dashed #ddd;
     margin: 40px 0;
 }
+
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -125,9 +133,6 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-.card{
-    border-radius: 20px;
-}
 
 /* ---------------------------------------------------
     CONTENT STYLE

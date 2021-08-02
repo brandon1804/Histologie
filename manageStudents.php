@@ -163,8 +163,11 @@ and open the template in the editor.
                                                 <input name="emailE" class="form-control" type="text" required>                                       
                                             </div>
                                             <div class="form-group">
-                                                <label>Account Type</label>
-                                                <input name="atE" class="form-control" type="text" required>                                       
+                                                <label for="accountTypeSelect">Account Type</label>
+                                                <select class="form-control" name="atE" id="accountTypeSelect" required>
+                                                    <option value="student">Student</option>
+                                                    <option value="staff">Staff</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -180,13 +183,13 @@ and open the template in the editor.
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Delete Student?</h5>
+                                    <h5 class="modal-title text-danger">Delete Student?</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>This action is irreversible.</p>
+                                    <p style="color: black">This action is irreversible.</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

@@ -34,19 +34,21 @@ $(document).ready(function () {
 
     var edit_validator = $("#edit_form").validate({
         rules: {
-            firstname: {
+            nameE: {
                 required: true
             },
-            lastname: {
-                required: true
+            emailE: {
+                required: true,
+                pattern: /^(\w+[\-\.])*\w+@(\w+\.)+[A-Za-z]+$/
             }
         },
         messages: {
-            firstname: {
-                required: "Please enter the student's first name"
+            nameE: {
+                required: "Please enter the student's name"
             },
-            lastname: {
-                required: "Please enter the student's last name"
+            emailE: {
+                required: "Please enter the student's email",
+                pattern: "Please enter a valid email"
             }
         },
         submitHandler: function () {
@@ -54,7 +56,7 @@ $(document).ready(function () {
             var studentid = $("[name=studentidE]").val();
             var name = $("[name=nameE]").val();
             var email = $("[name=emailE]").val();
-            var account_type = $("[name=atE]").val();
+            var account_type = $("#accountTypeSelect option:selected").val();
 
             $.ajax({
                 type: "POST",

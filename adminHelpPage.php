@@ -86,7 +86,37 @@ and open the template in the editor.
                     <div class="col-12">
                         <div class="card shadow">
                             <div class="card-body">
+                                <h1 class="card-title mb-4">Using the Dashboard</h1>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/l6t6SbVwsmg" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-5">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h1 class="card-title mb-4">How to Manage Students</h1>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oB3bAYYoiFQ" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-5">
+                        <div class="card shadow">
+                            <div class="card-body">
                                 <h1 class="card-title mb-4">How to Manage Quizzes</h1>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nCzTyzwIa2M" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-5">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h1 class="card-title mb-4">How to Manage Lessons</h1>
                                 <div class="embed-responsive embed-responsive-16by9">
                                     <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
                                 </div>
