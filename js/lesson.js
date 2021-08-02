@@ -1,18 +1,23 @@
 $(document).ready(function () {
+    
+    $('.navbar-toggler').click(function () {
+        $('#navbarSupportedContent').toggleClass('collapse');
+    });
+    
     var url = window.location.href;
     var stuff = url.split('=');
     var id = stuff[stuff.length - 1];
-    
+
     $.get("./get_lesson.php", {
     }, function (data) {
         if (id > data.length) {
             window.location.replace("lessonpage.php?lesson_id=" + (data.length));
         } else if (id === data.length) {
             $('#nextLesson').attr('disabled', true);
-        } 
+        }
     }, "JSON"
-);
-    
+            );
+
     $('#nextLesson').on('click', function () {
         var newID = parseInt(id) + 1;
         window.location.href = "lessonpage.php?lesson_id=" + newID;
@@ -26,7 +31,7 @@ $(document).ready(function () {
         }
         window.location.href = "lessonpage.php?lesson_id=" + newID;
     });
-    
+
 //    $.ajax({
 //        type: "GET",
 //        url: "getLessonMaterial.php",
@@ -51,8 +56,8 @@ $(document).ready(function () {
     $.get("./getLessonMaterial.php", {
         id: `${id}`
     }, (data) => {
-        console.log("runs");
-        console.log(data);
+//      console.log("runs");
+//      console.log(data);
         var message = "";
         $("#title").html(data.title);
         for (let i = 0; i < data.slides.length; i++) {
