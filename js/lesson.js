@@ -12,13 +12,24 @@ $(document).ready(function () {
         } 
     }, "JSON"
 );
+
+    $.get("./get_lesson.php", {
+    }, function (data) {
+        if (id = 1) {
+            window.location.replace("lessonpage.php?lesson_id=" + (data));
+        } else if (id === data.length) {
+            $('#prevLesson').attr('disabled', true);
+        } 
+    }, "JSON"
+);
     
     $('#nextLesson').on('click', function () {
         var newID = parseInt(id) + 1;
         window.location.href = "lessonpage.php?lesson_id=" + newID;
     });
-    $('#quiz').on('click', function () {
-        window.location.href = "quizPage.php?id=" + id;
+    $('#prevLesson').on('click', function () {
+        var newID = parseInt(id) - 1;
+        window.location.href = "lessonpage.php?lesson_id=" + newID;
     });
     
 //    $.ajax({

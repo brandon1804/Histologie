@@ -83,8 +83,8 @@ if (!isset($_SESSION['user_id'])) {
                         <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"></div>
                     </div>
                     <div class="flex justify-evenly pt-8">
-                        <button class="text-white w-1/2 md:w-full mr-1 bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded-lg text-lg" id="nextLesson">Next Lesson</button>
-                        <button class="text-white w-1/2 md:w-full ml-1 bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded-lg text-lg" id="quiz">Take Quiz</button>
+                        <button class="text-white w-1/2 md:w-full mr-1 bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded-lg text-lg" id="prevLesson">Previous Lesson</button>
+                        <button class="text-white w-1/2 md:w-full ml-1 bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded-lg text-lg" id="nextLesson">Next Lesson</button>
                     </div>
                 </div>
             </div>
