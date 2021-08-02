@@ -1,3 +1,13 @@
+$.get("./get_lesson.php", {
+    }, function (data) {
+        if (id > data.length) {
+            window.location.replace("lessonpage.php?lesson_id=" + (data.length));
+        } else if (id === data.length) {
+            $('#nextLesson').attr('disabled', true);
+        } 
+    }, "JSON"
+);
+    
 $(document).ready(function () {
     var url = window.location.href;
     var stuff = url.split('=');
@@ -9,7 +19,7 @@ $(document).ready(function () {
     $('#quiz').on('click', function () {
         window.location.href = "quizPage.php?id=" + id;
     });
-
+    
 //    $.ajax({
 //        type: "GET",
 //        url: "getLessonMaterial.php",
