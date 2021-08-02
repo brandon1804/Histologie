@@ -102,5 +102,23 @@ function addLesson() {
              return false;
          }
      });
-}
-
+     
+     $.ajax({
+         url: 'AdministratorPHPFiles/addLesson.php',
+         enctype: 'multipart/form-data',
+         type: 'POST',
+         data: formData,
+         contentType: false,
+         processData: false,
+         success: function (response) {
+                    var buttonAdd = "<a class='btn d-flex align-items-center' href='addQuizQuestionPage.php?quiz_id=" + response + "' role='button' style='background-color: #00D207; color:#fff'><i class='bx bx-sm bx-plus'></i>Add Another Question</a>";
+                    $('#publish_quiz_modal .modal-footer').append(buttonAdd);
+                    $('#publish_quiz_modal').modal('show');
+                },
+                error: function (obj, textStatus, errorThrown) {
+                    console.log("Error " + textStatus + ": " + errorThrown);
+                }
+            });
+            
+            return false;
+        };
