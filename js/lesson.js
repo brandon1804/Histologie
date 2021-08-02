@@ -21,6 +21,8 @@ $(document).ready(function () {
         var newID = parseInt(id) - 1;
         if (newID = 1) {
             $('#prevLesson').attr('disabled', true);
+        } else {
+            $('#prevLesson').attr('disabled', false);
         }
         window.location.href = "lessonpage.php?lesson_id=" + newID;
     });
