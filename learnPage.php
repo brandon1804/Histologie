@@ -157,18 +157,20 @@ mysqli_close($link);
             <h4>Lessons:</h4>
             <div id="lessonsRow" class="row d-flex flex-row flex-nowrap overflow-auto">
             </div><br><br>
-            <a
-                href="javascript:void(
-                window.open(
-                'https://form.jotform.com/212135193912450',
-                'blank',
-                'scrollbars=yes,
-                toolbar=no,
-                width=700,
-                height=500'
-                )
-                )
-                ">
+            <script src ="https://form.jotform.com/static/feedback2.js" type="text/javascript"></script><script type="text/javascript">
+                var JFL_212135193912450 = new JotformFeedback({
+                    formId: '212135193912450',
+                    base: 'https://form.jotform.com/',
+                    windowTitle: 'Feedback',
+                    background: '#FFA500',
+                    fontColor: '#FFFFFF',
+                    type: 'false',
+                    height: 500,
+                    width: 700,
+                    openOnLoad: false
+                });
+            </script>
+            <a class="btn lightbox-212135193912450" style="margin-top: 16px">
                 Feedback
             </a>
         </div>
