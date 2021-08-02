@@ -157,9 +157,20 @@ mysqli_close($link);
             <h4>Lessons:</h4>
             <div id="lessonsRow" class="row d-flex flex-row flex-nowrap overflow-auto">
             </div><br><br>
-
-
-
+            <a
+                href="javascript:void(
+                window.open(
+                'https://form.jotform.com/212135193912450',
+                'blank',
+                'scrollbars=yes,
+                toolbar=no,
+                width=700,
+                height=500'
+                )
+                )
+                ">
+                Feedback
+            </a>
         </div>
     </body>
 </html>
