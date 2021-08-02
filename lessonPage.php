@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_id'])) {
 
             <div class="mx-0 sm:mx-6">
 
-                <div class="bg-white rounded-2xl shadow-lg w-full p-8 leading-normal" style="font-family:Europa,sans-serif;">
+                <div class="bg-white rounded-2xl shadow-lg w-full p-8 leading-normal align-middle align-self-center" style="font-family:Europa,sans-serif;">
 
                     <p class="text-center md:text-4xl font-bold mb-5" id="title"></p>
 
