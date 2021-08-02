@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    reload_Images();
     updateImages();
 });
 
@@ -16,10 +15,10 @@ function updateImages() {
             for (i = 0; i < response.length; i++) {
                 message += "<div class='col-sm-12 col-md-6 col-lg-6 col-xl-4'>"
                         + "<div class='card shadow' style='width: 20rem;' id=" + response[i].image_category_id + ">"
-                        + "<img class='card-img-top' src='css/img/homepageImg/" + response[i].filename + "' alt='homepageImg'>"
+                        + "<img class='card-img-top' src='css/img/homepageImg/" + response[i].images[0].filename + "' alt='homepageImg'>"
                         + "<div class='card-body'>"
                         + "<h5 class='card-title'>" + response[i].name + "</h5>"
-                        + "<a href='specimens.php' class='btn btn-primary'>More Info</a>"
+                        + "<a href='specimens.php?category_id="+response[i].image_category_id+"' class='btn btn-primary'>More Info</a>"
                         + "</div></div></div>";
             }
             $("#imgRow").html(message);
@@ -29,39 +28,3 @@ function updateImages() {
         }
     });
 }
-
-function reload_Images() {
-    $("#idImgCategory").change(function () {
-        var imgCat = $("#idImgCategory").val();
-
-        if (imgCat == 0) {
-            updateLessons();
-        } else {
-            $.ajax({
-                type: "GET",
-                url: "getImgByCategory.php",
-                data: "id=" + imageCat,
-                cache: false,
-                dataType: "JSON",
-                success: function (response) {
-                    var message = "";
-                    for (i = 0; i < response.length; i++) {
-                        message += "<div class='col-sm-12 col-md-6 col-lg-6 col-xl-4'>"
-                                + "<div class='card shadow' style='width: 20rem;' id=" + response[i].image_id + ">"
-                                + "<img class='card-img-top' src='css/img/homepageImg/" + response[i].filename + "' alt='homepageImg'>"
-                                + "<div class='card-body'>"
-                                + "<h5 class='card-title'>" + response[i].name + "</h5>"
-                                + "<a href='specimen.php' class='btn btn-primary'>More Info</a>"
-                                + "</div></div></div>";
-                    }
-                    $("#imgRow").html(message);
-                },
-                error: function (obj, textStatus, errorThrown) {
-                    console.log("Error " + textStatus + ": " + errorThrown);
-                    $("#imgRow").html("");
-                }
-            });
-        }
-    });
-}
-

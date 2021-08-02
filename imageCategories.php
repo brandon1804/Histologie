@@ -107,16 +107,6 @@ mysqli_close($link);
                     <h1>Images</h1>
                 </div>
                 </br>
-                <div class="col-6 d-flex justify-content-end align-items-center">
-                    <select class="form-control w-50" id="idImgCategory">
-                        <option value="">Select Image Category</option>
-                        <?php
-                        for ($i = 0; $i < count($imgCategories); $i++) {
-                            ?>
-                            <option value="<?php echo $imgCategories[$i]['image_category_id']; ?>"><?php echo $imgCategories[$i]['name']; ?></option>                 
-                        <?php } ?> 
-                    </select>
-                </div>
             </div>
             <div id="imgRow" class="row d-flex flex-row flex-nowrap overflow-auto">
             </div><br><br>
