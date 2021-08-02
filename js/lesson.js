@@ -1,4 +1,9 @@
-$.get("./get_lesson.php", {
+$(document).ready(function () {
+    var url = window.location.href;
+    var stuff = url.split('=');
+    var id = stuff[stuff.length - 1];
+    
+    $.get("./get_lesson.php", {
     }, function (data) {
         if (id > data.length) {
             window.location.replace("lessonpage.php?lesson_id=" + (data.length));
@@ -8,10 +13,6 @@ $.get("./get_lesson.php", {
     }, "JSON"
 );
     
-$(document).ready(function () {
-    var url = window.location.href;
-    var stuff = url.split('=');
-    var id = stuff[stuff.length - 1];
     $('#nextLesson').on('click', function () {
         var newID = parseInt(id) + 1;
         window.location.href = "lessonpage.php?lesson_id=" + newID;
