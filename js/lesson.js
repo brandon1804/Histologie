@@ -12,16 +12,6 @@ $(document).ready(function () {
         } 
     }, "JSON"
 );
-
-    $.get("./get_lesson.php", {
-    }, function (data) {
-        if (id = 1) {
-            window.location.replace("lessonpage.php?lesson_id=" + (data));
-        } else if (id === data.length) {
-            $('#prevLesson').attr('disabled', true);
-        } 
-    }, "JSON"
-);
     
     $('#nextLesson').on('click', function () {
         var newID = parseInt(id) + 1;
@@ -29,6 +19,9 @@ $(document).ready(function () {
     });
     $('#prevLesson').on('click', function () {
         var newID = parseInt(id) - 1;
+        if (newID = 1) {
+            $('#prevLesson').attr('disabled', true);
+        }
         window.location.href = "lessonpage.php?lesson_id=" + newID;
     });
     
