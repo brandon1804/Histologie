@@ -1,11 +1,11 @@
 <?php
 session_start();
 include("dbFunctions.php");
-//if (!isset($_SESSION['user_id'])) {
-// header("Location: signinpage.php");
-// exit();
-//}//end of user validation
-//else {
+if (!isset($_SESSION['user_id'])) {
+ header("Location: signinpage.php");
+ exit();
+}//end of user validation
+else {
 $lessonCategories = array();
 $query = "SELECT * FROM lesson_category";
 $result = mysqli_query($link, $query);
@@ -15,7 +15,7 @@ $result = mysqli_query($link, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $lessonCategories[] = $row;
 }
-//}//end of else
+}//end of else
 
 
 
