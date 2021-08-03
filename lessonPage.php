@@ -27,6 +27,14 @@ if (!isset($_SESSION['user_id'])) {
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         
+        <style type="text/css">
+            body{
+                font-family: europa,sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+        </style>
+        
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
