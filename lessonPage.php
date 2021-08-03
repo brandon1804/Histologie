@@ -11,20 +11,30 @@ if (!isset($_SESSION['user_id'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="icon.png">
+        <link rel="stylesheet" href="css/all.css">
         <title>Lesson</title>
         <meta name="author" content="name">
         <meta name="description" content="description here">
         <meta name="keywords" content="keywords,here">
         <link rel="stylesheet" href="css/all.css">
-        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
         <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>-->
-
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.typekit.net/dte4shr.css">
+        <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        
+        <style type="text/css">
+            body{
+                font-family: europa,sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+        </style>
+        
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 

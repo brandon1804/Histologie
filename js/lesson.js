@@ -1,8 +1,8 @@
 $(document).ready(function () {
     
-    $('.navbar-toggler').click(function () {
-        $('#navbarSupportedContent').toggleClass('collapse');
-    });
+//    $('.navbar-toggler').click(function () {
+//        $('#navbarSupportedContent').toggleClass('collapse');
+//    });
     
     var url = window.location.href;
     var stuff = url.split('=');
