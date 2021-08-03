@@ -35,4 +35,4 @@ $(document).ready(function () {
             $("#myRange").val(100);
         }
     });
-})
+});
