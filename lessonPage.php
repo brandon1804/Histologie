@@ -49,7 +49,7 @@ if (!isset($_SESSION['user_id'])) {
         include("navbar.php");
         ?>
 
-        <div class="container max-w-5xl pt-16 mx-auto mt20 pb-8">
+        <div class="container max-w-5xl pt-24 mx-auto mt20 pb-8">
 
             <div class="mx-0 sm:mx-6">
 
