@@ -60,7 +60,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-image mr-2'></i>Images</a>
                     </li>
                     <li>
-                        <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-book-open mr-2'></i>Lessons</a>
+                        <a class="d-flex align-items-center" href="manageLesson.php"><i class='bx bx-sm bx-book-open mr-2'></i>Lessons</a>
                     </li>
                     <li>
                         <a class="d-flex align-items-center" href="manageQuizzes.php"><i class='bx bx-sm bxs-edit mr-2' ></i>Quizzes</a>

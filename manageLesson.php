@@ -5,20 +5,19 @@ include("dbFunctions.php");
 //    header("Location: signinpage.php");
 //    exit();
 //}//end of session validation
-
 //if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
 //    $accountType = $_SESSION['account_type'];
 //    if ($accountType !== "staff") {
 //        header("Location: accessDeniedPage.php");
 //        exit();
 //    } else {
-        $lessonCategory = array();
-        $query = "SELECT * FROM lesson_category";
-        $result = mysqli_query($link, $query);
+$lessonCategory = array();
+$query = "SELECT * FROM lesson_category";
+$result = mysqli_query($link, $query);
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $lessonCategory[] = $row;
-        }
+while ($row = mysqli_fetch_assoc($result)) {
+    $lessonCategory[] = $row;
+}
 //    }
 //}//end of account type validation
 ?>
@@ -48,14 +47,14 @@ and open the template in the editor.
 
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-        
+
         <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
         <link rel="stylesheet" href="./css/manageLessonPage.css">
         <script src="./js/manageLesson.js"></script>
         <script>
-            var category = <?php echo json_encode($lessonCategory)?>;
+            var category = <?php echo json_encode($lessonCategory) ?>;
         </script>
     </head>
     <body>
@@ -84,6 +83,9 @@ and open the template in the editor.
                     </li>
                     <li>
                         <a class="d-flex align-items-center" href="manageFaqPage.php"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="adminHelpPage.php"><i class='bx bx-sm bx-help-circle mr-2' ></i>Help</a>
                     </li>
                 </ul>
 
@@ -142,7 +144,7 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div id="lessonrow" class="row d-flex flex-column flex-nowrap overflow-y-auto accordion">
-                        
+
                     </div><br><br>
                 </div>
             </div>
@@ -150,17 +152,17 @@ and open the template in the editor.
         <div class="modal fade" id="editLessonModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editLessonModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editLessonModalLabel">Edit Lesson Details</h5>
-                    <button type="button" class="btn modal-close"><i class='bx bx-x'></i></button>
-                </div>
-                <div class="modal-body">
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger modal-close" >Close</button>
-                    <button type="button" class="btn btn-success modal-submit">Save changes</button>
-                </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editLessonModalLabel">Edit Lesson Details</h5>
+                        <button type="button" class="btn modal-close"><i class='bx bx-x'></i></button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger modal-close" >Close</button>
+                        <button type="button" class="btn btn-success modal-submit">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>

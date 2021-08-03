@@ -12,13 +12,13 @@ include("dbFunctions.php");
 //        header("Location: accessDeniedPage.php");
 //        exit();
 //    } else {
-        $quizCategories = array();
-        $query = "SELECT * FROM quiz_category";
-        $result = mysqli_query($link, $query);
+$quizCategories = array();
+$query = "SELECT * FROM quiz_category";
+$result = mysqli_query($link, $query);
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $quizCategories[] = $row;
-        }
+while ($row = mysqli_fetch_assoc($result)) {
+    $quizCategories[] = $row;
+}
 //    }
 //}//end of account type validation
 ?>
@@ -79,6 +79,9 @@ and open the template in the editor.
                     </li>
                     <li>
                         <a class="d-flex align-items-center" href="manageFaqPage.php"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="adminHelpPage.php"><i class='bx bx-sm bx-help-circle mr-2' ></i>Help</a>
                     </li>
                 </ul>
 

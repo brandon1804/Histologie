@@ -12,16 +12,17 @@ include("dbFunctions.php");
 //        header("Location: accessDeniedPage.php");
 //        exit();
 //    } else {
-        $faqs = array();
-        $query = "SELECT * FROM frequent_ask_questions";
-        $result = mysqli_query($link, $query);
+$faqs = array();
+$query = "SELECT * FROM frequent_ask_questions";
+$result = mysqli_query($link, $query);
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $faqs[] = $row;
-        }
+while ($row = mysqli_fetch_assoc($result)) {
+    $faqs[] = $row;
+}
 //    }
 //}//end of account type validation
-//?>
+//
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -45,7 +46,7 @@ and open the template in the editor.
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/additional-methods.min.js" type="text/javascript"></script>
-        
+
         <link rel="stylesheet" href="./css/manageFaqPage.css">
         <script src="./js/manageFaqPage.js"></script>
     </head>
@@ -68,13 +69,16 @@ and open the template in the editor.
                         <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-image mr-2'></i>Images</a>
                     </li>
                     <li>
-                        <a class="d-flex align-items-center" href="#"><i class='bx bx-sm bx-book-open mr-2'></i>Lessons</a>
+                        <a class="d-flex align-items-center" href="manageLesson.php"><i class='bx bx-sm bx-book-open mr-2'></i>Lessons</a>
                     </li>
                     <li>
                         <a class="d-flex align-items-center" href="manageQuizzes.php"><i class='bx bx-sm bxs-edit mr-2' ></i>Quizzes</a>
                     </li>
                     <li class="active">
                         <a class="d-flex align-items-center" href="manageFaqPage.php"><i class='bx bx-sm bx-info-circle mr-2' ></i>FAQ</a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="adminHelpPage.php"><i class='bx bx-sm bx-help-circle mr-2' ></i>Help</a>
                     </li>
                 </ul>
 
@@ -110,19 +114,19 @@ and open the template in the editor.
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
-                                            $msg = "";
-                                            foreach($faqs as $i) {
-                                                $msg .= "<tr>";
-                                                $msg .= "<td><p>".$i["faq_title"]."</p></td>";
-                                                $msg .= "<td class='faq-answer'><p>".$i["faq_answer"]."</td>";
-                                                $msg .= "<td class='d-flex justify-content-around'>";
-                                                $msg .= "<a class='btn d-flex align-items-center' role='button' style='background-color: #ffc107; color:#fff' href='./editFAQPage.php?id=".$i['faq_id']."'><i class='bx bx-sm bx-pencil'></i>Edit Question</a>";
-                                                $msg .= "<button class='btn d-flex align-items-center' role='button' style='background-color: #FF5662; color:#fff' onclick='deleteQuestion(".$i['faq_id'].")'><i class='bx bx-sm bx-trash'></i>Delete Question</button>";
-                                                $msg .= "</td>";
-                                                $msg .= "</tr>";
-                                            }
-                                            echo $msg;
+                                        <?php
+                                        $msg = "";
+                                        foreach ($faqs as $i) {
+                                            $msg .= "<tr>";
+                                            $msg .= "<td><p>" . $i["faq_title"] . "</p></td>";
+                                            $msg .= "<td class='faq-answer'><p>" . $i["faq_answer"] . "</td>";
+                                            $msg .= "<td class='d-flex justify-content-around'>";
+                                            $msg .= "<a class='btn d-flex align-items-center' role='button' style='background-color: #ffc107; color:#fff' href='./editFAQPage.php?id=" . $i['faq_id'] . "'><i class='bx bx-sm bx-pencil'></i>Edit Question</a>";
+                                            $msg .= "<button class='btn d-flex align-items-center' role='button' style='background-color: #FF5662; color:#fff' onclick='deleteQuestion(" . $i['faq_id'] . ")'><i class='bx bx-sm bx-trash'></i>Delete Question</button>";
+                                            $msg .= "</td>";
+                                            $msg .= "</tr>";
+                                        }
+                                        echo $msg;
                                         ?>
                                     </tbody>
                                 </table> 
