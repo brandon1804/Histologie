@@ -52,7 +52,7 @@ and open the template in the editor.
                         <div class="card-body">
                             <h1 class="card-title mb-4">Lesson Tutorial</h1>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+                                <iframe class="embed-responsive-item" src="https://youtu.be/embed/v87zVdEDrcg" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
