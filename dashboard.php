@@ -158,7 +158,7 @@ and open the template in the editor.
                                     <div class="col-sm-9 d-flex flex-column justify-content-center">
                                         <h3 class="card-title">Manage Lessons</h3>
                                         <p>Add, edit or delete Histologie's lessons.</p>
-                                        <a href="#" class="stretched-link"></a>
+                                        <a href="manageLesson.php" class="stretched-link"></a>
                                     </div>
                                     <div class="col-sm-3 d-flex align-items-center justify-content-center">
                                         <i class='bx bx-book-open' style="font-size: 88px; color: #00D207"></i>
