@@ -6,18 +6,17 @@ include "dbFunctions.php";
 $email = $_POST['email'];
 
 
-$query = "SELECT name FROM user WHERE email = '$email'";
+$query = "SELECT user_id, name FROM user WHERE email = '$email'";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
-$msg = "You've requested to change your password, use the link below to get started."
-        . ""
-        . "<a href='localhost/Histologie/newPassword.php'>Click here</a>";
-
 
 while ($row = mysqli_fetch_assoc($result)) {
     $name = $row["name"];
+    $id = $row["user_id"];
 }
  
- 
+ $msg = "You've requested to change your password, use the link below to get started."
+        . ""
+        . "<a href='localhost/Histologie/newPassword.php?user_id=" + $id + "'>Click here</a>";
 
 require 'vendor/autoload.php';
 

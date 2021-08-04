@@ -26,13 +26,18 @@ and open the template in the editor.
                 
                 $("#defaultForm").validate({
                     rules: {
-                        password: {
+                        newPassword: {
                             required: true,
                             pattern: /^[A-Za-z\d]{6,8}$/
+                        },
+                        confirmPassword: {
+                            required: true,
+                            pattern: /^[A-Za-z\d]{6,8}$/, 
+                            equalTo: newPassword
                         }
                     }, 
                     messages: {
-                        password: {
+                        newPassword: {
                             required: "Please enter new password",
                             pattern: "Password must be 6 to 8 character long"
                         }
