@@ -13,11 +13,10 @@ while ($row = mysqli_fetch_assoc($result)) {
     $name = $row["name"];
     $id = $row["user_id"];
 }
- 
- $msg = "You've requested to change your password, use the link below to get started."
-        . ""
-        . "<a href='localhost/Histologie/newPassword.php?user_id=" + $id + "'>Click here</a>";
 
+$msg = "You've requested to change your password, use the link below to get started."
+        . ""
+        . "<a href='localhost/Histologie/newPassword.php?user_id=" .$id ."'>Click Here</a>";
 require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
