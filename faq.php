@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_id'])) {
     </head>
     <body>
         <?php
-        session_start();
+//        session_start();
         include("navbar.php");
         ?>
         <h1>FAQ</h1>
