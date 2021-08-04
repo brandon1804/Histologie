@@ -1,26 +1,18 @@
 <?php
 session_start();
 include("dbFunctions.php");
-//if (!isset($_SESSION['user_id'])) {
-//     header("Location: signinpage.php");
-//    exit();
-//}//end of session validation
-//
-//if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
-//    $accountType = $_SESSION['account_type'];
-//    if ($accountType !== "staff") {
-//        header("Location: accessDeniedPage.php");
-//        exit();
-//    } else {
-$quizCategories = array();
-$query = "SELECT * FROM quiz_category";
-$result = mysqli_query($link, $query);
+if (!isset($_SESSION['user_id'])) {
+     header("Location: signinpage.php");
+    exit();
+}//end of session validation
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $quizCategories[] = $row;
+if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
+    $accountType = $_SESSION['account_type'];
+    if ($accountType !== "staff") {
+        header("Location: accessDeniedPage.php");
+        exit();
+    }
 }
-//    }
-//}//end of account type validation
 ?>
 <!DOCTYPE html>
 <!--
