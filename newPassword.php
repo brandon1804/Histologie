@@ -22,8 +22,8 @@ and open the template in the editor.
         <script src="js/jquery.validate.min.js" type ="text/javascript"></script>
         <script src="additional-methods.min.js" type="text/javascript"></script>
         <script>
-            $(document).ready(function(){
-                
+            $(document).ready(function () {
+
                 $("#defaultForm").validate({
                     rules: {
                         newPassword: {
@@ -32,18 +32,29 @@ and open the template in the editor.
                         },
                         confirmPassword: {
                             required: true,
-                            pattern: /^[A-Za-z\d]{6,8}$/, 
+                            pattern: /^[A-Za-z\d]{6,8}$/,
                             equalTo: newPassword
                         }
-                    }, 
+                    },
                     messages: {
                         newPassword: {
                             required: "Please enter new password",
                             pattern: "Password must be 6 to 8 character long"
                         }
                     },
-                    
-                    submitHandler: function(){
+
+                    submitHandler: function () {
+                        var confirmPassword = $("input[name = 'confirmPassword']").val();
+                        $.ajax({
+                            url: 'doResetPassword.php',
+                            type: 'POST',
+                            data: {confirmPassword: confirmPassword},
+                            success: function (response) {
+                                if (response == "Success"){
+                                    alert("Password successfully changed")
+                                }
+                            }
+                        });
                         return true;
                     }
                 });
