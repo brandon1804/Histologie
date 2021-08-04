@@ -29,12 +29,13 @@ and open the template in the editor.
                             required: true
                         },
                         confirmPassword: {
-                            equalTo: "idNewPassword"
+                            equalTo: "#idNewPassword"
                         }
                     },
                     messages: {
                         newPassword: {
-                            required: "Please enter new password"
+                            required: "Please enter new password",
+                            pattern: "Password must be 6 to 8 character long"
                         }
                     },
 
@@ -49,10 +50,10 @@ and open the template in the editor.
                             type: 'POST',
                             data: {user_id: user_id, confirmPassword: confirmPassword},
                             success: function (response) {
-                                alert("Password successfully changed")
+                                alert("Password successfully changed");
                             }
                         });
-                        return true;
+                        return false;
                     }
                 });
             });
