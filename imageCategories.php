@@ -3,11 +3,11 @@ session_start();
 
 include("dbFunctions.php");
 
-//if (!isset($_SESSION['user_id'])) {
-//    header("Location: signinpage.php");
-//    exit();
-//}//end of user validation
-//else {
+if (!isset($_SESSION['user_id'])) {
+    header("Location: signinpage.php");
+    exit();
+}//end of user validation
+else {
     $imgCategories = array();
     $query = "SELECT * FROM image_category";
     $result = mysqli_query($link, $query);
@@ -15,7 +15,7 @@ include("dbFunctions.php");
     while ($row = mysqli_fetch_assoc($result)) {
         $imgCategories[] = $row;
     }
-//}//end of else
+}//end of else
 
 mysqli_close($link);
 ?>
