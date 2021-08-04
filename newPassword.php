@@ -18,7 +18,6 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/jquery-ui.min.css"> 
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <script src="js/newPassword.js" type="text/javascript"></script>
         <script src="js/jquery.validate.min.js" type ="text/javascript"></script>
         <script src="additional-methods.min.js" type="text/javascript"></script>
         <script>
@@ -27,19 +26,15 @@ and open the template in the editor.
                 $("#defaultForm").validate({
                     rules: {
                         newPassword: {
-                            required: true,
-                            pattern: /^[A-Za-z\d]{6,8}$/
+                            required: true
                         },
                         confirmPassword: {
-                            required: true,
-                            pattern: /^[A-Za-z\d]{6,8}$/,
-                            equalTo: newPassword
+                            equalTo: "idNewPassword"
                         }
                     },
                     messages: {
                         newPassword: {
-                            required: "Please enter new password",
-                            pattern: "Password must be 6 to 8 character long"
+                            required: "Please enter new password"
                         }
                     },
 
@@ -54,9 +49,7 @@ and open the template in the editor.
                             type: 'POST',
                             data: {user_id: user_id, confirmPassword: confirmPassword},
                             success: function (response) {
-                                if (response == "Success") {
-                                    alert("Password successfully changed")
-                                }
+                                alert("Password successfully changed")
                             }
                         });
                         return true;
