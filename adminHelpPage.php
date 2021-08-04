@@ -118,7 +118,7 @@ and open the template in the editor.
                             <div class="card-body">
                                 <h1 class="card-title mb-4">How to Manage Lessons</h1>
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1r0MmnpDWn0" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ and open the template in the editor.
                             <div class="card-body">
                                 <h1 class="card-title mb-4">How to Manage FAQ's</h1>
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/qcLAUm_hs5Q" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
