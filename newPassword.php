@@ -45,12 +45,16 @@ and open the template in the editor.
 
                     submitHandler: function () {
                         var confirmPassword = $("input[name = 'confirmPassword']").val();
+                        var url = window.location.href;
+                        var stuff = url.split('=');
+                        var user_id = stuff[stuff.length - 1];
+
                         $.ajax({
                             url: 'doResetPassword.php',
                             type: 'POST',
-                            data: {confirmPassword: confirmPassword},
+                            data: {user_id: user_id, confirmPassword: confirmPassword},
                             success: function (response) {
-                                if (response == "Success"){
+                                if (response == "Success") {
                                     alert("Password successfully changed")
                                 }
                             }
