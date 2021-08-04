@@ -55,7 +55,6 @@ a:focus {
 }
 .card img{
     height: 10rem;
-    width: 20rem;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
