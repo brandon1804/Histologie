@@ -47,7 +47,17 @@ and open the template in the editor.
         ?>
         <div class="container"> 
             <div class="justify-content-center">
-                <div class="col-12">
+                <div class="col-12 mt-5">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h1 class="card-title mb-4">Sign In, Register & Reset Password Tutorial</h1>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uuaNa-Jn2KM" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-5">
                     <div class="card shadow">
                         <div class="card-body">
                             <h1 class="card-title mb-4">Lesson Tutorial</h1>
