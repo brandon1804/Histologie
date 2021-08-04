@@ -1,17 +1,17 @@
 <?php
 session_start();
 include("dbFunctions.php");
-//if (!isset($_SESSION['user_id'])) {
-//    header("Location: signinpage.php");
-//    exit();
-//}//end of session validation
-//
-//if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
-//    $accountType = $_SESSION['account_type'];
-//    if ($accountType !== "staff") {
-//        header("Location: accessDeniedPage.php");
-//        exit();
-//    } else {
+if (!isset($_SESSION['user_id'])) {
+    header("Location: signinpage.php");
+    exit();
+}//end of session validation
+
+if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
+    $accountType = $_SESSION['account_type'];
+    if ($accountType !== "staff") {
+        header("Location: accessDeniedPage.php");
+        exit();
+    } else {
 $faqs = array();
 $query = "SELECT * FROM frequent_ask_questions";
 $result = mysqli_query($link, $query);
@@ -19,9 +19,9 @@ $result = mysqli_query($link, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $faqs[] = $row;
 }
-//    }
-//}//end of account type validation
-//
+    }
+}//end of account type validation
+
 ?>
 <!DOCTYPE html>
 <!--

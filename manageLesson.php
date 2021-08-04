@@ -1,16 +1,16 @@
 <?php
 session_start();
 include("dbFunctions.php");
-//if (!isset($_SESSION['user_id'])) {
-//    header("Location: signinpage.php");
-//    exit();
-//}//end of session validation
-//if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
-//    $accountType = $_SESSION['account_type'];
-//    if ($accountType !== "staff") {
-//        header("Location: accessDeniedPage.php");
-//        exit();
-//    } else {
+if (!isset($_SESSION['user_id'])) {
+    header("Location: signinpage.php");
+    exit();
+}//end of session validation
+if (isset($_SESSION['user_id']) && isset($_SESSION['account_type'])) {
+    $accountType = $_SESSION['account_type'];
+    if ($accountType !== "staff") {
+        header("Location: accessDeniedPage.php");
+        exit();
+    } else {
 $lessonCategory = array();
 $query = "SELECT * FROM lesson_category";
 $result = mysqli_query($link, $query);
@@ -18,8 +18,8 @@ $result = mysqli_query($link, $query);
 while ($row = mysqli_fetch_assoc($result)) {
     $lessonCategory[] = $row;
 }
-//    }
-//}//end of account type validation
+    }
+}//end of account type validation
 ?>
 <!DOCTYPE html>
 <!--
